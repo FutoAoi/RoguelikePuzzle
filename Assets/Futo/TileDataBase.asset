@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: TileDataBase
   m_EditorClassIdentifier: 
   tiles:
-  - _name: 
+  - _tileID: 0
+    _name: 
     _description: 
     _cost: 0
-  - _name: 
-    _description: 
+    _effect: {fileID: 0}
+  - _tileID: 0
+    _name: 
+    _description: naninuneno
     _cost: 0
+    _effect: {fileID: 0}
