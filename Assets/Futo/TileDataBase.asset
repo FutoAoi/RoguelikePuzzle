@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a048ff26e6d9e4c96c15c78e9723d6, type: 3}
   m_Name: TileDataBase
   m_EditorClassIdentifier: 
-  tiles:
-  - _name: 
-    _description: 
+  _tiles:
+  - _tileID: 1000
+    _name: "\u65B9\u5411\u8EE2\u63DB"
+    _description: "\u5F3E\u306E\u8ECC\u9053\u304C\u5909\u308F\u308B"
+    _cost: 1
+    _effect: {fileID: 0}
+  - _tileID: 1001
+    _name: "\u653B\u6483\u500D\u5316"
+    _description: "\u5F3E\u306E\u653B\u6483\u529B\u304C\uFF12\u500D\u306B\u306A\u308B"
+    _cost: 1
+    _effect: {fileID: 0}
+  - _tileID: 1002
+    _name: 
+    _description: kkk
     _cost: 0
-  - _name: 
-    _description: 
-    _cost: 0
+    _effect: {fileID: 0}
