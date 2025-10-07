@@ -29,5 +29,9 @@ public class GameManager : MonoBehaviour
         {
             _tileHand.HandOrganize();
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
     }
 }
