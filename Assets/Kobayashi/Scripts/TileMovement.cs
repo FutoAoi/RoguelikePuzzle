@@ -1,42 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TileMovement : MonoBehaviour
 {
-    [SerializeField] private Image _sampleCardPrefab;
-    [SerializeField] private TileHand _tileHand;
-    [SerializeField] private float _scaleUpFactor = 1.7f;
-    [SerializeField] private float _scaleUpDuration = 0.1f;
-    private Coroutine _currentCoroutine;
-    private Vector3 _originalScale;
-    private bool _max = false;
+    public Sprite CardSprite;
+    private GameObject _dropTarget;
+    private Transform _trOriginalParent;
+    private Canvas _canvas;
+    private CanvasGroup _canvasGroup;
+    private RectTransform _rectTransform;
 
     private void Start()
     {
-        _originalScale = _sampleCardPrefab.transform.localScale;
+        _rectTransform = GetComponent<RectTransform>();
+        _canvas = GetComponentInParent<Canvas>();
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
-    /// <summary>
-    /// カード拡大
-    /// </summary>
-    /// <param name="number"></param>
-    public void ExpansionCard(int number)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if(_currentCoroutine != null)StopCoroutine(_currentCoroutine);
-        _currentCoroutine = StartCoroutine(ScaleCard(_tileHand.HandTile[number].rectTransform, true));
+        _trOriginalParent = transform.parent;
+        transform.SetParent(_canvas.transform);
+        _canvasGroup.blocksRaycasts = false;
+        _canvasGroup.alpha = 0.6f;
     }
-    /// <summary>
-    /// カード縮小
-    /// </summary>
-    /// <param name="number"></param>
-    public void ShrinkCard(int number)
+    public void OnDrag(PointerEventData eventData)
     {
-        if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
-        _currentCoroutine = StartCoroutine(ScaleCard(_tileHand.HandTile[number].rectTransform, false));
+        _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
-    private IEnumerator ScaleCard(RectTransform card,bool expand)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        yield return null;
+        _canvasGroup.alpha = 1f;
+        _canvasGroup.blocksRaycasts = true;
+        _dropTarget = eventData.pointerEnter;
+        if(_dropTarget != null && _dropTarget.GetComponent<TileSlot>() != null)
+        {
+            _dropTarget.GetComponent<TileSlot>().PlaceCard(CardSprite);
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.SetParent(_trOriginalParent);
+            _rectTransform.anchoredPosition = Vector2.zero;
+        }
     }
 }
