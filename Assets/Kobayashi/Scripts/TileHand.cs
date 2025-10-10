@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 /// <summary>
 /// ŽèŽD
 /// </summary>
