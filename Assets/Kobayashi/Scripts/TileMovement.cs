@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,9 +26,13 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _trHandArea = GameManager.Instance.HandArea;
         _cardPrefab = GameManager.Instance.CardPrefab;
     }
+    /// <summary>
+    /// タイルが置かれた
+    /// </summary>
     public void SetAsBoardCard()
     {
         _isBoardCard = true;
+        _trOriginalParent = transform.parent;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -37,12 +40,10 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         transform.SetParent(_canvas.transform);
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
-        Debug.Log("BeginDrag!");
     }
     public void OnDrag(PointerEventData eventData)
     {
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
-        Debug.Log("Dragging...");
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -52,12 +53,14 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (_dropTarget != null && _dropTarget.GetComponent<TileSlot>() != null)
         {
             _tileSlot = _dropTarget.GetComponent<TileSlot>();
+            //カードが存在するとき元に戻す
             if (_tileSlot.IsOccupied)
             {
                 transform.SetParent(_trOriginalParent);
                 _rectTransform.anchoredPosition = Vector2.zero;
                 return;
             }
+            //盤面上から動かされてたらスロットを空に
             if(_isBoardCard && _trOriginalParent.GetComponent<TileSlot>() != null)
             {
                 _trOriginalParent.GetComponent<TileSlot>().ClearSlot();
@@ -70,32 +73,34 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             transform.SetParent(_trOriginalParent);
             _rectTransform.anchoredPosition = Vector2.zero;
         }
-        Debug.Log("DropTarget: " + (_dropTarget ? _dropTarget.name : "null"));
-        Debug.Log("EndDrag!");
     }
+    /// <summary>
+    /// 右クリックで削除
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if(eventData.button == PointerEventData.InputButton.Right && _isBoardCard)
         {
+            //親がスロットなら中身を空に
             if (_trOriginalParent != null && _trOriginalParent.GetComponent<TileSlot>() != null)
             {
                 _trOriginalParent.GetComponent <TileSlot>().ClearSlot();
             }
-            if(_trHandArea != null && _cardPrefab != null)
-            {
-                _newCard = Instantiate(_cardPrefab,_trHandArea);
-                _newCard.GetComponent<Image>().sprite = CardSprite;
-                _tileMovement = _newCard.GetComponent<TileMovement>();
-                if(_tileMovement == null)_tileMovement = _newCard.AddComponent<TileMovement>();
-                _tileMovement.CardSprite = CardSprite;
-                var cg = _newCard.GetComponent<CanvasGroup>();
-                if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
-                cg.blocksRaycasts = true;
-                cg.alpha = 1f;
-                var rt = _newCard.GetComponent<RectTransform>();
-                rt.anchoredPosition = Vector2.zero;
-            }
-                Destroy(gameObject,0.05f);
+            #region 手札にカードを生成
+            _newCard = Instantiate(_cardPrefab,_trHandArea);
+            _newCard.GetComponent<Image>().sprite = CardSprite;
+            _tileMovement = _newCard.GetComponent<TileMovement>();
+            if(_tileMovement == null)_tileMovement = _newCard.AddComponent<TileMovement>();
+            _tileMovement.CardSprite = CardSprite;
+            var cg = _newCard.GetComponent<CanvasGroup>();
+            if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
+            cg.blocksRaycasts = true;
+            cg.alpha = 1f;
+            var rt = _newCard.GetComponent<RectTransform>();
+            rt.anchoredPosition = Vector2.zero;
+            #endregion
+            Destroy(gameObject,0.05f);
         }
     }
 }

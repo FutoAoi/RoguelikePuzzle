@@ -4,9 +4,13 @@ using UnityEngine.UI;
 public class TileSlot : MonoBehaviour
 {
     [SerializeField] private GameObject _tileBoardPrefab;
-    public bool IsOccupied { get; private set; } = false;
+    public bool IsOccupied { get; private set; } = false;//すでに置かれているか
     private GameObject _newCard;
     private TileMovement _tileMovement;
+    /// <summary>
+    /// カードを置く
+    /// </summary>
+    /// <param name="cardSprite"></param>
     public void PlaceCard(Sprite cardSprite)
     {
         if(IsOccupied)return;
@@ -22,6 +26,9 @@ public class TileSlot : MonoBehaviour
         _tileMovement.SetAsBoardCard();
         IsOccupied = true;
     }
+    /// <summary>
+    /// スロットの中を無くす
+    /// </summary>
     public void ClearSlot()
     {
         if(_newCard != null)
