@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TileHand _tileHand;
     public Transform HandArea;
     public GameObject CardPrefab;
+    [SerializeField] private TileDataBase _tileData;
+
+    public TileDataBase TileDataBase => _tileData;
 
     private void Awake()
     {
@@ -29,10 +32,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _tileHand.HandOrganize();
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-
         }
     }
 }
