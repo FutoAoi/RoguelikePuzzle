@@ -28,3 +28,8 @@ MonoBehaviour:
     _description: kkk
     _cost: 0
     _effect: {fileID: 0}
+  - _tileID: 1002
+    _name: 
+    _description: kkk
+    _cost: 0
+    _effect: {fileID: 0}
