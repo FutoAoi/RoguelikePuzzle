@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [SerializeField] private TileHand _tileHand;
+    public Transform HandArea;
+    public GameObject CardPrefab;
+    [SerializeField] private TileDataBase _tileData;
+
+    public TileDataBase TileDataBase => _tileData;
 
     private void Awake()
     {

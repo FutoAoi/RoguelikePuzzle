@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+using UnityEngine.UI;
 /// <summary>
 /// èD
 /// </summary>
 public class TileHand : MonoBehaviour
 {
     [Header("èD")]
-    public List<GameObject> HandTile = new List<GameObject>();
+    public List<Image> HandTile = new List<Image>();
     [Header("êŠ"), SerializeField] private Transform _playerHandTransfrom;
     [Header("ŠÔŠu"), SerializeField] private float _distance = 1;
     private Vector3 _newPos;
