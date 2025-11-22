@@ -37,7 +37,7 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnBeginDrag(PointerEventData eventData)
     {
         _trOriginalParent = transform.parent;
-        transform.SetParent(_canvas.transform);
+        transform.SetParent(GameManager.Instance.DragLayer.transform);
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
     }
