@@ -12,10 +12,12 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private RectTransform _rectTransform;
     private TileMovement _tileMovement;
     private TileSlot _tileSlot;
+    private UIManager_Battle _uiManager;
     private bool _isBoardCard = false;
 
     private void Start()
     {
+        _uiManager = FindAnyObjectByType<UIManager_Battle>();
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -23,8 +25,8 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             _canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
-        _trHandArea = GameManager.Instance.HandArea;
-        _cardPrefab = GameManager.Instance.CardPrefab;
+        _trHandArea = _uiManager.HandArea;
+        _cardPrefab = _uiManager.CardPrefab;
     }
     /// <summary>
     /// ƒ^ƒCƒ‹‚ª’u‚©‚ê‚½
@@ -37,7 +39,7 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnBeginDrag(PointerEventData eventData)
     {
         _trOriginalParent = transform.parent;
-        transform.SetParent(_canvas.transform);
+        transform.SetParent(_uiManager.DragLayer.transform);
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
     }
