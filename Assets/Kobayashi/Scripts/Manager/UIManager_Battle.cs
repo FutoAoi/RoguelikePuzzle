@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager_Battle : UIManagerBase
+public class UIManager_Battle : UIManagerBase,IBattleUI
 {
     [Header("ŽèŽD")] public List<Image> HandTile = new List<Image>();
 
