@@ -6,7 +6,7 @@ public class TileSlot : MonoBehaviour
     [SerializeField] private GameObject _tileBoardPrefab;
     public bool IsOccupied { get; private set; } = false;//すでに置かれているか
     private GameObject _newCard;
-    private TileMovement _tileMovement;
+    private CardMovement _tileMovement;
     /// <summary>
     /// カードを置く
     /// </summary>
@@ -17,10 +17,10 @@ public class TileSlot : MonoBehaviour
         _newCard = Instantiate(_tileBoardPrefab,transform);
         _newCard.GetComponent<Image>().sprite = cardSprite;
 
-        _tileMovement = _newCard.GetComponent<TileMovement>();
+        _tileMovement = _newCard.GetComponent<CardMovement>();
         if(_tileMovement == null)
         {
-            _tileMovement = _newCard.AddComponent<TileMovement>();
+            _tileMovement = _newCard.AddComponent<CardMovement>();
         }
         _tileMovement.CardSprite = cardSprite;
         _tileMovement.SetAsBoardCard();
