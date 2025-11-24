@@ -1,12 +1,13 @@
 using UnityEngine;
+
 [System.Serializable]
-public class TileData : ITile
+public class TileData
 {
     [SerializeField] int _tileID;
-    [SerializeField] string _name;
-    [SerializeField] string _description;
-    [SerializeField] int _cost;
-    [SerializeField] EffectBase _effect;
+    [SerializeField] private string _name;
+    [SerializeField] private string _description;
+    [SerializeField] private int _cost;
+    [SerializeField] private EffectBase _effect;
 
     public int TileID => _tileID;
     public string Name => _name;
