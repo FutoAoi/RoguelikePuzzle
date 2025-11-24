@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Sprite CardSprite;
     private GameObject _dropTarget,_cardPrefab,_newCard;
@@ -10,7 +10,7 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
     private RectTransform _rectTransform;
-    private TileMovement _tileMovement;
+    private CardMovement _cardMovement;
     private TileSlot _tileSlot;
     private UIManager_Battle _uiManager;
     private bool _isBoardCard = false;
@@ -92,9 +92,9 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             #region éËéDÇ…ÉJÅ[ÉhÇê∂ê¨
             _newCard = Instantiate(_cardPrefab,_trHandArea);
             _newCard.GetComponent<Image>().sprite = CardSprite;
-            _tileMovement = _newCard.GetComponent<TileMovement>();
-            if(_tileMovement == null)_tileMovement = _newCard.AddComponent<TileMovement>();
-            _tileMovement.CardSprite = CardSprite;
+            _cardMovement = _newCard.GetComponent<CardMovement>();
+            if(_cardMovement == null)_cardMovement = _newCard.AddComponent<CardMovement>();
+            _cardMovement.CardSprite = CardSprite;
             var cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;
