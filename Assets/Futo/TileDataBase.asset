@@ -12,24 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a048ff26e6d9e4c96c15c78e9723d6, type: 3}
   m_Name: TileDataBase
   m_EditorClassIdentifier: 
-  _tiles:
-  - _tileID: 0
-    _name: 
-    _description: 
-    _cost: 0
-    _effect: {fileID: 0}
-  - _tileID: 0
-    _name: 
-    _description: 
-    _cost: 0
-    _effect: {fileID: 0}
-  - _tileID: 0
-    _name: 
-    _description: 
-    _cost: 0
-    _effect: {fileID: 0}
-  - _tileID: 0
-    _name: 
-    _description: 
-    _cost: 0
-    _effect: {fileID: 0}
+  _cards:
+  - _cardID: 1
+    _sprit: {fileID: 8378225185371500638, guid: dae2a63ceaecfd24bb9081db0872657b, type: 3}
+    _name: A
+    _description: AA
+    _cost: 1
+    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+  - _cardID: 2
+    _sprit: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
+    _name: B
+    _description: BB
+    _cost: 2
+    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+  - _cardID: 3
+    _sprit: {fileID: 1727333087660148702, guid: cdb135115c14c4444bd223298ebcff8b, type: 3}
+    _name: C
+    _description: CC
+    _cost: 3
+    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+  - _cardID: 4
+    _sprit: {fileID: 2093941788613158730, guid: 62ff1806187134a4aa3476e256eccd7c, type: 3}
+    _name: D
+    _description: DD
+    _cost: 4
+    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+  - _cardID: 5
+    _sprit: {fileID: -4997370770350388271, guid: 82d94030bcc4cae4294fda61c9896d38, type: 3}
+    _name: E
+    _description: EE
+    _cost: 5
+    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
