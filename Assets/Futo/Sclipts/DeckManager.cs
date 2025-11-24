@@ -4,7 +4,6 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance { get; private set; }
-    public List<int> HandList = new List<int>();
 
     [SerializeField] private List<int> _deckMain = new List<int>();
 
