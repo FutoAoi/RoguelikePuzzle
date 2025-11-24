@@ -3,12 +3,24 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
+    public static DeckManager Instance { get; private set; }
+
     [SerializeField] private List<int> _deckMain = new List<int>();
 
     private List<int> _deck;
     private int _randomIndex;
     private int _temp;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     /// <summary>
     /// 報酬などでメインのデッキに入れるために使用予定
     /// </summary>
