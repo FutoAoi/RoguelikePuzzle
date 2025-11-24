@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    [SerializeField] List<int> _deckMain = new List<int>();
+    [SerializeField] private List<int> _deckMain = new List<int>();
 
-    List<int> _deck;
-    int _randomIndex;
-    int _temp;
+    private List<int> _deck;
+    private int _randomIndex;
+    private int _temp;
 
     /// <summary>
     /// 報酬などでメインのデッキに入れるために使用予定

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TileDataBase")]
 public class TileDataBase : ScriptableObject
 {
-    [SerializeField] List<TileData> _tiles = new List<TileData>();
+    [SerializeField] private List<TileData> _tiles = new();
 
     Dictionary<int, TileData> _tileDictionary;
     
