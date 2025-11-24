@@ -203,10 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f501b0c1977b94b9bb03d792faf271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileHand: {fileID: 330289937}
-  HandArea: {fileID: 2118124055}
-  CardPrefab: {fileID: 4843653365237717894, guid: 79dcd199e22d94d4cb2b2aa64455d967, type: 3}
-  DragLayer: {fileID: 269812593}
+  CurrentPhase: 0
 --- !u!4 &330289939
 Transform:
   m_ObjectHideFlags: 0
@@ -216,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 330289936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4171154, y: 0.064562745, z: 0.04102199}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1598,6 +1595,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileBoardPrefab: {fileID: 358646267725383421, guid: f2e73c00c4aa95d4fb86dea750b94c06, type: 3}
+--- !u!1 &1154090787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154090788}
+  - component: {fileID: 1154090789}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1154090788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154090787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.72096, y: 0.76542, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154090789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154090787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94dee6e8b1e6be488c8e73d88d65c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  HandTile:
+  - {fileID: 1808912041}
+  - {fileID: 965830850}
+  - {fileID: 883435190}
+  - {fileID: 1165221345}
+  - {fileID: 1462090606}
+  _playerHandTr: {fileID: 2118124055}
+  HandArea: {fileID: 2118124055}
+  CardPrefab: {fileID: 4843653365237717894, guid: 79dcd199e22d94d4cb2b2aa64455d967, type: 3}
+  DragLayer: {fileID: 269812594}
 --- !u!1 &1165221343
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,3 +3512,4 @@ SceneRoots:
   - {fileID: 681618458}
   - {fileID: 330289939}
   - {fileID: 1293538817}
+  - {fileID: 1154090788}

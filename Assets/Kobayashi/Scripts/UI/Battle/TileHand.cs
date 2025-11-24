@@ -11,9 +11,6 @@ public class TileHand : MonoBehaviour
     [Header("コンポーネント設定")]
     [SerializeField,Tooltip("場所")] private RectTransform _playerHandTr;
 
-    private RectTransform _cardTr;
-    private float _startX;
-
     /// <summary>
     /// 手札を並べる
     /// </summary>
