@@ -44,7 +44,14 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
         _card = GetComponent<Card>();
-        ID = _card._cardID;
+        if(_card == null)
+        {
+
+        }
+        else
+        {
+            ID = _card._cardID;
+        }
     }
     public void OnDrag(PointerEventData eventData)
     {
