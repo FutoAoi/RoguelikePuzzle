@@ -13,6 +13,7 @@
 /[Aa]ssets/Fonts/
 /[Aa]ssets/2DAssets/
 /[Aa]ssets/1Free/
+/[Aa]ssets/Package/
 *.log
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
@@ -100,5 +101,3 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
-# DOTween
-Assets/Demigiant/
