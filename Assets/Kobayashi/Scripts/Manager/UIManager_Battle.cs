@@ -43,9 +43,9 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     private void CreateCard()
     {
         _card = Instantiate(CardPrefab);
-        _card.AddComponent<Card>().SetCard(_deckManager.DrawCard());
+        _card.GetComponent<Card>().SetCard(_deckManager.DrawCard());
         //Œã‚Å–ß‚·‚Æ‚«‚ÉƒJ[ƒh‚ğ¶¬‚·‚é‚æ‚¤‚É‚·‚é
-        _card.AddComponent<CardMovement>();
+        _card.GetComponent<CardMovement>();
         HandCard.Add(_card);
     }
 }

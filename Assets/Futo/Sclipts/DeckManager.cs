@@ -59,7 +59,7 @@ public class DeckManager : MonoBehaviour
         }
 
         int _topCard = _deck[0];
-        _deck.Remove(0);
+        _deck.RemoveAt(0);
         return _topCard;
     }
 }
