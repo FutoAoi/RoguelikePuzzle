@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 5858860945425532122}
   - component: {fileID: 142602306451139657}
   - component: {fileID: 7876013493723205252}
+  - component: {fileID: -6448778627565062429}
   m_Layer: 5
   m_Name: HandCard
   m_TagString: Untagged
@@ -376,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9170a8735777c47a1cd0cc6e280df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMovement
-  CardSprite: {fileID: 21300000, guid: 40b312faa3d624a49a56685ceab53ff9, type: 3}
+  ID: 0
 --- !u!114 &7876013493723205252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,3 +393,18 @@ MonoBehaviour:
   _cardImage: {fileID: 4271480074682576940}
   _nameText: {fileID: 7386219055268811521}
   _costText: {fileID: 6095012120660692815}
+  _cardID: 0
+--- !u!114 &-6448778627565062429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233745660893882452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f23587d3b935e144a91f8c191837c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardHoverAnimation
+  _duration: 0.2
+  _magnificationRatio: 1.2
