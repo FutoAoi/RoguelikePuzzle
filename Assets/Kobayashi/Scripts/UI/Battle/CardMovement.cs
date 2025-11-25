@@ -2,16 +2,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
-    public Sprite CardSprite;
+    public int ID;
     private GameObject _dropTarget,_cardPrefab,_newCard;
     private Transform _trOriginalParent,_trHandArea;
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
     private RectTransform _rectTransform;
-    private TileMovement _tileMovement;
+    private CardMovement _cardMovement;
     private TileSlot _tileSlot;
+    private Card _card;
     private UIManager_Battle _uiManager;
     private bool _isBoardCard = false;
 
@@ -42,6 +43,8 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         transform.SetParent(_uiManager.DragLayer.transform);
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
+        _card = GetComponent<Card>();
+        ID = _card._cardID;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -67,7 +70,7 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             {
                 _trOriginalParent.GetComponent<TileSlot>().ClearSlot();
             }
-            _tileSlot.PlaceCard(CardSprite);
+            _tileSlot.PlaceCard(ID);
             Destroy(gameObject,0.05f);
         }
         else
@@ -91,10 +94,7 @@ public class TileMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             #region éËéDÇ…ÉJÅ[ÉhÇê∂ê¨
             _newCard = Instantiate(_cardPrefab,_trHandArea);
-            _newCard.GetComponent<Image>().sprite = CardSprite;
-            _tileMovement = _newCard.GetComponent<TileMovement>();
-            if(_tileMovement == null)_tileMovement = _newCard.AddComponent<TileMovement>();
-            _tileMovement.CardSprite = CardSprite;
+            _newCard.GetComponent<Card>().SetCard(ID);
             var cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;

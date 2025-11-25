@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public BattlePhase CurrentPhase;
     [NonSerialized] public UIManagerBase CurrentUIManager;
-    private bool _isOrganize = false;
+
+    [Header("データベース")]
+    [SerializeField, Tooltip("カード")] public CardDataBase CardData;
+
+    private bool _isOrganize = false,_isDraw = false;
 
     private void Awake()
     {
@@ -25,6 +29,12 @@ public class GameManager : MonoBehaviour
         switch (CurrentPhase)
         {
             case BattlePhase.Draw:
+                if (!_isDraw)
+                {
+                    DeckManager.Instance.ShuffleDeck();
+                    (CurrentUIManager as IBattleUI)?.DrawCard();
+                    _isDraw = true;
+                }
                 if (!_isOrganize)
                 {
                     (CurrentUIManager as IBattleUI)?.HandOrganize();
