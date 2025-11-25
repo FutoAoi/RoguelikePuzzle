@@ -11,18 +11,13 @@ public class TileSlot : MonoBehaviour
     /// カードを置く
     /// </summary>
     /// <param name="cardSprite"></param>
-    public void PlaceCard(Sprite cardSprite)
+    public void PlaceCard(int id)
     {
         if(IsOccupied)return;
         _newCard = Instantiate(_tileBoardPrefab,transform);
-        _newCard.GetComponent<Image>().sprite = cardSprite;
-
+        _newCard.GetComponent<Image>().sprite = GameManager.Instance.CardData.GetCardData(id).Sprit;
         _tileMovement = _newCard.GetComponent<CardMovement>();
-        if(_tileMovement == null)
-        {
-            _tileMovement = _newCard.AddComponent<CardMovement>();
-        }
-        _tileMovement.CardSprite = cardSprite;
+        _tileMovement.ID = id;
         _tileMovement.SetAsBoardCard();
         IsOccupied = true;
     }

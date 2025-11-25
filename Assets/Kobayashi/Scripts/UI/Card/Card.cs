@@ -10,7 +10,8 @@ public class Card : MonoBehaviour
     [SerializeField,Tooltip("コスト表示")]private TextMeshProUGUI _costText;
 
     private CardDataBase _cardData;
-    private int _cardID,_cardCost;
+    public int _cardID;
+    private int _cardCost;
     private string _description;
     public void SetCard(int id)
     {
