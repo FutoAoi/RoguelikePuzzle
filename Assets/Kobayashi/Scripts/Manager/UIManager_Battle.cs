@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
 
     [Header("数値設定")]
     [SerializeField, Tooltip("手札の数")] private int _handRange = 5;
+    [SerializeField, Tooltip("ドロー間隔")] private float _distance = 0.1f;
 
     [Header("コンポーネント設定")]
     [SerializeField, Tooltip("場所")] private RectTransform _playerHandTr;
@@ -23,11 +26,12 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         GameManager.Instance.CurrentPhase = BattlePhase.Draw;
         HandCard.Clear();
     }
-    public void DrawCard()
+    public IEnumerator DrawCard()
     {
         for (int i = 0; i < _handRange; i++)
         {
             CreateCard();
+            yield return new WaitForSeconds(_distance);
         }
     }
 
@@ -42,10 +46,9 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     
     private void CreateCard()
     {
-        _card = Instantiate(CardPrefab);
-        _card.GetComponent<Card>().SetCard(_deckManager.DrawCard());
-        //後で戻すときにカードを生成するようにする
-        _card.GetComponent<CardMovement>();
+        _card = Instantiate(CardPrefab, _playerHandTr);
+        Card card = _card.GetComponent<Card>();
+        card.SetCard(_deckManager.DrawCard());
         HandCard.Add(_card);
     }
 }

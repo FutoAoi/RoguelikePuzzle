@@ -1452,6 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   HandCard: []
   _handRange: 5
+  _distance: 0.1
   _playerHandTr: {fileID: 2118124055}
   HandArea: {fileID: 2118124055}
   CardPrefab: {fileID: 8233745660893882452, guid: 292f5517cfce1fa4189433030bf34c2b, type: 3}

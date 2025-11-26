@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IBattleUI
@@ -5,7 +6,7 @@ public interface IBattleUI
     /// <summary>
     /// ƒJ[ƒh‚ğˆø‚­
     /// </summary>
-    void DrawCard();
+    IEnumerator DrawCard();
     /// <summary>
     /// èD‚ğ•À‚×‚é
     /// </summary>

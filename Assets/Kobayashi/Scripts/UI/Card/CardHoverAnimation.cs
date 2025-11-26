@@ -14,7 +14,7 @@ public class CardHoverAnimation : MonoBehaviour,IPointerEnterHandler,IPointerExi
     private Vector3 _defaultScale;
     private void Awake()
     {
-        _rect = GetComponent<RectTransform>();
+        _rect = transform.Find("View").GetComponent<RectTransform>();
         _defaultScale = _rect.localScale;
     }
     public void OnPointerEnter(PointerEventData eventData)

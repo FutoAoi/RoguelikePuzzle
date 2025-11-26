@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
                 if (!_isDraw)
                 {
                     DeckManager.Instance.ShuffleDeck();
-                    (CurrentUIManager as IBattleUI)?.DrawCard();
+                    StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
                     _isDraw = true;
                 }
                 if (!_isOrganize)
