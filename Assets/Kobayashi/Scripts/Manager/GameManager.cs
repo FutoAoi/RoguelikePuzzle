@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 120;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
                 if (!_isDraw)
                 {
                     DeckManager.Instance.ShuffleDeck();
-                    (CurrentUIManager as IBattleUI)?.DrawCard();
+                    StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
                     _isDraw = true;
                 }
                 if (!_isOrganize)

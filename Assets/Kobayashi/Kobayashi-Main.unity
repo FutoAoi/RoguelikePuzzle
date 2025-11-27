@@ -1139,6 +1139,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileBoardPrefab: {fileID: 7769815699675693115, guid: 6ed34bb43a259d747b9c8609f3c8f72f, type: 3}
+--- !u!1 &932584179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932584180}
+  m_Layer: 5
+  m_Name: EffectDescriptionArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &932584180
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932584179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293538817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -700, y: -290}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &936568221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,10 +1487,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   HandCard: []
   _handRange: 5
+  _distance: 0.1
   _playerHandTr: {fileID: 2118124055}
   HandArea: {fileID: 2118124055}
   CardPrefab: {fileID: 8233745660893882452, guid: 292f5517cfce1fa4189433030bf34c2b, type: 3}
   DragLayer: {fileID: 269812594}
+  DescriptionArea: {fileID: 932584180}
 --- !u!1 &1203466038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,6 +1679,7 @@ RectTransform:
   - {fileID: 655437300}
   - {fileID: 2118124055}
   - {fileID: 269812594}
+  - {fileID: 932584180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2863,7 +2901,7 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: -10
   m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 0

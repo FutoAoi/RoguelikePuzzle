@@ -71,6 +71,12 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _trOriginalParent.GetComponent<TileSlot>().ClearSlot();
             }
             _tileSlot.PlaceCard(ID);
+            Card card = GetComponent<Card>();
+            if (card != null)
+            {
+                card.DisplayPanel(false);
+                card.IgnorePointerFor(0.2f);
+            }
             Destroy(gameObject,0.05f);
         }
         else
@@ -94,7 +100,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             #region éËéDÇ…ÉJÅ[ÉhÇê∂ê¨
             _newCard = Instantiate(_cardPrefab,_trHandArea);
-            _newCard.GetComponent<Card>().SetCard(ID);
+            _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea);
             var cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;
