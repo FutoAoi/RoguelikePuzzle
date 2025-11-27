@@ -41,12 +41,13 @@ public class GameManager : MonoBehaviour
                     (CurrentUIManager as IBattleUI)?.HandOrganize();
                     _isOrganize = true;
                 }
+                if(_isDraw && _isOrganize)CurrentPhase = BattlePhase.Set;
                 break;
             case BattlePhase.Set:
 
                 break;
             case BattlePhase.Action:
-
+                
                 break;
             case BattlePhase.Direction:
 
