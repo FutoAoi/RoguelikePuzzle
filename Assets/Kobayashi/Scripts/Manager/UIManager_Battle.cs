@@ -17,6 +17,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     [SerializeField, Tooltip("手札の場所")] public Transform HandArea;
     [SerializeField, Tooltip("カードの基盤")] public GameObject CardPrefab;
     [SerializeField, Tooltip("ドラッグ時の場所")] public RectTransform DragLayer;
+    [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
 
     private DeckManager _deckManager;
     private GameObject _card;
@@ -48,7 +49,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     {
         _card = Instantiate(CardPrefab, _playerHandTr);
         Card card = _card.GetComponent<Card>();
-        card.SetCard(_deckManager.DrawCard());
+        card.SetCard(_deckManager.DrawCard(),DescriptionArea);
         HandCard.Add(_card);
     }
 }
