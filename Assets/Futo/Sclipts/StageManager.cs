@@ -7,6 +7,9 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private int _stageIndex;
     [SerializeField] private Image _backGroundImage;
+    //’Ç‰Á‚µ‚½
+    [SerializeField] private float _widthSize = 0.8f;
+    [SerializeField] private float _heightSize = 0.8f;
 
     private GridLayoutGroup _layoutGroup;
     private StageData _stage;
@@ -36,6 +39,6 @@ public class StageManager : MonoBehaviour
         float cellWidth = bgWidth / _stage.Width;
         float cellHeight = bgHeight / _stage.Height;
 
-        _layoutGroup.cellSize = new Vector2(cellWidth, cellHeight);
+        _layoutGroup.cellSize = new Vector2(cellWidth * _widthSize, cellHeight * _heightSize);
     }
 }
