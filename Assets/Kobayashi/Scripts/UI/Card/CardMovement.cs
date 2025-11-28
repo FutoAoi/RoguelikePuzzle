@@ -76,6 +76,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 card.DisplayPanel(false);
                 card.IgnorePointerFor(0.2f);
             }
+            _uiManager.HandCard.Remove(gameObject);
             Destroy(gameObject,0.05f);
         }
         else
@@ -106,6 +107,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             cg.alpha = 1f;
             RectTransform rt = _newCard.GetComponent<RectTransform>();
             rt.anchoredPosition = Vector2.zero;
+            _uiManager.HandCard.Add(_newCard);
             #endregion
             Destroy(gameObject,0.05f);
         }

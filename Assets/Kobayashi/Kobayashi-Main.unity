@@ -451,10 +451,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   _stageData: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
   _tailPrefab: {fileID: 4928090463797767138, guid: a5ab42d109cd7fb4dbe3fa69dc809f4b, type: 3}
-  _stageIndex: 2
+  _stageIndex: 1
   _backGroundImage: {fileID: 1254527068}
-  _widthSize: 0.6
-  _heightSize: 0.8
+  _widthSize: 0.5
+  _heightSize: 0.6
 --- !u!1 &681618455
 GameObject:
   m_ObjectHideFlags: 0
