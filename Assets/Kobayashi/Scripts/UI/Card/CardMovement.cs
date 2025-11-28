@@ -10,7 +10,6 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Canvas _canvas;
     private CanvasGroup _canvasGroup;
     private RectTransform _rectTransform;
-    private CardMovement _cardMovement;
     private TileSlot _tileSlot;
     private Card _card;
     private UIManager_Battle _uiManager;
@@ -101,11 +100,11 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             #region éËéDÇ…ÉJÅ[ÉhÇê∂ê¨
             _newCard = Instantiate(_cardPrefab,_trHandArea);
             _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea);
-            var cg = _newCard.GetComponent<CanvasGroup>();
+            CanvasGroup cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;
             cg.alpha = 1f;
-            var rt = _newCard.GetComponent<RectTransform>();
+            RectTransform rt = _newCard.GetComponent<RectTransform>();
             rt.anchoredPosition = Vector2.zero;
             #endregion
             Destroy(gameObject,0.05f);

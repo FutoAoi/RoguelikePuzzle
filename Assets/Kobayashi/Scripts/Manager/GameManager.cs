@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("データベース")]
     [SerializeField, Tooltip("カード")] public CardDataBase CardData;
 
-    private bool _isOrganize = false,_isDraw = false;
+    private bool _isOrganize = false,_isDraw = false,_isAction = false;
 
     private void Awake()
     {
@@ -41,12 +41,19 @@ public class GameManager : MonoBehaviour
                     (CurrentUIManager as IBattleUI)?.HandOrganize();
                     _isOrganize = true;
                 }
+                if(_isDraw && _isOrganize)CurrentPhase = BattlePhase.Set;
                 break;
             case BattlePhase.Set:
 
                 break;
             case BattlePhase.Action:
+                if (!_isAction)
+                {
 
+
+
+                    _isAction = true;
+                }
                 break;
             case BattlePhase.Direction:
 
