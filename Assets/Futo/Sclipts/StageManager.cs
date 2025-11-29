@@ -1,8 +1,12 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
+    public List<GameObject> SlotList = new List<GameObject>();
+
     [SerializeField] private StageDataBase _stageData;
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private int _stageIndex;
@@ -14,6 +18,7 @@ public class StageManager : MonoBehaviour
     private GridLayoutGroup _layoutGroup;
     private StageData _stage;
     private Transform _parent;
+    private GameObject _slot;
 
     void Start()
     {
@@ -22,10 +27,12 @@ public class StageManager : MonoBehaviour
         _layoutGroup.constraintCount = _stage.Width;
         _backGroundImage.sprite = _stage.Background;
         _parent = this.transform;
+        SlotList.Clear();
         AdjustCellSize();
         for (int i = 0; i < _stage.Width * _stage.Height; i++)
         {
-            Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
+            _slot = Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
+            SlotList.Add(_slot);
         }
     }
 

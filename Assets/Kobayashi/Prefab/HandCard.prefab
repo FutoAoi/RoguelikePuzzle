@@ -768,7 +768,7 @@ MonoBehaviour:
   _image: {fileID: 2166937158963703381}
   _effectText: {fileID: 3109103508401275145}
   _duration: 0.2
-  _hideSpeed: 0.1
+  _hideSpeed: 0.05
   _cardID: 0
 --- !u!114 &-6448778627565062429
 MonoBehaviour:
