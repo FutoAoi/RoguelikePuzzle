@@ -20,6 +20,11 @@ MonoBehaviour:
     _enemy: {fileID: 0}
   - _stageID: 2
     _background: {fileID: -5287153403343626366, guid: d533a75eae54c3b4caa4fba7ca12f2dd, type: 3}
-    _width: 6
+    _width: 9
     _height: 7
+    _enemy: {fileID: 0}
+  - _stageID: 3
+    _background: {fileID: -5287153403343626366, guid: d533a75eae54c3b4caa4fba7ca12f2dd, type: 3}
+    _width: 8
+    _height: 8
     _enemy: {fileID: 0}

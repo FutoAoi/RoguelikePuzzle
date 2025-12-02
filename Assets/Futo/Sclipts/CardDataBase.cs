@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "DataBase/CardDataBase")]
 public class CardDataBase : ScriptableObject
 {
-    [SerializeField] private List<CardData> _cards = new();
+    [Header("カードデータベース")]
+    [SerializeField,Tooltip("カードリスト")] private List<CardData> _cards = new();
 
     private Dictionary<int, CardData> _cardDictionary;
     

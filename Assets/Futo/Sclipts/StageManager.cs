@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
-    public List<GameObject> SlotList = new List<GameObject>();
+    private List<GameObject> _slotList = new List<GameObject>();
 
+    [Header("ステージデータベース")]
     [SerializeField] private StageDataBase _stageData;
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private int _stageIndex;
@@ -19,6 +20,8 @@ public class StageManager : MonoBehaviour
     private StageData _stage;
     private Transform _parent;
     private GameObject _slot;
+
+    public List<GameObject> SlotList => _slotList;
 
     void Start()
     {
