@@ -89,3 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileBoardPrefab: {fileID: 7769815699675693115, guid: 6ed34bb43a259d747b9c8609f3c8f72f, type: 3}
+  _tileSprites:
+  - {fileID: -2731482651555690124, guid: f328b83e7956a2047b0d9f9d5370a3c4, type: 3}
+  - {fileID: -5499855019732150937, guid: deb14df38a454b94f8662df4f844376d, type: 3}
+  - {fileID: -4219729029190396201, guid: 7c96c74241a245d45b51e47e3d33b54e, type: 3}
+  - {fileID: 3936456661443358929, guid: 587ff55d2571e3e41bf0187058d2972a, type: 3}
