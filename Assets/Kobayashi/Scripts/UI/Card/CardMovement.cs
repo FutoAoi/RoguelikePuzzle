@@ -38,6 +38,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
         _trOriginalParent = transform.parent;
         transform.SetParent(_uiManager.DragLayer.transform);
         _canvasGroup.blocksRaycasts = false;
@@ -47,10 +48,12 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
     public void OnDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
         _dropTarget = eventData.pointerCurrentRaycast.gameObject;
@@ -91,7 +94,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right && _isBoardCard)
+        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        if (eventData.button == PointerEventData.InputButton.Right && _isBoardCard)
         {
             //親がスロットなら中身を空に
             if (_trOriginalParent != null && _trOriginalParent.GetComponent<TileSlot>() != null)
