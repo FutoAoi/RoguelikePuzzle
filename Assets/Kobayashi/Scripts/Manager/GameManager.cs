@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public AttackManager AttackManager;
 
     private AttackManager _attackManager;
+    private StageManager _stageManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false;
 
     private void Awake()
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        //‰¼
+        _stageManager = FindAnyObjectByType<StageManager>();
+        _stageManager.CreateStage(1);
     }
 
     // Update is called once per frame
