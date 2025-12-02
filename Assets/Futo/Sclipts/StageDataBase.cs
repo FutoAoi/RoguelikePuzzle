@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "DataBase/StageDataBase")]
 public class StageDataBase : ScriptableObject
 {
-    [SerializeField] private List<StageData> _stages = new();
+    [Header("ステージデータベース")]
+    [SerializeField,Tooltip("ステージリスト")] private List<StageData> _stages = new();
 
     private Dictionary<int, StageData> _stageDictionary;
 

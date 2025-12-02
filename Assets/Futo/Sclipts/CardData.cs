@@ -4,12 +4,13 @@ using UnityEngine.UI;
 [System.Serializable]
 public class CardData
 {
-    [SerializeField] private int _cardID;
-    [SerializeField] private Sprite _sprite;
-    [SerializeField] private string _name;
-    [SerializeField] private string _description;
-    [SerializeField] private int _cost;
-    [SerializeField] private EffectBase _effect;
+    [Header("カード詳細")]
+    [SerializeField,Tooltip("カードID")] private int _cardID;
+    [SerializeField,Tooltip("カードの見た目")] private Sprite _sprite;
+    [SerializeField,Tooltip("カードの名前")] private string _name;
+    [SerializeField,Tooltip("カードの説明")] private string _description;
+    [SerializeField,Tooltip("カードのコスト")] private int _cost;
+    [SerializeField,Tooltip("効果エフェクト")] private EffectBase _effect;
 
     public int CardID => _cardID;
     public Sprite Sprit => _sprite;
