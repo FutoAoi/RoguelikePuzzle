@@ -9,8 +9,8 @@ public class StageManager : MonoBehaviour
 
     [Header("ステージデータベース")]
     [SerializeField] private StageDataBase _stageData;
+    [Header("コンポーネント設定")]
     [SerializeField] private GameObject _tailPrefab;
-    [SerializeField] private int _stageIndex;
     [SerializeField] private Image _backGroundImage;
     //追加した
     [SerializeField] private float _widthSize = 0.8f;
@@ -23,10 +23,10 @@ public class StageManager : MonoBehaviour
 
     public List<GameObject> SlotList => _slotList;
 
-    void Start()
+    public void CreateStage(int stageIndex)
     {
         _layoutGroup = GetComponent<GridLayoutGroup>();
-        _stage = _stageData.GetStageData(_stageIndex);
+        _stage = _stageData.GetStageData(stageIndex);
         _layoutGroup.constraintCount = _stage.Width;
         _backGroundImage.sprite = _stage.Background;
         _parent = this.transform;
