@@ -4,12 +4,20 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public BattlePhase CurrentPhase;
-    [NonSerialized] public UIManagerBase CurrentUIManager;
 
     [Header("データベース")]
     [SerializeField, Tooltip("カード")] public CardDataBase CardData;
+    [SerializeField, Tooltip("ステージ")] public StageDataBase StageData;
 
+    [Header("ID")]
+    [SerializeField, Tooltip("ステージID")] public int StageID = 1;
+
+    public BattlePhase CurrentPhase;
+    public bool Reset = false;
+    [NonSerialized] public UIManagerBase CurrentUIManager;
+    [NonSerialized] public AttackManager AttackManager;
+
+    private AttackManager _attackManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false;
 
     private void Awake()
@@ -49,10 +57,19 @@ public class GameManager : MonoBehaviour
             case BattlePhase.Action:
                 if (!_isAction)
                 {
-
-
+                    _attackManager = FindAnyObjectByType<AttackManager>();
+                    StartCoroutine(_attackManager.AttackStart());
 
                     _isAction = true;
+                }
+                if (Reset)
+                {
+                    Reset = false;
+                    _isDraw = false;
+                    _isOrganize = false;
+                    _isAction = false;
+
+                    CurrentPhase = BattlePhase.Draw;
                 }
                 break;
             case BattlePhase.Direction:

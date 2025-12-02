@@ -1,9 +1,13 @@
+using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TileSlot : MonoBehaviour
 {
     [SerializeField] private GameObject _tileBoardPrefab;
+    //’Ç‰Á‚µ‚½
+    [NonSerialized] public int ID;
     public bool IsOccupied { get; private set; } = false;//‚·‚Å‚É’u‚©‚ê‚Ä‚¢‚é‚©
     private GameObject _newCard;
     private CardMovement _tileMovement;
@@ -14,6 +18,7 @@ public class TileSlot : MonoBehaviour
     public void PlaceCard(int id)
     {
         if(IsOccupied)return;
+        ID = id;
         _newCard = Instantiate(_tileBoardPrefab,transform);
         _newCard.GetComponent<Image>().sprite = GameManager.Instance.CardData.GetCardData(id).Sprit;
         _tileMovement = _newCard.GetComponent<CardMovement>();
