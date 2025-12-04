@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0dba0cd001a8b5429102086f7a7f34a, type: 3}
-  m_Name: EnemyDataBase
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDataBase
-  _enemys: []
+  m_Script: {fileID: 11500000, guid: a20064d2f521ffc46a940ccf9fc00ed4, type: 3}
+  m_Name: FloorData
+  m_EditorClassIdentifier: Assembly-CSharp::FloorData
+  nodeDatas:
+  - _type: 1
+    _stageID: 0
+  - _type: 1
+    _stageID: 1
