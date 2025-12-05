@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class AttackManager : MonoBehaviour
     public int EnemyPos;
     [Header("コンポーネント設定")]
     [SerializeField] private StageManager _stageManager;
+    [SerializeField, Tooltip("攻撃魔法")] private GameObject _attackMagicPrefab;
+    [SerializeField, Tooltip("攻撃出現位置")] private RectTransform _attackStartPos;
+    [SerializeField, Tooltip("敵の場所")] private RectTransform _enemyPos;
 
     [Header("数値設定")]
     [SerializeField, Tooltip("タイル間の移動時間")] private float _interval = 2.0f;
@@ -15,7 +19,8 @@ public class AttackManager : MonoBehaviour
 
     private GameManager _gameManager;
     private TileSlot _tileSlot;
-    private bool _finish;
+    private RectTransform _attackRectTr,_nextRectTr;
+    private bool _finish,_firstAttack;
     private int _width, _height, _currentSlot,_forwardCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +33,8 @@ public class AttackManager : MonoBehaviour
         UP = false;
         Down = false;
         _finish = false;
+        _firstAttack = true;
+        _attackMagicPrefab.SetActive(false);
         //真ん中にいる場合
         EnemyPos = (_height / 2 + 1) * _width;
     }
@@ -40,8 +47,29 @@ public class AttackManager : MonoBehaviour
         _currentSlot = (_height / 2)*_width;//初期ポジ
         while (!_finish)
         {
+            //魔法の移動
+            if (_firstAttack)
+            {
+                Debug.Log("攻撃開始！！！");
+                _firstAttack=false;
+                _attackMagicPrefab.SetActive(true);
+                _attackRectTr = _attackMagicPrefab.GetComponent<RectTransform>();
+                _attackRectTr.position = _attackStartPos.position;
+                _nextRectTr = _stageManager.SlotList[_currentSlot].GetComponent<RectTransform>();
+                _attackRectTr.DOMoveX(_nextRectTr.position.x, _interval)
+                    .SetEase(Ease.Linear);
+            }
+            else
+            {
+                _nextRectTr = _stageManager.SlotList[_currentSlot].GetComponent<RectTransform>();
+                _attackRectTr.DOMove(_nextRectTr.position,_interval)
+                    .SetEase(Ease.Linear);
+            }
+            yield return new WaitForSeconds(_interval*0.7f);
+
             //効果の呼び出し
             _tileSlot = _stageManager.SlotList[_currentSlot].GetComponent<TileSlot>();
+
             if(!_tileSlot.IsOccupied)
             {
                 Debug.Log("何もなかった,,,");
@@ -51,7 +79,7 @@ public class AttackManager : MonoBehaviour
                 _gameManager.CardData.GetCardData(_tileSlot.ID).Effect.Excute();
             }
 
-            //現在地移動
+            //スロット内部の現在地移動
             if (UP)
             {
                 _currentSlot -= _width;
@@ -70,8 +98,13 @@ public class AttackManager : MonoBehaviour
                 _forwardCount++;
                 if(_forwardCount == _width)_finish = true;
             }
-            yield return new WaitForSeconds(_interval);
+            yield return new WaitForSeconds(_interval * 0.3f);
         }
+
+        _attackRectTr.DOMove(_enemyPos.position,_interval)
+            .SetEase(Ease.Linear);
+        yield return new WaitForSeconds(_interval);
+
         if(_currentSlot == EnemyPos)
         {
             Debug.Log("攻撃！！");           
@@ -89,5 +122,7 @@ public class AttackManager : MonoBehaviour
         _gameManager.Reset = true;
         _forwardCount = 0;
         _finish = false;
+        _firstAttack = true;
+        _attackMagicPrefab.SetActive(false);
     }
 }
