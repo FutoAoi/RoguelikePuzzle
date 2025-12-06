@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("データベース")]
-    [SerializeField, Tooltip("カード")] public CardDataBase CardData;
-    [SerializeField, Tooltip("ステージ")] public StageDataBase StageData;
+    [SerializeField, Tooltip("カード")] public CardDataBase CardDataBase { get; private set; }
+    [SerializeField, Tooltip("ステージ")] public StageDataBase StageDataBase { get; private set; }
+    [SerializeField,Tooltip("エネミー")] public EnemyDataBase EnemyDataBase { get; private set; }
 
     [Header("ID")]
     [SerializeField, Tooltip("ステージID")] public int StageID = 1;
