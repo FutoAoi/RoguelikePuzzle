@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         //‰¼
         _stageManager = FindAnyObjectByType<StageManager>();
-        _stageManager.CreateStage(1);
+        _stageManager.CreateStage(StageID);
     }
 
     // Update is called once per frame
