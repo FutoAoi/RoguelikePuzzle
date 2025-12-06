@@ -28,7 +28,7 @@ public class TileSlot : MonoBehaviour
         if(IsOccupied)return;
         ID = id;
         _newCard = Instantiate(_tileBoardPrefab,transform);
-        _newCard.GetComponent<Image>().sprite = GameManager.Instance.CardData.GetCardData(id).Sprit;
+        _newCard.GetComponent<Image>().sprite = GameManager.Instance.CardDataBase.GetCardData(id).Sprit;
         _tileMovement = _newCard.GetComponent<CardMovement>();
         _tileMovement.ID = id;
         _tileMovement.SetAsBoardCard();

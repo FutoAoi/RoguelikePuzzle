@@ -32,7 +32,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private string _description;
     public void SetCard(int id,RectTransform descriptionArea)
     {
-        _cardData = GameManager.Instance.CardData;
+        _cardData = GameManager.Instance.CardDataBase;
         _cardID = id;
         _cardImage.sprite = _cardData.GetCardData(_cardID).Sprit;
         _nameText.text = _cardData.GetCardData(_cardID).Name;
