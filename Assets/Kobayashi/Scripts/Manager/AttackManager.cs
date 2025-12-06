@@ -27,8 +27,8 @@ public class AttackManager : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         _gameManager.AttackManager = this;
-        _width = _gameManager.StageData.GetStageData(_gameManager.StageID).Width;
-        _height = _gameManager.StageData.GetStageData(_gameManager.StageID).Height;
+        _width = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Width;
+        _height = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Height;
         _forwardCount = 0;
         UP = false;
         Down = false;
@@ -76,7 +76,7 @@ public class AttackManager : MonoBehaviour
             }
             else
             {
-                _gameManager.CardData.GetCardData(_tileSlot.ID).Effect.Excute();
+                _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute();
             }
 
             //スロット内部の現在地移動
