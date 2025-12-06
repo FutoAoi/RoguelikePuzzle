@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dba0cd001a8b5429102086f7a7f34a, type: 3}
   m_Name: EnemyDataBase
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataBase
-  _enemys: []
+  _enemys:
+  - _enemyID: 1
+    _sprite: {fileID: 8378225185371500638, guid: dae2a63ceaecfd24bb9081db0872657b, type: 3}
+    _enemyHP: 3
+    _enemyAP: 1
+    _enemyAT: 1
+  - _enemyID: 2
+    _sprite: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
+    _enemyHP: 5
+    _enemyAP: 1
+    _enemyAT: 1

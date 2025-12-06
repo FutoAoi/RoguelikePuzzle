@@ -1,14 +1,11 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
-    private List<GameObject> _slotList = new List<GameObject>();
+    [SerializeField] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
 
-    [Header("ステージデータベース")]
-    [SerializeField] private StageDataBase _stageData;
     [Header("コンポーネント設定")]
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private Image _backGroundImage;
@@ -20,23 +17,32 @@ public class StageManager : MonoBehaviour
     private StageData _stage;
     private Transform _parent;
     private GameObject _slot;
+    private Enemy _enemy;
 
-    public List<GameObject> SlotList => _slotList;
+    public List<List<GameObject>> SlotList => _slotList;
 
     public void CreateStage(int stageIndex)
     {
         _layoutGroup = GetComponent<GridLayoutGroup>();
-        _stage = _stageData.GetStageData(stageIndex);
+        _enemy = GetComponent<Enemy>();
+        _stage = GameManager.Instance.StageDataBase.GetStageData(stageIndex);
         _layoutGroup.constraintCount = _stage.Width;
         _backGroundImage.sprite = _stage.Background;
         _parent = this.transform;
         SlotList.Clear();
         AdjustCellSize();
-        for (int i = 0; i < _stage.Width * _stage.Height; i++)
+        
+        for (int i = 0; i < _stage.Height; i++)
         {
-            _slot = Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
-            SlotList.Add(_slot);
+            List<GameObject> slotListH = new List<GameObject>();
+            for(int j = 0; j < _stage.Width; j++)
+            {
+                _slot = Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
+                slotListH.Add(_slot);
+            }
+            _slotList.Add(slotListH);
         }
+        _enemy.SetEnemyStatus(_stage.EnemyID);
     }
 
     private void AdjustCellSize()
