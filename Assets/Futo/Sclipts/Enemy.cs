@@ -27,5 +27,4 @@ public class Enemy : MonoBehaviour
         _enemyHP -= damage;
         Debug.Log($"{damage}‚ð—^‚¦‚½");
     }
-
 }
