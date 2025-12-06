@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
@@ -42,22 +44,37 @@ public class MapManager : MonoBehaviour
             FloorData floor = mapData.FloorDatas[y];
             List<StageNode> layerNodes = new List<StageNode>();
 
-            for (int i = 0; i < floor.NodeDatas.Length; i++)
+            int nodeCount = Random.Range(floor.MinNodes, floor.MaxNodes + 1);
+
+            List<StageNodeData> chosen = new List<StageNodeData>();
+
+            List<StageNodeData> candidates = new List<StageNodeData>(floor.NodeDatas);
+
+            for (int i = 0; i < nodeCount; i++)
             {
-                StageNodeData data = floor.NodeDatas[i];
+                if (candidates.Count == 0)
+                    break;
+
+                int r = Random.Range(0, candidates.Count);
+                chosen.Add(candidates[r]);
+                candidates.RemoveAt(r);
+            }
+
+            for (int i = 0; i < chosen.Count; i++)
+            {
+                StageNodeData data = chosen[i];
 
                 StageNode node = new StageNode();
                 node.StageNodeType = data.Type;
                 node.StageID = data.StageID;
-                
+
                 GameObject uiObj = Instantiate(nodePrefab, mapParent);
                 StageNodeUI ui = uiObj.GetComponent<StageNodeUI>();
                 ui.StageNodeData = node;
                 node.UI = ui;
 
-                // 【本家配置ロジック】をここにそのまま使う
-                float baseX = (i - (floor.NodeDatas.Length - 1) / 2f)
-                              * (horizontalSpread / floor.NodeDatas.Length);
+                float baseX = (i - (chosen.Count - 1) / 2f)
+                              * (horizontalSpread / chosen.Count);
                 float rand = Random.Range(-40f, 40f);
                 float x = baseX + rand;
 
@@ -66,16 +83,13 @@ public class MapManager : MonoBehaviour
                 layerNodes.Add(node);
             }
 
-            // 密集していたら押し広げ
             RelaxNodes(layerNodes, 80f);
 
             map.Add(layerNodes);
         }
 
-        // 接続（ランダム or データ指定も可能）
         ConnectFloors();
 
-        // スタート地点（複数あれば選択できる）
         StartNodeSelectUI(map[0]);
     }
 
@@ -137,6 +151,30 @@ public class MapManager : MonoBehaviour
         lr.SetPosition(1, b.position);
     }
 
+    void DrawUILine(RectTransform a, RectTransform b)
+    {
+        GameObject line = new GameObject("UILine", typeof(RectTransform));
+        line.transform.SetParent(mapParent);
+
+        RectTransform rt = line.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(0, 0);
+        rt.anchorMax = new Vector2(0, 0);
+        rt.pivot = new Vector2(0.5f, 0.5f);
+
+        Vector2 posA = a.anchoredPosition;
+        Vector2 posB = b.anchoredPosition;
+
+        Vector2 dir = (posB - posA);
+        float distance = dir.magnitude;
+
+        rt.sizeDelta = new Vector2(distance, 6f);
+        rt.anchoredPosition = posA + dir / 2f;
+        rt.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+
+        Image img = line.AddComponent<Image>();
+        img.color = new Color(1f, 1f, 1f, 0.5f); 
+    }
+
     void ConnectFloors()
     {
         for (int y = 0; y < map.Count - 1; y++)
@@ -146,7 +184,6 @@ public class MapManager : MonoBehaviour
 
             foreach (StageNode n in current)
             {
-                // 次の階層から 1～2個をランダムで接続
                 int links = Random.Range(1, Mathf.Min(3, next.Count + 1));
 
                 for (int i = 0; i < links; i++)
@@ -154,11 +191,31 @@ public class MapManager : MonoBehaviour
                     StageNode target = next[Random.Range(0, next.Count)];
                     n.NextStageNodes.Add(target);
 
-                    // 線を引く
-                    DrawLine(
-                        n.UI.rect,
-                        target.UI.rect
-                    );
+                    DrawUILine(n.UI.rect, target.UI.rect);
+                }
+            }
+
+            foreach (StageNode upper in next)
+            {
+                bool connected = false;
+
+                // 誰かに nextNodes として登録されているか？
+                foreach (StageNode lower in current)
+                {
+                    if (lower.NextStageNodes.Contains(upper))
+                    {
+                        connected = true;
+                        break;
+                    }
+                }
+
+                // 誰にもつながっていなかったら強制接続
+                if (!connected)
+                {
+                    StageNode lower = current[Random.Range(0, current.Count)];
+                    lower.NextStageNodes.Add(upper);
+
+                    DrawUILine(lower.UI.rect, upper.UI.rect);
                 }
             }
         }

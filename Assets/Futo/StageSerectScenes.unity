@@ -150,11 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
   nodePrefab: {fileID: 3858711379293227870, guid: 27e448e9aa1fd4047a162fbe82a94c4c, type: 3}
   mapParent: {fileID: 1449941514}
-  layers: 3
+  layers: 8
   minNodes: 1
   maxNodes: 4
   layerHeight: 150
-  horizontalSpread: 200
+  horizontalSpread: 500
   mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
 --- !u!4 &1350560874
 Transform:
@@ -335,7 +335,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

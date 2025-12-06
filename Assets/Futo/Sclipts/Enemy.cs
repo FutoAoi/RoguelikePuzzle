@@ -1,11 +1,31 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int _enemyID;
     [SerializeField] private Image _enemyImage;
     [SerializeField] private int _enemyHP;
     [SerializeField] private int _enemyAP;
     [SerializeField] private int _enemyAT;
+
+    private int _currentEnemyHP;
+
+    private EnemyData _enemy;
+
+
+    public void SetEnemyStatus(int enemyID)
+    {
+        _enemy = GameManager.Instance.EnemyDataBase.GetEnemyData(enemyID);
+        _enemyHP = _enemy.EnemyHP;
+        _enemyAP = _enemy.EnemyAP;
+        _enemyAT = _enemy.EnemyAT;
+    }
+
+    public void Hit(int damage)
+    {
+        _enemyHP -= damage;
+        Debug.Log($"{damage}‚ð—^‚¦‚½");
+    }
+
 }
