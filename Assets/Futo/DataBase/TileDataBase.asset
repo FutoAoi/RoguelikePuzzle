@@ -21,25 +21,25 @@ MonoBehaviour:
     _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
   - _cardID: 2
     _sprite: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
-    _name: B
-    _description: BB
+    _name: UP
+    _description: UP
     _cost: 2
-    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+    _effect: {fileID: 11400000, guid: e9c1455ec384d90428a9648ec7e0f715, type: 2}
   - _cardID: 3
     _sprite: {fileID: 1727333087660148702, guid: cdb135115c14c4444bd223298ebcff8b, type: 3}
-    _name: C
-    _description: CC
+    _name: Down
+    _description: Down
     _cost: 3
-    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+    _effect: {fileID: 11400000, guid: c4640d348888d214cb3ead8f90bb2d72, type: 2}
   - _cardID: 4
     _sprite: {fileID: 2093941788613158730, guid: 62ff1806187134a4aa3476e256eccd7c, type: 3}
-    _name: D
-    _description: DD
+    _name: Right
+    _description: Right
     _cost: 4
-    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+    _effect: {fileID: 11400000, guid: f10544b74318ffe47a93c457fce87f44, type: 2}
   - _cardID: 5
     _sprite: {fileID: -4997370770350388271, guid: 82d94030bcc4cae4294fda61c9896d38, type: 3}
-    _name: E
-    _description: EE
+    _name: Left
+    _description: Left
     _cost: 5
-    _effect: {fileID: 11400000, guid: 4a32b1bb205ca4648a549822ef60d6d3, type: 2}
+    _effect: {fileID: 11400000, guid: 4d58daf71d550b64a88860ca2724cb8f, type: 2}

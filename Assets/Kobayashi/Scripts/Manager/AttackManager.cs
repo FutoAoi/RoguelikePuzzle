@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackManager : MonoBehaviour
@@ -15,13 +17,14 @@ public class AttackManager : MonoBehaviour
     [Header("数値設定")]
     [SerializeField, Tooltip("タイル間の移動時間")] private float _interval = 2.0f;
 
-    [NonSerialized]public bool UP,Down;
+    [NonSerialized] public MagicVector _currentVector;
 
     private GameManager _gameManager;
     private TileSlot _tileSlot;
     private RectTransform _attackRectTr,_nextRectTr;
-    private bool _finish,_firstAttack;
-    private int _width, _height, _currentSlot,_forwardCount;
+    private bool _finish,_firstAttack,_isAttack;
+    private int _width, _height;
+    private Vector2Int _currentSlot,_speedInt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,14 +32,11 @@ public class AttackManager : MonoBehaviour
         _gameManager.AttackManager = this;
         _width = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Width;
         _height = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Height;
-        _forwardCount = 0;
-        UP = false;
-        Down = false;
         _finish = false;
         _firstAttack = true;
         _attackMagicPrefab.SetActive(false);
         //真ん中にいる場合
-        EnemyPos = (_height / 2 + 1) * _width;
+        EnemyPos = _height / 2 * _width;
     }
     /// <summary>
     /// 魔法に効果かける
@@ -44,7 +44,7 @@ public class AttackManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator AttackStart()
     {
-        _currentSlot = (_height / 2)*_width;//初期ポジ
+        _currentSlot = new Vector2Int(_height / 2 , 0);//初期ポジ
         while (!_finish)
         {
             //魔法の移動
@@ -53,22 +53,23 @@ public class AttackManager : MonoBehaviour
                 Debug.Log("攻撃開始！！！");
                 _firstAttack=false;
                 _attackMagicPrefab.SetActive(true);
+                _currentVector = MagicVector.Right;
                 _attackRectTr = _attackMagicPrefab.GetComponent<RectTransform>();
                 _attackRectTr.position = _attackStartPos.position;
-                _nextRectTr = _stageManager.SlotList[_currentSlot].GetComponent<RectTransform>();
+                _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
                 _attackRectTr.DOMoveX(_nextRectTr.position.x, _interval)
                     .SetEase(Ease.Linear);
             }
             else
             {
-                _nextRectTr = _stageManager.SlotList[_currentSlot].GetComponent<RectTransform>();
+                _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
                 _attackRectTr.DOMove(_nextRectTr.position,_interval)
                     .SetEase(Ease.Linear);
             }
             yield return new WaitForSeconds(_interval*0.7f);
 
             //効果の呼び出し
-            _tileSlot = _stageManager.SlotList[_currentSlot].GetComponent<TileSlot>();
+            _tileSlot = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<TileSlot>();
 
             if(!_tileSlot.IsOccupied)
             {
@@ -80,49 +81,70 @@ public class AttackManager : MonoBehaviour
             }
 
             //スロット内部の現在地移動
-            if (UP)
+            switch(_currentVector)
             {
-                _currentSlot -= _width;
-                if (_currentSlot < 0) _finish = true;
-                UP = false;
+                case MagicVector.UP:
+                    _speedInt = new Vector2Int(-1, 0);
+                    break;
+                case MagicVector.Down:
+                    _speedInt = new Vector2Int(1, 0);
+                    break;
+                case MagicVector.Left:
+                    _speedInt = new Vector2Int(0, -1);
+                    break;
+                case MagicVector.Right:
+                    _speedInt = new Vector2Int(0, 1);
+                    break;
             }
-            else if (Down)
+
+            _currentSlot += _speedInt;
+            Debug.Log(_currentSlot);
+            if (_currentSlot.y >= _width)
             {
-                _currentSlot += _width;
-                if(_currentSlot > _width * _height - 1) _finish = true;
-                Down = false;
+                _finish = true;
+                _isAttack = true;
+                Debug.Log("攻撃！！");
             }
-            else
+            if(_currentSlot.x < 0 || _currentSlot.x >_height - 1 || _currentSlot.y < 0)
             {
-                _currentSlot++;
-                _forwardCount++;
-                if(_forwardCount == _width)_finish = true;
+                _finish = true;
+                _isAttack = false;
+                Debug.Log("ミス！");
             }
             yield return new WaitForSeconds(_interval * 0.3f);
         }
 
-        _attackRectTr.DOMove(_enemyPos.position,_interval)
-            .SetEase(Ease.Linear);
-        yield return new WaitForSeconds(_interval);
-
-        if(_currentSlot == EnemyPos)
+        if (_isAttack)
         {
-            Debug.Log("攻撃！！");           
+            _attackRectTr.DOMove(_enemyPos.position, _interval)
+                .SetEase(Ease.Linear);
         }
         else
         {
-            Debug.Log("ミス！");
+            
         }
+            yield return new WaitForSeconds(_interval);
         //スロットの初期化
-        foreach(GameObject slot in _stageManager.SlotList)
+        foreach(List<GameObject> Hslot in _stageManager.SlotList)
         {
-            _tileSlot = slot.GetComponent<TileSlot>();
-            _tileSlot.ClearSlot();
+            foreach (GameObject slot in Hslot)
+            {
+                _tileSlot = slot.GetComponent<TileSlot>();
+                _tileSlot.ClearSlot();
+            }
         }
         _gameManager.Reset = true;
-        _forwardCount = 0;
         _finish = false;
         _firstAttack = true;
         _attackMagicPrefab.SetActive(false);
+    }
+    /// <summary>
+    /// 方向転換
+    /// </summary>
+    /// <param name="vector"></param>
+    public void ChangeVector(MagicVector vector)
+    {
+        _currentVector = vector;
+        Debug.Log("方向転換！");
     }
 }
