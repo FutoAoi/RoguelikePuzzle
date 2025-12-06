@@ -38,6 +38,7 @@ public class StageManager : MonoBehaviour
             for(int j = 0; j < _stage.Width; j++)
             {
                 _slot = Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
+                _slot.name = ($"Slot{i},{j}");
                 slotListH.Add(_slot);
             }
             _slotList.Add(slotListH);

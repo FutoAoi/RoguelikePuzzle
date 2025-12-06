@@ -8,3 +8,13 @@ public enum BattlePhase:int
     Action,
     Direction
 }
+/// <summary>
+/// UŒ‚‚Ì•ûŒüw’è
+/// </summary>
+public enum MagicVector : int
+{
+    UP,
+    Down,
+    Right,
+    Left,
+}

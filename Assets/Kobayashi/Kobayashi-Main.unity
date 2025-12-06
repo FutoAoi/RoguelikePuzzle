@@ -204,8 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f501b0c1977b94b9bb03d792faf271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardData: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
-  StageData: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
+  _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
+  _stageDataBase: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
+  _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
   StageID: 1
   CurrentPhase: 0
   Reset: 0
@@ -352,6 +353,7 @@ GameObject:
   - component: {fileID: 655437302}
   - component: {fileID: 655437301}
   - component: {fileID: 655437304}
+  - component: {fileID: 655437305}
   m_Layer: 5
   m_Name: BoardArea
   m_TagString: Untagged
@@ -452,11 +454,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbac207fed3b644785c0ef237a1d54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
-  _stageData: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
   _tailPrefab: {fileID: 4928090463797767138, guid: a5ab42d109cd7fb4dbe3fa69dc809f4b, type: 3}
   _backGroundImage: {fileID: 1254527068}
   _widthSize: 0.5
   _heightSize: 0.6
+--- !u!114 &655437305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655437299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894a0c1dd83cc554881c873834ff5c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _enemyImage: {fileID: 1472864263}
+  _enemyHP: 0
+  _enemyAP: 0
+  _enemyAT: 0
 --- !u!1 &681618455
 GameObject:
   m_ObjectHideFlags: 0
