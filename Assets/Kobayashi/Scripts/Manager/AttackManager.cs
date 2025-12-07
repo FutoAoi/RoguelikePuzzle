@@ -25,10 +25,11 @@ public class AttackManager : MonoBehaviour
     private TileSlot _tileSlot;
     private RectTransform _attackRectTr,_nextRectTr;
     private Image _slotImg;
-    private Color _startColor, _currentColor;
+    private Color _startColor;
     private bool _finish,_firstAttack,_isAttack;
     private int _width, _height;
     private Vector2Int _currentSlot,_speedInt;
+    private Vector2 _outPos,_goalPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -134,7 +135,12 @@ public class AttackManager : MonoBehaviour
         }
         else
         {
-            
+            if (_currentSlot.x < 0) _outPos = new Vector2(0, 1);
+            if (_currentSlot.x > _height - 1) _outPos = new Vector2(0, -1);
+            if (_currentSlot.y < 0) _outPos = new Vector2(-1, 0);
+            _goalPos = (Vector2)_attackRectTr.position + _outPos * 3f;
+            _attackRectTr.DOMove(_goalPos,_interval)
+                .SetEase(Ease.Linear);
         }
             yield return new WaitForSeconds(_interval);
         //ƒXƒƒbƒg‚Ì‰Šú‰»
