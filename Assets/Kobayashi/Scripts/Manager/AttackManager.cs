@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackManager : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class AttackManager : MonoBehaviour
 
     [Header("数値設定")]
     [SerializeField, Tooltip("タイル間の移動時間")] private float _interval = 2.0f;
+    [SerializeField, Tooltip("タイルの発光色")] private Color _glowingColor;
 
     [NonSerialized] public MagicVector _currentVector;
 
     private GameManager _gameManager;
     private TileSlot _tileSlot;
     private RectTransform _attackRectTr,_nextRectTr;
+    private Image _slotImg;
+    private Color _startColor, _currentColor;
     private bool _finish,_firstAttack,_isAttack;
     private int _width, _height;
     private Vector2Int _currentSlot,_speedInt;
@@ -66,12 +70,19 @@ public class AttackManager : MonoBehaviour
                 _attackRectTr.DOMove(_nextRectTr.position,_interval)
                     .SetEase(Ease.Linear);
             }
-            yield return new WaitForSeconds(_interval*0.7f);
+            yield return new WaitForSeconds(_interval * 0.5f);
+
+            _slotImg = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<Image>();
+            _startColor = _slotImg.color;
+            _slotImg.DOColor(_glowingColor, _interval * 0.1f)
+                .SetEase(Ease.Linear);
+
+            yield return new WaitForSeconds(_interval * 0.2f);
 
             //効果の呼び出し
             _tileSlot = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<TileSlot>();
 
-            if(!_tileSlot.IsOccupied)
+            if (!_tileSlot.IsOccupied)
             {
                 Debug.Log("何もなかった,,,");
             }
@@ -112,6 +123,8 @@ public class AttackManager : MonoBehaviour
                 Debug.Log("ミス！");
             }
             yield return new WaitForSeconds(_interval * 0.3f);
+            _slotImg.DOColor(_startColor, _interval * 0.1f)
+                .SetEase(Ease.Linear);
         }
 
         if (_isAttack)

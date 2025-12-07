@@ -783,7 +783,8 @@ MonoBehaviour:
   _attackMagicPrefab: {fileID: 1460884614}
   _attackStartPos: {fileID: 1719145436}
   _enemyPos: {fileID: 1472864262}
-  _interval: 0.5
+  _interval: 0.2
+  _glowingColor: {r: 1, g: 0.67538625, b: 0.054901958, a: 1}
 --- !u!1 &1254527066
 GameObject:
   m_ObjectHideFlags: 0
