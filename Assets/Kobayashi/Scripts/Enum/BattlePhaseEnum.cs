@@ -18,3 +18,12 @@ public enum MagicVector : int
     Right,
     Left,
 }
+
+public enum cardRarity : int
+{
+    Uncommon,
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
