@@ -783,7 +783,8 @@ MonoBehaviour:
   _attackMagicPrefab: {fileID: 1460884614}
   _attackStartPos: {fileID: 1719145436}
   _enemyPos: {fileID: 1472864262}
-  _interval: 0.5
+  _interval: 0.2
+  _glowingColor: {r: 1, g: 0.67538625, b: 0.054901958, a: 1}
 --- !u!1 &1254527066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,7 +1410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11331285d5c9924183e8a391706019d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseChangeButton
+  _canvas: {fileID: 1293538816}
+  _panel: {fileID: 5271152038707005775, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
   _battlePhase: 2
+  _duration: 3
 --- !u!1 &2118124054
 GameObject:
   m_ObjectHideFlags: 0
