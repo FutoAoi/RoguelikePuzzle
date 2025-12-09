@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
         _enemyHP = _enemy.EnemyHP;
         _enemyAP = _enemy.EnemyAP;
         _enemyAT = _enemy.EnemyAT;
+        _enemyImage.sprite = _enemy.Sprite;
     }
 
     public void Hit(int damage)
