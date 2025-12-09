@@ -238,6 +238,108 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
   _deckMain: 0100000002000000030000000400000005000000
+--- !u!1 &551759323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551759324}
+  - component: {fileID: 551759327}
+  - component: {fileID: 551759326}
+  - component: {fileID: 551759325}
+  m_Layer: 5
+  m_Name: EnemyArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &551759324
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551759323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293538817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 621.42, y: 15.22998}
+  m_SizeDelta: {x: -1651.05, y: -73.11}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &551759325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551759323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &551759326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551759323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &551759327
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551759323}
+  m_CullTransparentMesh: 1
 --- !u!1 &610626536
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +556,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbac207fed3b644785c0ef237a1d54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  _enemyList: []
   _tailPrefab: {fileID: 4928090463797767138, guid: a5ab42d109cd7fb4dbe3fa69dc809f4b, type: 3}
   _backGroundImage: {fileID: 1254527068}
+  _enemySlot: {fileID: 3407070511455606843, guid: 3449dc56daefdb74aabb4b172fb41a4b, type: 3}
+  _enemyPanel: {fileID: 551759323}
   _widthSize: 0.5
   _heightSize: 0.6
 --- !u!114 &655437305
@@ -955,6 +1060,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 655437300}
+  - {fileID: 551759324}
   - {fileID: 2118124055}
   - {fileID: 269812594}
   - {fileID: 932584180}
@@ -1412,7 +1518,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhaseChangeButton
   _canvas: {fileID: 1293538816}
   _panel: {fileID: 5271152038707005775, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
-  _battlePhase: 2
   _duration: 3
 --- !u!1 &2118124054
 GameObject:
@@ -1554,11 +1659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8099335765972191909, guid: a07cb267220800247aa77eb95f2159f0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8099335765972191909, guid: a07cb267220800247aa77eb95f2159f0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 130
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8099335765972191909, guid: a07cb267220800247aa77eb95f2159f0, type: 3}
       propertyPath: m_LocalPosition.x
