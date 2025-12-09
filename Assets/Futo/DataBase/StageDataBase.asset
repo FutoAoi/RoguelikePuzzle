@@ -17,14 +17,22 @@ MonoBehaviour:
     _background: {fileID: -5287153403343626366, guid: d533a75eae54c3b4caa4fba7ca12f2dd, type: 3}
     _width: 5
     _height: 5
-    _enemyID: 1
+    _enemies:
+    - _enemyID: 1
+      _enemyPosition: 1
   - _stageID: 2
     _background: {fileID: -5287153403343626366, guid: d533a75eae54c3b4caa4fba7ca12f2dd, type: 3}
     _width: 9
     _height: 7
-    _enemyID: 1
+    _enemies:
+    - _enemyID: 1
+      _enemyPosition: 1
   - _stageID: 3
     _background: {fileID: -5287153403343626366, guid: d533a75eae54c3b4caa4fba7ca12f2dd, type: 3}
     _width: 8
     _height: 8
-    _enemyID: 1
+    _enemies:
+    - _enemyID: 1
+      _enemyPosition: 1
+    - _enemyID: 1
+      _enemyPosition: 2

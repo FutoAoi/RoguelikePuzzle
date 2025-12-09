@@ -53,6 +53,11 @@ public class StageManager : MonoBehaviour
             _enemy = Instantiate(_enemySlot, Vector3.zero, Quaternion.identity, _enemyParent);
             _enemyList.Add(_enemy.GetComponent<Enemy>());
         }
+
+        for (int i = 0; i < _stage.Enemies.Length; i++)
+        {
+            _enemyList[_stage.Enemies[i].EnemyPosition].SetEnemyStatus(_stage.Enemies[i].EnemyID);
+        }
     }
 
     private void AdjustCellSize()
