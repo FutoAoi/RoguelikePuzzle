@@ -45,6 +45,7 @@ public class CardData
 {
     [Header("カード詳細")]
     [SerializeField, Tooltip("カードID")] private int _cardID;
+    [SerializeField, Tooltip("カードのレアリティ")] private cardRarity _rarity;
     [SerializeField, Tooltip("カードの見た目")] private Sprite _sprite;
     [SerializeField, Tooltip("カードの名前")] private string _name;
     [SerializeField, Tooltip("カードの説明")] private string _description;
@@ -59,4 +60,5 @@ public class CardData
     public int Cost => _cost;
     public EffectBase Effect => _effect;
     public int MaxTimes => _maxTimes;
+    public cardRarity Rarity => _rarity;
 }
