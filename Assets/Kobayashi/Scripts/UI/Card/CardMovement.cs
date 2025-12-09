@@ -40,6 +40,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
         _trOriginalParent = transform.parent;
+        TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
+        if(tileSlot != null && tileSlot.IsLastTimeCard)return;
         transform.SetParent(_uiManager.DragLayer.transform);
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
@@ -49,11 +51,15 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnDrag(PointerEventData eventData)
     {
         if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
+        if (tileSlot != null && tileSlot.IsLastTimeCard) return;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
+        if (tileSlot != null && tileSlot.IsLastTimeCard) return;
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
         _dropTarget = eventData.pointerCurrentRaycast.gameObject;
@@ -97,10 +103,12 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
         if (eventData.button == PointerEventData.InputButton.Right && _isBoardCard)
         {
+            TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
             //親がスロットなら中身を空に
-            if (_trOriginalParent != null && _trOriginalParent.GetComponent<TileSlot>() != null)
+            if (_trOriginalParent != null && tileSlot != null)
             {
-                _trOriginalParent.GetComponent <TileSlot>().ClearSlot();
+                if(tileSlot.IsLastTimeCard)return;
+                tileSlot.ClearSlot();
             }
             #region 手札にカードを生成
             _newCard = Instantiate(_cardPrefab,_trHandArea);

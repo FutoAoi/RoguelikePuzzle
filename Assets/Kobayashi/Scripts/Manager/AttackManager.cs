@@ -90,6 +90,7 @@ public class AttackManager : MonoBehaviour
             else
             {
                 _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute();
+                _tileSlot.DecreaseTimes(1);
             }
 
             //スロット内部の現在地移動
@@ -143,13 +144,15 @@ public class AttackManager : MonoBehaviour
                 .SetEase(Ease.Linear);
         }
             yield return new WaitForSeconds(_interval);
-        //スロットの初期化
+
+        //スロットの回数減少
         foreach(List<GameObject> Hslot in _stageManager.SlotList)
         {
             foreach (GameObject slot in Hslot)
             {
                 _tileSlot = slot.GetComponent<TileSlot>();
-                _tileSlot.ClearSlot();
+                if(_tileSlot.IsOccupied)
+                _tileSlot.IsLastTimeCard = true;
             }
         }
         _gameManager.Reset = true;
