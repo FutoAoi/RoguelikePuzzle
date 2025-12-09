@@ -5,36 +5,40 @@ using System.Collections.Generic;
 public class StageManager : MonoBehaviour
 {
     [SerializeField] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
+    [SerializeField] private List<Enemy> _enemyList = new();
 
     [Header("コンポーネント設定")]
     [SerializeField] private GameObject _tailPrefab;
     [SerializeField] private Image _backGroundImage;
-    //追加した
+    [SerializeField] private GameObject _enemySlot;
+    [SerializeField] private GameObject _enemyPanel;
     [SerializeField] private float _widthSize = 0.8f;
     [SerializeField] private float _heightSize = 0.8f;
 
     private GridLayoutGroup _layoutGroup;
     private StageData _stage;
     private Transform _parent;
+    private Transform _enemyParent;
     private GameObject _slot;
-    private Enemy _enemy;
+    private GameObject _enemy;
 
     public List<List<GameObject>> SlotList => _slotList;
+    public List<Enemy> EnemyList => _enemyList;
 
     public void CreateStage(int stageIndex)
     {
         _layoutGroup = GetComponent<GridLayoutGroup>();
-        _enemy = GetComponent<Enemy>();
         _stage = GameManager.Instance.StageDataBase.GetStageData(stageIndex);
         _layoutGroup.constraintCount = _stage.Width;
         _backGroundImage.sprite = _stage.Background;
         _parent = this.transform;
+        _enemyParent = _enemyPanel.transform;
         SlotList.Clear();
         AdjustCellSize();
         
         for (int i = 0; i < _stage.Height; i++)
         {
-            List<GameObject> slotListH = new List<GameObject>();
+            List<GameObject> slotListH = new();
             for(int j = 0; j < _stage.Width; j++)
             {
                 _slot = Instantiate(_tailPrefab, Vector3.zero, Quaternion.identity, _parent);
@@ -43,7 +47,12 @@ public class StageManager : MonoBehaviour
             }
             _slotList.Add(slotListH);
         }
-        _enemy.SetEnemyStatus(_stage.EnemyID);
+
+        for (int i = 0; i < _stage.Height; i++)
+        {
+            _enemy = Instantiate(_enemySlot, Vector3.zero, Quaternion.identity, _enemyParent);
+            _enemyList.Add(_enemy.GetComponent<Enemy>());
+        }
     }
 
     private void AdjustCellSize()
