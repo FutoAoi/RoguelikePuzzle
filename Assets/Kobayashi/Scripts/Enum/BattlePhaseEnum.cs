@@ -18,12 +18,22 @@ public enum MagicVector : int
     Right,
     Left,
 }
-
-public enum cardRarity : int
+/// <summary>
+/// カードのレアリティ
+/// </summary>
+public enum CardRarity : int
 {
     Uncommon,
     Common,
     Rare,
     Epic,
     Legendary
+}
+/// <summary>
+/// エネミーの攻撃種類
+/// </summary>
+public enum EnemyAttackType : int
+{
+    Normal,
+    Penetrating,
 }

@@ -131,8 +131,10 @@ public class AttackManager : MonoBehaviour
 
         if (_isAttack)
         {
-            _attackRectTr.DOMove(_enemyPos.position, _interval)
+            Enemy attackedEnemy = _stageManager.EnemyList[_currentSlot.x];
+            _attackRectTr.DOMove(attackedEnemy.transform.position, _interval)
                 .SetEase(Ease.Linear);
+            attackedEnemy.Hit(_attackMagicPrefab.GetComponent<AttackMagic>().Attack);
         }
         else
         {
@@ -155,10 +157,18 @@ public class AttackManager : MonoBehaviour
                 _tileSlot.IsLastTimeCard = true;
             }
         }
-        _gameManager.Reset = true;
+        _gameManager.IsEnemyAction = true;
         _finish = false;
         _firstAttack = true;
         _attackMagicPrefab.SetActive(false);
+    }
+    public IEnumerator EnemyTurn()
+    {
+        yield return null;
+        foreach(Enemy enemy in _stageManager.EnemyList)
+        {
+            enemy.ContractionAttackTurn(1);
+        }
     }
     /// <summary>
     /// •ûŒü“]Š·
