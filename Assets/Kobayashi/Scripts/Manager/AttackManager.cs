@@ -90,6 +90,7 @@ public class AttackManager : MonoBehaviour
             else
             {
                 _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute();
+                _tileSlot.DecreaseTimes(1);
             }
 
             //スロット内部の現在地移動
@@ -130,8 +131,10 @@ public class AttackManager : MonoBehaviour
 
         if (_isAttack)
         {
-            _attackRectTr.DOMove(_enemyPos.position, _interval)
+            Enemy attackedEnemy = _stageManager.EnemyList[_currentSlot.x];
+            _attackRectTr.DOMove(attackedEnemy.transform.position, _interval)
                 .SetEase(Ease.Linear);
+            attackedEnemy.Hit(_attackMagicPrefab.GetComponent<AttackMagic>().Attack);
         }
         else
         {
@@ -143,19 +146,29 @@ public class AttackManager : MonoBehaviour
                 .SetEase(Ease.Linear);
         }
             yield return new WaitForSeconds(_interval);
-        //スロットの初期化
+
+        //スロットの回数減少
         foreach(List<GameObject> Hslot in _stageManager.SlotList)
         {
             foreach (GameObject slot in Hslot)
             {
                 _tileSlot = slot.GetComponent<TileSlot>();
-                _tileSlot.ClearSlot();
+                if(_tileSlot.IsOccupied)
+                _tileSlot.IsLastTimeCard = true;
             }
         }
-        _gameManager.Reset = true;
+        _gameManager.IsEnemyAction = true;
         _finish = false;
         _firstAttack = true;
         _attackMagicPrefab.SetActive(false);
+    }
+    public IEnumerator EnemyTurn()
+    {
+        yield return null;
+        foreach(Enemy enemy in _stageManager.EnemyList)
+        {
+            enemy.ContractionAttackTurn(1);
+        }
     }
     /// <summary>
     /// 方向転換

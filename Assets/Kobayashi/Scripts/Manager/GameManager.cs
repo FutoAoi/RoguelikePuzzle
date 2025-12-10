@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("ステージID")] public int StageID = 1;
 
     public BattlePhase CurrentPhase;
-    public bool Reset = false;
+    public bool Reset = false, IsEnemyAction = false;
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
 
@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(_attackManager.AttackStart());
 
                     _isAction = true;
+                }
+                if (IsEnemyAction)
+                {
+                    StartCoroutine(_attackManager.EnemyTurn());
+                    IsEnemyAction = false;
                 }
                 if (Reset)
                 {
