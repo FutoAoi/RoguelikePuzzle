@@ -88,4 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229d38f5e3bfe1c4da81c5ebe455dec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackMagic
-  Attack: 1
+  AttackPower: 1
+  _glowingColor: {r: 1, g: 0.5954141, b: 0, a: 1}

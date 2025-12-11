@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -17,7 +18,10 @@ public class MagicObjectPool : MonoBehaviour
         }
     }
     [SerializeField,Tooltip("オブジェクトプール化するオブジェクト")] private AttackMagic _attackMagicPrefab;
+    [SerializeField,Tooltip("親オブジェクト")] private RectTransform _rectTransform;
     private ObjectPool<AttackMagic> _magicPool;
+    private List<AttackMagic> _activeMagics = new List<AttackMagic>();
+    public IReadOnlyList<AttackMagic> ActiveMagics => _activeMagics;
     void Start()
     {
         _magicPool = new ObjectPool<AttackMagic>(
@@ -30,7 +34,10 @@ public class MagicObjectPool : MonoBehaviour
             maxSize: 10
         );
     }
-
+    /// <summary>
+    /// 魔法を取り出す
+    /// </summary>
+    /// <returns></returns>
     public AttackMagic GetAttackMagic()
     {
         return _magicPool.Get();
@@ -41,16 +48,17 @@ public class MagicObjectPool : MonoBehaviour
     }
     private AttackMagic OnCreateObject()
     {
-        return Instantiate(_attackMagicPrefab, transform);
+        return Instantiate(_attackMagicPrefab, _rectTransform);
     }
     private void OnGetObject(AttackMagic attackMagic)
     {
+        _activeMagics.Add(attackMagic);
         attackMagic.Initialize(() => _magicPool.Release(attackMagic));
         attackMagic.gameObject.SetActive(true);
     }
     private void OnReleaseObject(AttackMagic attackMagic)
     {
-        Debug.Log("Release");
+        _activeMagics.Remove(attackMagic);
     }
     private void OnDestroyObject(AttackMagic attackMagic)
     {

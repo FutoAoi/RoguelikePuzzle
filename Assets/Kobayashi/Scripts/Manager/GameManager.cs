@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         //‰¼
         _stageManager = FindAnyObjectByType<StageManager>();
         _stageManager.CreateStage(StageID);
+        
     }
 
     // Update is called once per frame
@@ -66,8 +67,7 @@ public class GameManager : MonoBehaviour
                 if (!_isAction)
                 {
                     _attackManager = FindAnyObjectByType<AttackManager>();
-                    StartCoroutine(_attackManager.AttackStart());
-
+                    _attackManager.AttackTurn(true);
                     _isAction = true;
                 }
                 if (IsEnemyAction)

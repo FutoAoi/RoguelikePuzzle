@@ -64,15 +64,10 @@ public class Enemy : MonoBehaviour
         }
     }
     /// <summary>
-    /// 敵の攻撃
+    /// 攻撃終了
     /// </summary>
-    /// <returns></returns>
-    public IEnumerator Attack(float duration)
+    public void FinishAttack()
     {
-        
-        Debug.Log($"{name}の攻撃！");
-        //攻撃する（Enum分けしてオブジェクトをだす＆攻撃力付与）
-        yield return new WaitForSeconds(duration);
         _attackTurnTMP.text = _enemyAT.ToString();
         _isAttackTurn = false;
     }

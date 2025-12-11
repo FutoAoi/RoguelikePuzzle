@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     {
         CurrentHP -= damage;
         yield return new WaitForSeconds(duration);
+        if(CurrentHP <= 0)
+        {
+            PlayerDead(1f);
+        }
     }
     /// <summary>
     /// ƒvƒŒƒCƒ„[‚ª‚â‚ç‚ê‚½
