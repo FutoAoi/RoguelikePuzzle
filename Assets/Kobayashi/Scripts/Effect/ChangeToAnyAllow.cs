@@ -6,6 +6,6 @@ public class ChangeToAnyAllow : EffectBase
     
     protected override void OnExcute()
     {
-        GameManager.Instance.AttackManager.ChangeVector(_vector);
+        MagicObjectPool.Instance.ActiveMagics[0].ChangeVector(_vector);
     }
 }

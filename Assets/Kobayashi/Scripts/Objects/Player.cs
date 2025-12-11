@@ -1,16 +1,39 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int MaxPlyerHP = 10;
+    public int CurrentHP = 10;
+    public int MaxCost = 8;
+    public bool IsDead {  get; private set; }
+    
+    private void Start()
     {
-        
+        IsDead = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// プレイヤーが攻撃を受ける
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    public IEnumerator Damaged(int damage,float duration)
     {
-        
+        CurrentHP -= damage;
+        yield return new WaitForSeconds(duration);
+        if(CurrentHP <= 0)
+        {
+            PlayerDead(1f);
+        }
+    }
+    /// <summary>
+    /// プレイヤーがやられた
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PlayerDead(float duration)
+    {
+        Debug.Log($"{name}が倒れてしまった…");
+        yield return new WaitForSeconds(duration);
     }
 }
