@@ -34,7 +34,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         _cardData = GameManager.Instance.CardDataBase;
         _cardID = id;
-        _cardImage.sprite = _cardData.GetCardData(_cardID).Sprit;
+        _cardImage.sprite = _cardData.GetCardData(_cardID).Sprite;
         _nameText.text = _cardData.GetCardData(_cardID).Name;
         _cardCost = _cardData.GetCardData(_cardID).Cost;
         _costText.text = _cardCost.ToString();
@@ -43,7 +43,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         _panel.SetParent(descriptionArea,false);
         _defaultScale = _panel.localScale;
         _panel.localScale = Vector2.zero;
-        _image.sprite = _cardData.GetCardData(_cardID).Sprit;
+        _image.sprite = _cardData.GetCardData(_cardID).Sprite;
         _effectText.text = _description;
 
         #region ドローアニメーション
