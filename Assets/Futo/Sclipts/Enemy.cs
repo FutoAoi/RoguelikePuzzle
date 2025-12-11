@@ -1,17 +1,27 @@
 using NUnit.Framework;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Image _enemyImage;
+    [SerializeField] private TextMeshProUGUI _attackTurnTMP;
     [SerializeField] private int _enemyHP;
     [SerializeField] private int _enemyAP;
     [SerializeField] private int _enemyAT;
 
-    private EnemyData _enemy;
+    private bool _isAttackTurn = false;
+    public bool IsAttackTurn => _isAttackTurn;
 
+    private EnemyData _enemy;
+    private bool _isDead = false;
+    private int _id;
+    /// <summary>
+    /// エネミーにステータスをセット
+    /// </summary>
+    /// <param name="enemyID"></param>
     public void SetEnemyStatus(int enemyID)
     {
         _enemy = GameManager.Instance.EnemyDataBase.GetEnemyData(enemyID);
@@ -19,6 +29,9 @@ public class Enemy : MonoBehaviour
         _enemyAP = _enemy.EnemyAP;
         _enemyAT = _enemy.EnemyAT;
         _enemyImage.sprite = _enemy.Sprite;
+        _attackTurnTMP.text = _enemyAT.ToString();
+        if (enemyID == 0) _enemyImage.color = new Color(1f,1f,1f,0f);
+        if (_enemyHP <= 0) StartCoroutine(Dead());
     }
     /// <summary>
     /// エネミーに攻撃
@@ -26,6 +39,7 @@ public class Enemy : MonoBehaviour
     /// <param name="damage"></param>
     public void Hit(int damage)
     {
+        if (_isDead) return;
         _enemyHP -= damage;
         Debug.Log($"{damage}を与えた");
         if(_enemyHP <= 0)
@@ -39,25 +53,34 @@ public class Enemy : MonoBehaviour
     /// <param name="reductionTurn"></param>
     public void ContractionAttackTurn(int reductionTurn)
     {
+        if (_isDead)return;
         _enemyAT -= reductionTurn;
-        Debug.Log($"攻撃まで残り{_enemyAT}ターン");
-        if(_enemyAT <= 0 && _enemyHP > 0)
+        _attackTurnTMP.text = _enemyAT.ToString();
+        Debug.Log($"{name}の攻撃まで残り{_enemyAT}ターン");
+        if(_enemyAT <= 0)
         {
-            StartCoroutine(Attack());
+            _isAttackTurn = true;
             _enemyAT = _enemy.EnemyAT;
         }
     }
-    private IEnumerator Attack()
+    /// <summary>
+    /// 敵の攻撃
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator Attack(float duration)
     {
-        yield return null;
+        
         Debug.Log($"{name}の攻撃！");
         //攻撃する（Enum分けしてオブジェクトをだす＆攻撃力付与）
-
-        GameManager.Instance.Reset = true;
+        yield return new WaitForSeconds(duration);
+        _attackTurnTMP.text = _enemyAT.ToString();
+        _isAttackTurn = false;
     }
     private IEnumerator Dead()
     {
         yield return null;
+        _attackTurnTMP.text = null;
         Debug.Log($"{name}を倒した！");
+        _isDead = true;
     }
 }

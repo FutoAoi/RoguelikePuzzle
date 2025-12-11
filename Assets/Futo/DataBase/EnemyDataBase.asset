@@ -23,3 +23,8 @@ MonoBehaviour:
     _enemyHP: 5
     _enemyAP: 1
     _enemyAT: 1
+  - _enemyID: 0
+    _sprite: {fileID: 0}
+    _enemyHP: 0
+    _enemyAP: 0
+    _enemyAT: 0
