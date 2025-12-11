@@ -58,8 +58,27 @@ public class StageManager : MonoBehaviour
         {
             _enemyList[_stage.Enemies[i].EnemyPosition].SetEnemyStatus(_stage.Enemies[i].EnemyID);
         }
-    }
 
+        //空の敵を設置
+        for(int i = 0; i < _enemyList.Count; i++)
+        {
+            if (IsEnemy(i)) continue;
+            _enemyList[i].SetEnemyStatus(0);
+        }
+    }
+    /// <summary>
+    /// 指定の場所にエネミーが存在しているか
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    private bool IsEnemy(int index)
+    {
+        for(int i = 0; i < _stage.Enemies.Length; i++)
+        {
+            if(index == _stage.Enemies[i].EnemyPosition)return true;
+        }
+        return false;
+    }
     private void AdjustCellSize()
     {
         RectTransform _tailePanelRect = GetComponent<RectTransform>();

@@ -11,13 +11,15 @@ public class AttackManager : MonoBehaviour
     public int EnemyPos;
     [Header("コンポーネント設定")]
     [SerializeField] private StageManager _stageManager;
+    [SerializeField] private UIManager_Battle _uiManager;
     [SerializeField, Tooltip("攻撃魔法")] private GameObject _attackMagicPrefab;
     [SerializeField, Tooltip("攻撃出現位置")] private RectTransform _attackStartPos;
-    [SerializeField, Tooltip("敵の場所")] private RectTransform _enemyPos;
 
     [Header("数値設定")]
     [SerializeField, Tooltip("タイル間の移動時間")] private float _interval = 2.0f;
     [SerializeField, Tooltip("タイルの発光色")] private Color _glowingColor;
+    [SerializeField, Tooltip("敵の攻撃時カットインアニメーション時間")] private float _duration = 3f;
+    [SerializeField, Tooltip("敵の攻撃全体時間")] private float _enemyAttackTime = 5f;
 
     [NonSerialized] public MagicVector _currentVector;
 
@@ -147,7 +149,7 @@ public class AttackManager : MonoBehaviour
         }
             yield return new WaitForSeconds(_interval);
 
-        //スロットの回数減少
+        //スロットに接地フラグいれる
         foreach(List<GameObject> Hslot in _stageManager.SlotList)
         {
             foreach (GameObject slot in Hslot)
@@ -162,13 +164,24 @@ public class AttackManager : MonoBehaviour
         _firstAttack = true;
         _attackMagicPrefab.SetActive(false);
     }
+    /// <summary>
+    /// 敵の攻撃ターン
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator EnemyTurn()
     {
-        yield return null;
+        _uiManager.CutInAnimation(_duration);
+        yield return new WaitForSeconds(_duration);
         foreach(Enemy enemy in _stageManager.EnemyList)
         {
             enemy.ContractionAttackTurn(1);
+            if (enemy.IsAttackTurn)
+            {
+                StartCoroutine(enemy.Attack(_enemyAttackTime));
+                yield return new WaitForSeconds(_enemyAttackTime);
+            }
         }
+        GameManager.Instance.Reset = true;
     }
     /// <summary>
     /// 方向転換
