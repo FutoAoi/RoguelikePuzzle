@@ -54,7 +54,7 @@ public class CardData
     [SerializeField, Tooltip("Å‘å‰ñ”")] private int _maxTimes;
 
     public int CardID => _cardID;
-    public Sprite Sprit => _sprite;
+    public Sprite Sprite => _sprite;
     public string Name => _name;
     public string Description => _description;
     public int Cost => _cost;

@@ -35,7 +35,7 @@ public class EnemyDataBase : ScriptableObject
         {
             return enemyData;
         }
-        Debug.LogWarning($"ID{ID}のステージが見つかりません");
+        Debug.LogWarning($"ID{ID}の敵が見つかりません");
         return null;
     }
 }
