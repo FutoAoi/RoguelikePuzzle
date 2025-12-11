@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public BattlePhase CurrentPhase;
     public bool Reset = false, IsEnemyAction = false;
+    public Player Player;
+
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
 
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
         //‰¼
         _stageManager = FindAnyObjectByType<StageManager>();
         _stageManager.CreateStage(StageID);
-        
+        Player = FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame

@@ -15,6 +15,8 @@ public class AttackMagic : MonoBehaviour
 
     private GameManager _gameManager;
     private AttackManager _attackManager;
+    private Player _player;
+    private Enemy _attackedEnemy;
     private Action _onDisable;
     private TileSlot _tileSlot;
     private RectTransform _attackRectTr, _nextRectTr;
@@ -23,12 +25,12 @@ public class AttackMagic : MonoBehaviour
     private Color _startColor;
     private Vector2Int _currentSlot, _speedInt;
     private Vector2 _outPos, _goalPos;
-    private bool _finish, _firstAttack, _isAttack;
+    private bool _finish, _firstAttack, _isAttack,_isSelfHarm;
     private int _width, _height;
     private void Awake()
     {
         _gameManager = GameManager.Instance;
-        _attackManager = FindAnyObjectByType<AttackManager>();
+        _attackManager = _gameManager.AttackManager;
         _stageManager = FindAnyObjectByType<StageManager>();
         _width = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Width;
         _height = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Height;
@@ -117,11 +119,17 @@ public class AttackMagic : MonoBehaviour
                     _finish = true;
                     _isAttack = true;
                 }
-                if (_currentSlot.x < 0 || _currentSlot.x > _height - 1 || _currentSlot.y < 0)
+                else if (_currentSlot.x < 0 || _currentSlot.x > _height - 1)
                 {
                     _finish = true;
                     _isAttack = false;
-                    Debug.Log("ミス！");
+                    _isSelfHarm = false;
+                }
+                else if (_currentSlot.y < 0)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = true;
                 }
             }
             else
@@ -131,11 +139,17 @@ public class AttackMagic : MonoBehaviour
                     _finish = true;
                     _isAttack = true;
                 }
-                if(_currentSlot.x < 0 || _currentSlot.x > _height - 1 || _currentSlot.y < 0 || _currentSlot.y >= _width)
+                else if (_currentSlot.x < 0 || _currentSlot.x > _height - 1)
                 {
                     _finish = true;
                     _isAttack = false;
-                    Debug.Log("ミス！");
+                    _isSelfHarm = false;
+                }
+                else if (_currentSlot.y >= _width)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = true;
                 }
             }
             yield return new WaitForSeconds(interval * 0.3f);
@@ -143,21 +157,22 @@ public class AttackMagic : MonoBehaviour
                 .SetEase(Ease.Linear);
         }
 
+        _player = _gameManager.Player;
+
         if (_isAttack)
         {
             if (isPlayer)
             {
-                Enemy attackedEnemy = _stageManager.EnemyList[_currentSlot.x];
-                _attackRectTr.DOMove(attackedEnemy.transform.position, interval)
+                _attackedEnemy = _stageManager.EnemyList[_currentSlot.x];
+                _attackRectTr.DOMove(_attackedEnemy.transform.position, interval)
                     .SetEase(Ease.Linear);
-                attackedEnemy.Hit(AttackPower);
+                _attackedEnemy.Damaged(AttackPower);
             }
             else
             {
-                Player player = FindAnyObjectByType<Player>();
-                _attackRectTr.DOMove(player.transform.position, interval)
+                _attackRectTr.DOMove(_player.transform.position, interval)
                     .SetEase(Ease.Linear);
-                StartCoroutine(player.Damaged(AttackPower, 0.1f));
+                StartCoroutine(_player.Damaged(AttackPower, 0.1f));
             } 
         }
         else
@@ -170,6 +185,19 @@ public class AttackMagic : MonoBehaviour
             _attackRectTr.DOMove(_goalPos, interval)
                 .SetEase(Ease.Linear);
         }
+        if (_isSelfHarm)
+        {
+            if (isPlayer)
+            {
+                StartCoroutine(_player.Damaged(AttackPower, 0.1f));
+            }
+            else
+            {
+                _attackedEnemy = _stageManager.EnemyList[startPos.x];
+                _attackedEnemy.Damaged(AttackPower);
+            }
+        }
+
         yield return new WaitForSeconds(interval);
 
         //スロットに接地フラグいれる
@@ -195,6 +223,5 @@ public class AttackMagic : MonoBehaviour
     public void ChangeVector(MagicVector vector)
     {
         _currentVector = vector;
-        Debug.Log("方向転換！");
     }
 }

@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     /// エネミーに攻撃
     /// </summary>
     /// <param name="damage"></param>
-    public void Hit(int damage)
+    public void Damaged(int damage)
     {
         if (_isDead) return;
         _enemyHP -= damage;
