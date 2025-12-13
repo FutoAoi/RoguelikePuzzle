@@ -71,8 +71,8 @@ public class AttackManager : MonoBehaviour
     public IEnumerator EnemyTurn()
     {
         _uiManager.CutInAnimation(_duration);
-        yield return new WaitForSeconds(_duration);
-
+        yield return new WaitUntil(() => _uiManager._isFinishCutIn);
+        _uiManager._isFinishCutIn = false;
         int count = 0;
         foreach(Enemy enemy in _stageManager.EnemyList)
         {

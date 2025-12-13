@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         //‰¼
         _stageManager = FindAnyObjectByType<StageManager>();
         _stageManager.CreateStage(StageID);
-        Player = FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame

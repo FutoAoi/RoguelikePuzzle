@@ -21,6 +21,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     
+    public bool _isFinishCutIn = false;
 
     private DeckManager _deckManager;
     private GameObject _card;
@@ -90,6 +91,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         seq.Join(_text.DOFade(0f, duration * 0.15f));
         seq.OnComplete(() =>
         {
+            _isFinishCutIn = true;
             _enemyAttackPanel.SetActive(false);
         });
     }
