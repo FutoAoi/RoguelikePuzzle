@@ -6,7 +6,8 @@ public enum BattlePhase:int
     Draw,
     Set,
     Action,
-    Direction
+    Direction,
+    Reward
 }
 /// <summary>
 /// UŒ‚‚Ì•ûŒüw’è

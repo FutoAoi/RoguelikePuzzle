@@ -20,7 +20,7 @@ public class AttackManager : MonoBehaviour
     private MagicObjectPool _magicPool;
     private AttackMagic _magic;
     private int _height, _width;
-    private bool _isFinishEnemyAttack = false;
+    private bool _isFinishEnemyAttack = false,_isVictory = false;
     private Vector2Int _enemyPos;
     private RectTransform _enemyRectTr;
 
@@ -70,25 +70,42 @@ public class AttackManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator EnemyTurn()
     {
-        _uiManager.CutInAnimation(_duration);
-        yield return new WaitForSeconds(_duration);
-
-        int count = 0;
-        foreach(Enemy enemy in _stageManager.EnemyList)
+        if (CheckEnemy())
         {
-            enemy.ContractionAttackTurn(1);
-            if (enemy.IsAttackTurn)
-            {
-                _enemyPos = new Vector2Int(count,_width - 1);
-                _enemyRectTr = enemy.GetComponent<RectTransform>();
-                AttackTurn(false);
-                yield return new WaitUntil(() => _isFinishEnemyAttack);
-                enemy.FinishAttack();
-                _isFinishEnemyAttack = false;
-            }
-            count++;
+            GameManager.Instance.CurrentPhase = BattlePhase.Reward;
+            _isVictory = true;
         }
-        GameManager.Instance.Reset = true;
-    }
 
+        if (!_isVictory)
+        {
+            _uiManager.CutInAnimation(_duration);
+            yield return new WaitUntil(() => _uiManager._isFinishCutIn);
+            _uiManager._isFinishCutIn = false;
+            int count = 0;
+            foreach (Enemy enemy in _stageManager.EnemyList)
+            {
+                enemy.ContractionAttackTurn(1);
+                if (enemy.IsAttackTurn)
+                {
+                    _enemyPos = new Vector2Int(count, _width - 1);
+                    _enemyRectTr = enemy.GetComponent<RectTransform>();
+                    AttackTurn(false);
+                    yield return new WaitUntil(() => _isFinishEnemyAttack);
+                    enemy.FinishAttack();
+                    _isFinishEnemyAttack = false;
+                }
+                count++;
+            }
+            GameManager.Instance.Reset = true;
+        }
+        
+    }
+    private bool CheckEnemy()
+    {
+        foreach (Enemy enemy in _stageManager.EnemyList)
+        {
+            if (!enemy.IsDead) return false;
+        }
+        return true;
+    }
 }

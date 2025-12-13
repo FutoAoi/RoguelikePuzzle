@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public bool IsAttackTurn => _isAttackTurn;
+    public bool IsDead => _isDead;
     [SerializeField] private Image _enemyImage;
     [SerializeField] private TextMeshProUGUI _attackTurnTMP;
     [SerializeField] private int _enemyHP;
@@ -13,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _enemyAT;
 
     private bool _isAttackTurn = false;
-    public bool IsAttackTurn => _isAttackTurn;
+
 
     private EnemyData _enemy;
     private bool _isDead = false;
@@ -31,7 +33,11 @@ public class Enemy : MonoBehaviour
         _enemyImage.sprite = _enemy.Sprite;
         _attackTurnTMP.text = _enemyAT.ToString();
         if (enemyID == 0) _enemyImage.color = new Color(1f,1f,1f,0f);
-        if (_enemyHP <= 0) StartCoroutine(Dead());
+        if (_enemyHP <= 0)
+        {
+            _isDead = true;
+            StartCoroutine(Dead());
+        }
     }
     /// <summary>
     /// ƒGƒlƒ~[‚ÉUŒ‚
@@ -44,6 +50,7 @@ public class Enemy : MonoBehaviour
         Debug.Log($"{damage}‚ğ—^‚¦‚½");
         if(_enemyHP <= 0)
         {
+            _isDead = true;
             StartCoroutine(Dead());
         }
     }
@@ -76,6 +83,5 @@ public class Enemy : MonoBehaviour
         yield return null;
         _attackTurnTMP.text = null;
         Debug.Log($"{name}‚ğ“|‚µ‚½I");
-        _isDead = true;
     }
 }

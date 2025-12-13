@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         IsDead = false;
+        GameManager.Instance.Player = this;
     }
     /// <summary>
     /// ƒvƒŒƒCƒ„[‚ªUŒ‚‚ğó‚¯‚é

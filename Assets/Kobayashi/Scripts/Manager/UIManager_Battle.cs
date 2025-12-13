@@ -20,7 +20,9 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     [SerializeField, Tooltip("ドラッグ時の場所")] public RectTransform DragLayer;
     [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
+    [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
     
+    public bool _isFinishCutIn = false;
 
     private DeckManager _deckManager;
     private GameObject _card;
@@ -90,7 +92,16 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         seq.Join(_text.DOFade(0f, duration * 0.15f));
         seq.OnComplete(() =>
         {
+            _isFinishCutIn = true;
             _enemyAttackPanel.SetActive(false);
         });
+    }
+    /// <summary>
+    /// 報酬画面の表示
+    /// </summary>
+    public void DisplayReward()
+    {
+        _resultPanel.SetActive(true);
+        _resultPanel.GetComponent<RewardManager>().Reward();
     }
 }
