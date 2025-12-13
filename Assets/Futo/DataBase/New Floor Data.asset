@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a20064d2f521ffc46a940ccf9fc00ed4, type: 3}
-  m_Name: FloorData
+  m_Script: {fileID: 0}
+  m_Name: New Floor Data
   m_EditorClassIdentifier: Assembly-CSharp::FloorData
   roomData:
-  - _roomType: 1
-    _stageID: 1
-  - _roomType: 1
-    _stageID: 2
-  - _roomType: 1
-    _stageID: 2
+  - _roomType: 0
+    _stageID: 0
+  - _roomType: 0
+    _stageID: 0
   _minNodes: 1
   _maxNodes: 4
