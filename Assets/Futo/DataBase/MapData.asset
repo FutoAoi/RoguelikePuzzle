@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: MapData
   m_EditorClassIdentifier: Assembly-CSharp::MapData
   _floorDatas:
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
-  - {fileID: 11400000, guid: b652da8c8649efb49a8024e45c2c1cc3, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
+  - {fileID: 11400000, guid: ff8ef21ae723c9841b3982f1bed9bf94, type: 2}
