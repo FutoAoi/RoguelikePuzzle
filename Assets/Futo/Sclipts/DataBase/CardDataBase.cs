@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "DataBase/CardDataBase")]
@@ -37,6 +38,22 @@ public class CardDataBase : ScriptableObject
         }
         Debug.LogWarning($"ID{ID}のカードが見つかりません");
         return null;
+    }
+
+    public int GetRandomCardIDByRarity(CardRarity rarity)
+    {
+        Initialize();
+
+        var filtered = _cards.Where(c => c.Rarity == rarity).ToList();
+
+        if (filtered.Count == 0)
+        {
+            Debug.LogWarning($"{rarity} のカードが見つかりませんでした");
+            return -1;
+        }
+
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index].CardID;
     }
 }
 
