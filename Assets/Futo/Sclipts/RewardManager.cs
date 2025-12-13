@@ -2,10 +2,17 @@ using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
+    public RewardCard[] RewardCards => _rewardCard;
+
     private CardDataBase _cardData;
     [SerializeField] private RewardCard[] _rewardCard;
     [SerializeField] private CardRarity _rarity;
     [SerializeField] private int _serectReward = 0;
+
+    private void Start()
+    {
+        Reward();
+    }
 
     public void Reward()
     {
@@ -19,6 +26,12 @@ public class RewardManager : MonoBehaviour
     public void GetReward()
     {
         DeckManager.Instance.AddDeck(_rewardCard[_serectReward].CardID);
+        //シーン移行入れたい
+    }
+
+    public void RewardSkip()
+    {
+        //シーン移行入れたい
     }
 
     public void SetRewardNumber(int number)
