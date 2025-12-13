@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private AttackManager _attackManager;
     private StageManager _stageManager;
-    private bool _isOrganize = false,_isDraw = false,_isAction = false;
+    private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
 
     private void Awake()
     {
@@ -82,12 +82,18 @@ public class GameManager : MonoBehaviour
                     _isDraw = false;
                     _isOrganize = false;
                     _isAction = false;
-
                     CurrentPhase = BattlePhase.Draw;
                 }
                 break;
             case BattlePhase.Direction:
 
+                break;
+            case BattlePhase.Reward:
+                if (!_isReward)
+                {
+                    (CurrentUIManager as IBattleUI)?.DisplayReward();
+                    _isReward = true;
+                }
                 break;
         }
     }
