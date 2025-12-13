@@ -72,7 +72,7 @@ public class AttackManager : MonoBehaviour
     {
         if (CheckEnemy())
         {
-            GameManager.Instance.CurrentPhase = BattlePhase.Reward;
+            _gameManager.CurrentPhase = BattlePhase.Reward;
             _isVictory = true;
         }
 
@@ -96,7 +96,15 @@ public class AttackManager : MonoBehaviour
                 }
                 count++;
             }
-            GameManager.Instance.Reset = true;
+            if (CheckEnemy())
+            {
+                _gameManager.CurrentPhase = BattlePhase.Reward;
+                _isVictory = true;
+            }
+            else
+            {
+                _gameManager.Reset = true;
+            }
         }
         
     }
