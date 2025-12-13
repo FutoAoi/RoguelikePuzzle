@@ -9,11 +9,6 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private CardRarity _rarity;
     [SerializeField] private int _serectReward = 0;
 
-    private void Start()
-    {
-        Reward();
-    }
-
     public void Reward()
     {
         _cardData = GameManager.Instance.CardDataBase;
