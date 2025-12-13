@@ -7,14 +7,9 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private CardRarity _rarity;
     [SerializeField] private int _serectReward = 0;
 
-    private void Start()
+    public void Reward()
     {
         _cardData = GameManager.Instance.CardDataBase;
-        Reward();
-    }
-
-    void Reward()
-    {
         foreach (var card in _rewardCard)
         {
             card.SetCard(_cardData.GetRandomCardIDByRarity(_rarity));
