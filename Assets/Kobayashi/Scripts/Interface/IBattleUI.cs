@@ -11,5 +11,8 @@ public interface IBattleUI
     /// èD‚ğ•À‚×‚é
     /// </summary>
     void HandOrganize();
+    /// <summary>
+    /// ƒŠƒ[ƒh‰æ–Ê‚ğ•\¦
+    /// </summary>
     void DisplayReward();
 }

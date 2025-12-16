@@ -53,6 +53,10 @@ public class AttackManager : MonoBehaviour
                 MagicVector.Left, _enemyRectTr, _interval, false));
         }
     }
+    /// <summary>
+    /// 攻撃終了時にフラグ出す
+    /// </summary>
+    /// <param name="isPlayer"></param>
     public void AttackFinish(bool isPlayer)
     {
         if (isPlayer)

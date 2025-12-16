@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
     public RewardCard[] RewardCards => _rewardCard;
+    public bool IsFinishTurnAnimation = false;
 
     private CardDataBase _cardData;
     [SerializeField] private RewardCard[] _rewardCard;
@@ -32,5 +34,17 @@ public class RewardManager : MonoBehaviour
     public void SetRewardNumber(int number)
     {
         _serectReward = number;
+    }
+    /// <summary>
+    /// カードがめくれるアニメーション
+    /// </summary>
+    public IEnumerator RewardAnimation()
+    {
+        foreach(RewardCard rewardCard in _rewardCard)
+        {
+            rewardCard.TurnCardAnimation();
+            yield return new WaitUntil(() => rewardCard.IsFinish);
+        }
+        IsFinishTurnAnimation = true;
     }
 }

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// インゲームのバトル時のUIManager
+/// </summary>
 public class UIManager_Battle : UIManagerBase,IBattleUI
 {
     [Header("手札")] public List<GameObject> HandCard = new List<GameObject>();
@@ -26,6 +28,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     public bool _isFinishCutIn = false;
 
     private DeckManager _deckManager;
+    private RewardManager _rewardManager;
     private GameObject _card;
     private TextMeshProUGUI _text;
     private Image _panelimg;
@@ -111,13 +114,15 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
             .AppendCallback(() =>
             {
                 _resultPanel.SetActive(true);
-                _resultPanel.GetComponent<RewardManager>().Reward();
+                _rewardManager = _resultPanel.GetComponent<RewardManager>();
+                _rewardManager.Reward();
             })
             .AppendInterval(0.2f)
             .Append(_fadePanel.DOFade(0f, 0.4f))
             .OnComplete(() =>
             {
                 _fadePanel.gameObject.SetActive(false);
+                StartCoroutine(_rewardManager.RewardAnimation());
             });
     }
 }
