@@ -187,6 +187,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1444402186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444402188}
+  - component: {fileID: 1444402187}
+  - component: {fileID: 1444402189}
+  m_Layer: 0
+  m_Name: GameStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1444402187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444402186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07600e07d7b30b74daa810fa7d1cda88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStart
+  _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
+  _mapManager: {fileID: 1444402189}
+  _mapView: {fileID: 1449941518}
+--- !u!4 &1444402188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444402186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.59063, y: 0.21536, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444402189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444402186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2265daddd7fb6469c8d3446bff01b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapManager
+  _mapData:
+    Floors: []
+    CurrentFloorIndex: 0
+    CurrentRoomIndex: 0
 --- !u!1 &1449941513
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,8 +339,8 @@ Canvas:
   m_GameObject: {fileID: 1449941513}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1554867821}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -298,13 +362,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1449941513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f98bc5fa3ddb347b6d3a33a9bef606, type: 3}
+  m_Script: {fileID: 11500000, guid: de8f64897765e3841a472327beb97cc7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  _mapHeight: 0
-  _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
-  _room: {fileID: 1223233917043379955, guid: 9b4534cd03eaa7e428f5d7ec36071bac, type: 3}
-  _seed: 0
+  m_EditorClassIdentifier: Assembly-CSharp::MapView
+  _roomPrefab: {fileID: 3089660790677874845, guid: 9b4534cd03eaa7e428f5d7ec36071bac, type: 3}
+  _linePrefab: {fileID: 699180110868993750, guid: 1781643e0f6fb0b43b105f8c0d836c57, type: 3}
+  _mapManager: {fileID: 1444402189}
 --- !u!1 &1554867819
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,3 +467,4 @@ SceneRoots:
   - {fileID: 1554867822}
   - {fileID: 1449941514}
   - {fileID: 1352834980}
+  - {fileID: 1444402188}
