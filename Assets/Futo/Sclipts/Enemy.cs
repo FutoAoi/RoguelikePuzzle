@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NUnit.Framework;
 using System.Collections;
 using TMPro;
@@ -75,13 +76,15 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void FinishAttack()
     {
-        _attackTurnTMP.text = _enemyAT.ToString();
         _isAttackTurn = false;
+        if(_isDead)return ;
+        _attackTurnTMP.text = _enemyAT.ToString();
     }
     private IEnumerator Dead()
     {
         yield return null;
         _attackTurnTMP.text = null;
+        _enemyImage.DOFade(0f,0.1f);
         Debug.Log($"{name}Çì|ÇµÇΩÅI");
     }
 }

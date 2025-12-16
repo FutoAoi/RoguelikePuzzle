@@ -53,6 +53,10 @@ public class AttackManager : MonoBehaviour
                 MagicVector.Left, _enemyRectTr, _interval, false));
         }
     }
+    /// <summary>
+    /// 攻撃終了時にフラグ出す
+    /// </summary>
+    /// <param name="isPlayer"></param>
     public void AttackFinish(bool isPlayer)
     {
         if (isPlayer)
@@ -72,7 +76,7 @@ public class AttackManager : MonoBehaviour
     {
         if (CheckEnemy())
         {
-            GameManager.Instance.CurrentPhase = BattlePhase.Reward;
+            _gameManager.CurrentPhase = BattlePhase.Reward;
             _isVictory = true;
         }
 
@@ -96,7 +100,15 @@ public class AttackManager : MonoBehaviour
                 }
                 count++;
             }
-            GameManager.Instance.Reset = true;
+            if (CheckEnemy())
+            {
+                _gameManager.CurrentPhase = BattlePhase.Reward;
+                _isVictory = true;
+            }
+            else
+            {
+                _gameManager.Reset = true;
+            }
         }
         
     }

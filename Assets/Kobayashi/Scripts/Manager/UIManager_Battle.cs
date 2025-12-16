@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// インゲームのバトル時のUIManager
+/// </summary>
 public class UIManager_Battle : UIManagerBase,IBattleUI
 {
     [Header("手札")] public List<GameObject> HandCard = new List<GameObject>();
@@ -21,10 +23,12 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
+    [SerializeField, Tooltip("フェード用のパネル")] private Image _fadePanel;
     
     public bool _isFinishCutIn = false;
 
     private DeckManager _deckManager;
+    private RewardManager _rewardManager;
     private GameObject _card;
     private TextMeshProUGUI _text;
     private Image _panelimg;
@@ -40,6 +44,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         _panelRectTr = _enemyAttackPanel.GetComponent<RectTransform>();
         _defaultColor = _panelimg.color;
         _enemyAttackPanel.SetActive(false);
+        _fadePanel.gameObject.SetActive(false);
     }
     public IEnumerator DrawCard()
     {
@@ -101,7 +106,23 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     /// </summary>
     public void DisplayReward()
     {
-        _resultPanel.SetActive(true);
-        _resultPanel.GetComponent<RewardManager>().Reward();
+        _fadePanel.gameObject.SetActive(true);
+
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(0.3f)
+            .Append(_fadePanel.DOFade(1f, 0.4f).SetEase(Ease.OutQuad))
+            .AppendCallback(() =>
+            {
+                _resultPanel.SetActive(true);
+                _rewardManager = _resultPanel.GetComponent<RewardManager>();
+                _rewardManager.Reward();
+            })
+            .AppendInterval(0.2f)
+            .Append(_fadePanel.DOFade(0f, 0.4f))
+            .OnComplete(() =>
+            {
+                _fadePanel.gameObject.SetActive(false);
+                StartCoroutine(_rewardManager.RewardAnimation());
+            });
     }
 }

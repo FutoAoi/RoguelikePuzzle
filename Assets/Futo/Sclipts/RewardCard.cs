@@ -16,14 +16,24 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
     [SerializeField, Tooltip("最大回数")] private TMP_Text _maxTimes;
     [SerializeField, Tooltip("報酬番号")] private int _rewardNumber;
     [SerializeField, Tooltip("RewardManager")] private RewardManager _rewardManager;
+    [SerializeField, Tooltip("回転時間")] private float _duration = 0.8f;
+    [SerializeField, Tooltip("カード前面")] private GameObject _cardFrontObj;
+    [SerializeField, Tooltip("カードの裏面")] private GameObject _cardBackObj;
 
     public int CardID => _cardID;
+    public bool IsFinish { get; private set; } = false;
 
     private CardData _data;
     private Vector3 normalScale;
+    private Transform _tr;
     private float selectedScale = 1.1f;
     private float animationTime = 0.2f;
-
+    private void Awake()
+    {
+        _tr = transform;
+        _cardFrontObj.SetActive(false);
+        _cardBackObj.SetActive(true);
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -45,14 +55,14 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
         _description.text = _data.Description;
         _cost.text = $"{_data.Cost}";
         _maxTimes.text = $"{_data.MaxTimes}";
-        normalScale = transform.localScale;
+        normalScale = _tr.localScale;
     }
 
     public void Select()
     {
-        transform.DOKill();
+        _tr.DOKill();
 
-        transform.DOScale(normalScale * selectedScale, animationTime)
+        _tr.DOScale(normalScale * selectedScale, animationTime)
                  .SetEase(Ease.OutBack);
     }
 
@@ -61,9 +71,28 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
     /// </summary>
     public void Deselect()
     {
-        transform.DOKill();
+        _tr.DOKill();
 
-        transform.DOScale(normalScale, animationTime)
+        _tr.DOScale(normalScale, animationTime)
                  .SetEase(Ease.OutQuad);
+    }
+    /// <summary>
+    /// カードをめくるアニメーション
+    /// </summary>
+    public void TurnCardAnimation()
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(_tr.DORotate(Vector2.zero, _duration));
+        seq.InsertCallback(_duration * 0.5f, () =>
+        {
+            _cardBackObj.SetActive(false);
+            _cardFrontObj.SetActive(true);
+        });
+        seq.OnComplete(() =>
+        {
+            IsFinish = true;
+        });
+        
     }
 }
