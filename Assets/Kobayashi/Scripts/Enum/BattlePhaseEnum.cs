@@ -39,10 +39,12 @@ public enum EnemyAttackType : int
     Normal,
     Penetrating,
 }
-
+/// <summary>
+/// ƒV[ƒ“‚Ì–¼‘O
+/// </summary>
 public enum SceneType : int
 {
-    Title,
-    InGame,
-    StageSerect
+    TitleScene,
+    InGameScene,
+    StageSerectScene
 }

@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour
     {
         switch (_currentScene)
         {
-            case SceneType.Title:
+            case SceneType.TitleScene:
                 break;
-            case SceneType.InGame:
+            case SceneType.InGameScene:
                 switch (CurrentPhase)
                 {
                     case BattlePhase.BuildStage:
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
                         break;
                 }
                 break;
-            case SceneType.StageSerect:
+            case SceneType.StageSerectScene:
                 break;
         }
     }
@@ -119,9 +119,9 @@ public class GameManager : MonoBehaviour
         CurrentUIManager.InitUI();
     }
 
-    public void SceneChange(int sceneType)
+    public void SceneChange(SceneType sceneType)
     {
-        _currentScene = (SceneType)sceneType;
-        SceneManager.LoadScene((int)sceneType);
+        SceneManager.LoadScene($"{sceneType}");
+        _currentScene = sceneType;
     }
 }
