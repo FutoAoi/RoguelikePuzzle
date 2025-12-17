@@ -83,7 +83,7 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
     {
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(_tr.DORotate(Vector2.zero, _duration));
+        seq.Append(_tr.DORotate(Vector2.zero, _duration).SetEase(Ease.Linear));
         seq.InsertCallback(_duration * 0.5f, () =>
         {
             _cardBackObj.SetActive(false);
