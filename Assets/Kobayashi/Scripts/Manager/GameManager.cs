@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public CardDataBase CardDataBase => _cardDataBase;
+    public StageDataBase StageDataBase => _stageDataBase;
+    public EnemyDataBase EnemyDataBase => _enemyDataBase;
 
     [Header("データベース")]
     [SerializeField, Tooltip("カード")] private CardDataBase _cardDataBase;
     [SerializeField, Tooltip("ステージ")] private StageDataBase _stageDataBase;
     [SerializeField, Tooltip("エネミー")] private EnemyDataBase _enemyDataBase;
-    public CardDataBase CardDataBase => _cardDataBase;
-    public StageDataBase StageDataBase => _stageDataBase;
-    public EnemyDataBase EnemyDataBase => _enemyDataBase;
 
     [Header("ID")]
     [SerializeField, Tooltip("ステージID")] public int StageID = 1;
 
+    public PlayerStatus PlayerStatus { get; private set; }
     public BattlePhase CurrentPhase;
     public bool Reset = false, IsEnemyAction = false;
     public Player Player;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        PlayerStatus = new PlayerStatus();
     }
 
     // Update is called once per frame
