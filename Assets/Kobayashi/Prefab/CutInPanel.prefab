@@ -158,8 +158,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Your Attack!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75f8bdb693fdeca44ad22f3e7a91ad52, type: 2}
-  m_sharedMaterial: {fileID: -6027467232448501255, guid: 75f8bdb693fdeca44ad22f3e7a91ad52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3e15a9fdd8d7bdb4580bd760379f4f23, type: 2}
+  m_sharedMaterial: {fileID: 9144928714053634808, guid: 3e15a9fdd8d7bdb4580bd760379f4f23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

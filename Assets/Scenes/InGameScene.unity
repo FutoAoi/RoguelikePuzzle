@@ -212,7 +212,6 @@ MonoBehaviour:
   Reset: 0
   IsEnemyAction: 0
   Player: {fileID: 1500904887}
-  StageManager: {fileID: 0}
   _currentScene: 1
 --- !u!4 &330289939
 Transform:
@@ -693,8 +692,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Next Phase
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3e15a9fdd8d7bdb4580bd760379f4f23, type: 2}
+  m_sharedMaterial: {fileID: 9144928714053634808, guid: 3e15a9fdd8d7bdb4580bd760379f4f23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
