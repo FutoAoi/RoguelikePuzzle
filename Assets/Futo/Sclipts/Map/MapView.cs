@@ -75,8 +75,8 @@ public class MapView : MonoBehaviour
 
     private Vector3 GetRoomPosition(int floorIndex, int roomIndex, int roomCount)
     {
-        float xSpacing = 100f;
-        float ySpacing = 100f;
+        float xSpacing = 200f;
+        float ySpacing = 200f;
 
         float offsetX = -(roomCount - 1) * xSpacing * 2f;
 
