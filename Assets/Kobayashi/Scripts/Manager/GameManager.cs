@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
 
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
+    [NonSerialized] public StageManager StageManager;
+    [NonSerialized] public GenerateMapData GenerateMapData;
 
     private AttackManager _attackManager;
-    public StageManager StageManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
 
     [SerializeField]private SceneType _currentScene;
