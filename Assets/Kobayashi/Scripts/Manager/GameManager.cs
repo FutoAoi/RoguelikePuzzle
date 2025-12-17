@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
 
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
+    [NonSerialized] public StageManager StageManager;
+    [NonSerialized] public GenerateMapData GenerateMapData;
 
     private AttackManager _attackManager;
-    public StageManager StageManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
 
     [SerializeField]private SceneType _currentScene;
@@ -46,9 +47,9 @@ public class GameManager : MonoBehaviour
     {
         switch (_currentScene)
         {
-            case SceneType.Title:
+            case SceneType.TitleScene:
                 break;
-            case SceneType.InGame:
+            case SceneType.InGameScene:
                 switch (CurrentPhase)
                 {
                     case BattlePhase.BuildStage:
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
                         break;
                 }
                 break;
-            case SceneType.StageSerect:
+            case SceneType.StageSerectScene:
                 break;
         }
     }
@@ -119,9 +120,9 @@ public class GameManager : MonoBehaviour
         CurrentUIManager.InitUI();
     }
 
-    public void SceneChange(int sceneType)
+    public void SceneChange(SceneType sceneType)
     {
-        _currentScene = (SceneType)sceneType;
-        SceneManager.LoadScene((int)sceneType);
+        SceneManager.LoadScene($"{sceneType}");
+        _currentScene = sceneType;
     }
 }
