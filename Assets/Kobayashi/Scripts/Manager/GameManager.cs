@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,9 +25,10 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public AttackManager AttackManager;
 
     private AttackManager _attackManager;
-    private StageManager _stageManager;
+    public StageManager StageManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
 
+    [SerializeField]private SceneType _currentScene;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -37,63 +39,76 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        //‰¼
-        _stageManager = FindAnyObjectByType<StageManager>();
-        _stageManager.CreateStage(StageID);
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (CurrentPhase)
+        switch (_currentScene)
         {
-            case BattlePhase.Draw:
-                if (!_isDraw)
-                {
-                    DeckManager.Instance.ShuffleDeck();
-                    StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
-                    _isDraw = true;
-                }
-                if (!_isOrganize)
-                {
-                    (CurrentUIManager as IBattleUI)?.HandOrganize();
-                    _isOrganize = true;
-                }
-                if(_isDraw && _isOrganize)CurrentPhase = BattlePhase.Set;
+            case SceneType.Title:
                 break;
-            case BattlePhase.Set:
+            case SceneType.InGame:
+                switch (CurrentPhase)
+                {
+                    case BattlePhase.BuildStage:
+                        if (StageManager != null)
+                        {
+                            StageManager.CreateStage(StageID);
+                            CurrentPhase = BattlePhase.Draw;
+                        }
+                        break;
+                    case BattlePhase.Draw:
+                        if (!_isDraw)
+                        {
+                            DeckManager.Instance.ShuffleDeck();
+                            StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
+                            _isDraw = true;
+                        }
+                        if (!_isOrganize)
+                        {
+                            (CurrentUIManager as IBattleUI)?.HandOrganize();
+                            _isOrganize = true;
+                        }
+                        if (_isDraw && _isOrganize) CurrentPhase = BattlePhase.Set;
+                        break;
+                    case BattlePhase.Set:
 
-                break;
-            case BattlePhase.Action:
-                if (!_isAction)
-                {
-                    _attackManager = FindAnyObjectByType<AttackManager>();
-                    _attackManager.AttackTurn(true);
-                    _isAction = true;
-                }
-                if (IsEnemyAction)
-                {
-                    StartCoroutine(_attackManager.EnemyTurn());
-                    IsEnemyAction = false;
-                }
-                if (Reset)
-                {
-                    Reset = false;
-                    _isDraw = false;
-                    _isOrganize = false;
-                    _isAction = false;
-                    CurrentPhase = BattlePhase.Draw;
-                }
-                break;
-            case BattlePhase.Direction:
+                        break;
+                    case BattlePhase.Action:
+                        if (!_isAction)
+                        {
+                            _attackManager = FindAnyObjectByType<AttackManager>();
+                            _attackManager.AttackTurn(true);
+                            _isAction = true;
+                        }
+                        if (IsEnemyAction)
+                        {
+                            StartCoroutine(_attackManager.EnemyTurn());
+                            IsEnemyAction = false;
+                        }
+                        if (Reset)
+                        {
+                            Reset = false;
+                            _isDraw = false;
+                            _isOrganize = false;
+                            _isAction = false;
+                            CurrentPhase = BattlePhase.Draw;
+                        }
+                        break;
+                    case BattlePhase.Direction:
 
-                break;
-            case BattlePhase.Reward:
-                if (!_isReward)
-                {
-                    (CurrentUIManager as IBattleUI)?.DisplayReward();
-                    _isReward = true;
+                        break;
+                    case BattlePhase.Reward:
+                        if (!_isReward)
+                        {
+                            (CurrentUIManager as IBattleUI)?.DisplayReward();
+                            _isReward = true;
+                        }
+                        break;
                 }
+                break;
+            case SceneType.StageSerect:
                 break;
         }
     }
@@ -102,5 +117,11 @@ public class GameManager : MonoBehaviour
     {
         CurrentUIManager = ui;
         CurrentUIManager.InitUI();
+    }
+
+    public void SceneChange(int sceneType)
+    {
+        _currentScene = (SceneType)sceneType;
+        SceneManager.LoadScene((int)sceneType);
     }
 }

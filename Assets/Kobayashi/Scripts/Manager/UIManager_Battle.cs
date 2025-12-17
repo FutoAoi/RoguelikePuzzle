@@ -37,7 +37,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     public override void InitUI()
     {
         _deckManager = DeckManager.Instance;
-        GameManager.Instance.CurrentPhase = BattlePhase.Draw;
+        GameManager.Instance.CurrentPhase = BattlePhase.BuildStage;
         HandCard.Clear();
         _text = _enemyAttackPanel.GetComponentInChildren<TextMeshProUGUI>();
         _panelimg = _enemyAttackPanel.GetComponent<Image>();

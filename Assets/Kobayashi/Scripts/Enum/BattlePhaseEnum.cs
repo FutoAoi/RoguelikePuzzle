@@ -7,7 +7,8 @@ public enum BattlePhase:int
     Set,
     Action,
     Direction,
-    Reward
+    Reward,
+    BuildStage
 }
 /// <summary>
 /// UŒ‚‚Ì•ûŒüw’è
@@ -37,4 +38,11 @@ public enum EnemyAttackType : int
 {
     Normal,
     Penetrating,
+}
+
+public enum SceneType : int
+{
+    Title,
+    InGame,
+    StageSerect
 }
