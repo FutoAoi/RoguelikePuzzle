@@ -25,8 +25,14 @@ public class StageManager : MonoBehaviour
     public List<List<GameObject>> SlotList => _slotList;
     public List<Enemy> EnemyList => _enemyList;
 
+    private void Awake()
+    {
+        GameManager.Instance.StageManager = this;
+    }
+    
     public void CreateStage(int stageIndex)
     {
+        Debug.Log("tukurude");
         _layoutGroup = GetComponent<GridLayoutGroup>();
         _stage = GameManager.Instance.StageDataBase.GetStageData(stageIndex);
         _layoutGroup.constraintCount = _stage.Width;

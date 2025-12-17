@@ -208,10 +208,12 @@ MonoBehaviour:
   _stageDataBase: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
   StageID: 1
-  CurrentPhase: 0
+  CurrentPhase: 5
   Reset: 0
   IsEnemyAction: 0
   Player: {fileID: 1500904887}
+  StageManager: {fileID: 0}
+  _currentScene: 1
 --- !u!4 &330289939
 Transform:
   m_ObjectHideFlags: 0
@@ -691,8 +693,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Next Phase
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75f8bdb693fdeca44ad22f3e7a91ad52, type: 2}
-  m_sharedMaterial: {fileID: -6027467232448501255, guid: 75f8bdb693fdeca44ad22f3e7a91ad52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
