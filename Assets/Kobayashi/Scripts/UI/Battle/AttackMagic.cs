@@ -16,6 +16,7 @@ public class AttackMagic : MonoBehaviour
     private GameManager _gameManager;
     private AttackManager _attackManager;
     private Player _player;
+    private PlayerStatus _playerStatus;
     private Enemy _attackedEnemy;
     private Action _onDisable;
     private TileSlot _tileSlot;
@@ -158,6 +159,7 @@ public class AttackMagic : MonoBehaviour
         }
 
         _player = _gameManager.Player;
+        _playerStatus = _gameManager.PlayerStatus;
 
         if (_isAttack)
         {
@@ -172,7 +174,7 @@ public class AttackMagic : MonoBehaviour
             {
                 _attackRectTr.DOMove(_player.transform.position, interval)
                     .SetEase(Ease.Linear);
-                StartCoroutine(_player.Damaged(AttackPower, 0.1f));
+                _playerStatus.Damaged(AttackPower);
             } 
         }
         else
@@ -189,12 +191,13 @@ public class AttackMagic : MonoBehaviour
         {
             if (isPlayer)
             {
-                StartCoroutine(_player.Damaged(AttackPower, 0.1f));
+                _playerStatus.Damaged(AttackPower);
             }
             else
             {
                 _attackedEnemy = _stageManager.EnemyList[startPos.x];
                 _attackedEnemy.Damaged(AttackPower);
+                Debug.Log("é©èù");
             }
         }
 
@@ -214,6 +217,7 @@ public class AttackMagic : MonoBehaviour
 
         _finish = false;
         _firstAttack = true;
+        _isSelfHarm = false;
         DestroyMagic(isPlayer);
     }
     /// <summary>

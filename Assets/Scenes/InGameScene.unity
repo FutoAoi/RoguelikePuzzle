@@ -164,7 +164,6 @@ GameObject:
   m_Component:
   - component: {fileID: 330289939}
   - component: {fileID: 330289938}
-  - component: {fileID: 330289937}
   - component: {fileID: 330289940}
   m_Layer: 0
   m_Name: GameManager
@@ -173,25 +172,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &330289937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330289936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70cd2f208792a684da4c2dd61c211bc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandTile:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerHandTr: {fileID: 2118124055}
 --- !u!114 &330289938
 MonoBehaviour:
   m_ObjectHideFlags: 0
