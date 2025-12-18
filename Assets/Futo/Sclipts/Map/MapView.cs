@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapView : MonoBehaviour
 {
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private RectTransform _linePrefab;
     [SerializeField] private MapManager _mapManager;
+    [SerializeField] private Image _circle;
 
     private Room[][] _roomViews;
 
@@ -67,6 +69,8 @@ public class MapView : MonoBehaviour
                 }
             }
         }
+
+        _circle.transform.localPosition = _roomViews[GameManager.Instance.GenerateMapData.CurrentFloorIndex][GameManager.Instance.GenerateMapData.CurrentRoomIndex].transform.localPosition;
     }
 
     private void DrawUILine(RectTransform from, RectTransform to)
