@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
-    [SerializeField] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
-    [SerializeField] private List<Enemy> _enemyList = new();
+    [SerializeField, Tooltip("ステージのタイルリスト")] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
+    [SerializeField, Tooltip("ステージのエネミーリスト")] private List<Enemy> _enemyList = new();
 
     [Header("コンポーネント設定")]
     [SerializeField] private GameObject _tailPrefab;
@@ -30,6 +30,10 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.StageManager = this;
     }
     
+    /// <summary>
+    /// ゲーム内のステージ生成
+    /// </summary>
+    /// <param name="stageIndex"></param>
     public void CreateStage(int stageIndex)
     {
         _layoutGroup = GetComponent<GridLayoutGroup>();
@@ -71,6 +75,7 @@ public class StageManager : MonoBehaviour
             _enemyList[i].SetEnemyStatus(0);
         }
     }
+
     /// <summary>
     /// 指定の場所にエネミーが存在しているか
     /// </summary>
@@ -84,6 +89,10 @@ public class StageManager : MonoBehaviour
         }
         return false;
     }
+
+    /// <summary>
+    /// ステージを中央に寄せる
+    /// </summary>
     private void AdjustCellSize()
     {
         RectTransform _tailePanelRect = GetComponent<RectTransform>();
