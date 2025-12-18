@@ -207,6 +207,11 @@ MonoBehaviour:
   _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
   _stageDataBase: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
+  _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
+  _generateMapData:
+    Floors: []
+    CurrentFloorIndex: 0
+    CurrentRoomIndex: 0
   StageID: 1
   CurrentPhase: 5
   Reset: 0
@@ -1680,6 +1685,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1293538817}
     m_Modifications:
+    - target: {fileID: 3204041110071214213, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: _getButton
+      value: 
+      objectReference: {fileID: 1908586318}
+    - target: {fileID: 3204041110071214213, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: _skipButton
+      value: 
+      objectReference: {fileID: 1908586317}
     - target: {fileID: 6753346817545138618, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1783,6 +1796,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8863899278799771408, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
   m_PrefabInstance: {fileID: 1908586314}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1908586317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5660250804636561402, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+  m_PrefabInstance: {fileID: 1908586314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1908586318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5986028305555854367, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+  m_PrefabInstance: {fileID: 1908586314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &2118124054
 GameObject:
   m_ObjectHideFlags: 0

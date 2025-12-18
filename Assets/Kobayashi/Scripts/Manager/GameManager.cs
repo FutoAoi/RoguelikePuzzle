@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
     public CardDataBase CardDataBase => _cardDataBase;
     public StageDataBase StageDataBase => _stageDataBase;
     public EnemyDataBase EnemyDataBase => _enemyDataBase;
+    public GenerateMapData GenerateMapData => _generateMapData;
 
     [Header("データベース")]
     [SerializeField, Tooltip("カード")] private CardDataBase _cardDataBase;
     [SerializeField, Tooltip("ステージ")] private StageDataBase _stageDataBase;
     [SerializeField, Tooltip("エネミー")] private EnemyDataBase _enemyDataBase;
+    [SerializeField, Tooltip("マップデータ")] private MapData _mapData;
+    [SerializeField, Tooltip("生成マップデータ")] private GenerateMapData _generateMapData;
 
     [Header("ID")]
     [SerializeField, Tooltip("ステージID")] public int StageID = 1;
@@ -25,15 +28,20 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
     [NonSerialized] public StageManager StageManager;
-    [NonSerialized] public GenerateMapData GenerateMapData;
 
     private AttackManager _attackManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
 
     [SerializeField]private SceneType _currentScene;
-    private void Awake()
+
+    private void Start()
     {
         Application.targetFrameRate = 60;
+        _generateMapData = MapGenerator.GenerateMap(_mapData);
+    }
+
+    private void Awake()
+    {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         PlayerStatus = new PlayerStatus();
+        CurrentPhase = BattlePhase.BuildStage;
     }
 
     // Update is called once per frame
@@ -59,6 +68,7 @@ public class GameManager : MonoBehaviour
                         {
                             StageManager.CreateStage(StageID);
                             CurrentPhase = BattlePhase.Draw;
+                            _isReward = false;
                         }
                         break;
                     case BattlePhase.Draw:
@@ -92,10 +102,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Reset)
                         {
-                            Reset = false;
-                            _isDraw = false;
-                            _isOrganize = false;
-                            _isAction = false;
+                            InitializeBool();
                             CurrentPhase = BattlePhase.Draw;
                         }
                         break;
@@ -108,6 +115,7 @@ public class GameManager : MonoBehaviour
                             (CurrentUIManager as IBattleUI)?.DisplayReward();
                             _isReward = true;
                         }
+                        InitializeBool();
                         break;
                 }
                 break;
@@ -126,5 +134,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene($"{sceneType}");
         _currentScene = sceneType;
+    }
+
+    private void InitializeBool()
+    {
+        Reset = false;
+        _isDraw = false;
+        _isOrganize = false;
+        _isAction = false;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewardManager : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private RewardCard[] _rewardCard;
     [SerializeField] private CardRarity _rarity;
     [SerializeField] private int _serectReward = 0;
+    [SerializeField] private Button _getButton;
+    [SerializeField] private Button _skipButton;
 
     public void Reward()
     {
         _cardData = GameManager.Instance.CardDataBase;
+        _getButton.onClick.AddListener(GetReward);
+        _skipButton.onClick.AddListener(RewardSkip);
         foreach (var card in _rewardCard)
         {
             card.SetCard(_cardData.GetRandomCardIDByRarity(_rarity));
@@ -23,18 +28,19 @@ public class RewardManager : MonoBehaviour
     public void GetReward()
     {
         DeckManager.Instance.AddDeck(_rewardCard[_serectReward].CardID);
-        //シーン移行入れたい
+        GameManager.Instance.SceneChange(SceneType.StageSerectScene);
     }
 
     public void RewardSkip()
     {
-        //シーン移行入れたい
+        GameManager.Instance.SceneChange(SceneType.StageSerectScene);
     }
 
     public void SetRewardNumber(int number)
     {
         _serectReward = number;
     }
+
     /// <summary>
     /// カードがめくれるアニメーション
     /// </summary>

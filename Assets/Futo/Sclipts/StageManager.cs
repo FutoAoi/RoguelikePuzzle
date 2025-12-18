@@ -32,7 +32,6 @@ public class StageManager : MonoBehaviour
     
     public void CreateStage(int stageIndex)
     {
-        Debug.Log("tukurude");
         _layoutGroup = GetComponent<GridLayoutGroup>();
         _stage = GameManager.Instance.StageDataBase.GetStageData(stageIndex);
         _layoutGroup.constraintCount = _stage.Width;

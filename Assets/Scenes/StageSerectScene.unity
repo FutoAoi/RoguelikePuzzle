@@ -156,7 +156,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &61922296
 MonoBehaviour:
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761826947}
   m_HandleRect: {fileID: 761826946}
   m_Direction: 2
-  m_Value: -0.00000012845045
-  m_Size: 0.52741003
+  m_Value: -0.00000025690088
+  m_Size: 0.527832
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
   m_Content: {fileID: 1898323066}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -799,15 +799,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4743504061861994634, guid: 03a6b68cff93df347922e10dbd549375, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -824,70 +824,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428560360}
   m_CullTransparentMesh: 1
---- !u!1 &1444402186
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1444402188}
-  - component: {fileID: 1444402187}
-  - component: {fileID: 1444402189}
-  m_Layer: 0
-  m_Name: GameStart
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1444402187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444402186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07600e07d7b30b74daa810fa7d1cda88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStart
-  _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
-  _mapManager: {fileID: 1444402189}
-  _mapView: {fileID: 1898323065}
---- !u!4 &1444402188
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444402186}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.59063, y: 0.21536, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1444402189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444402186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2265daddd7fb6469c8d3446bff01b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  _mapData:
-    Floors: []
-    CurrentFloorIndex: 0
-    CurrentRoomIndex: 0
 --- !u!1 &1449941513
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +836,7 @@ GameObject:
   - component: {fileID: 1449941517}
   - component: {fileID: 1449941516}
   - component: {fileID: 1449941515}
+  - component: {fileID: 1449941518}
   m_Layer: 5
   m_Name: canvas
   m_TagString: Untagged
@@ -990,6 +927,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1449941518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449941513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2265daddd7fb6469c8d3446bff01b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapManager
+  _mapData:
+    Floors: []
+    CurrentFloorIndex: 0
+    CurrentRoomIndex: 0
 --- !u!1 &1554867819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,12 +1101,16 @@ MonoBehaviour:
   _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
   _stageDataBase: {fileID: 11400000, guid: 792c0fedf20f88a4193617c8a47d37b3, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
+  _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
+  _generateMapData:
+    Floors: []
+    CurrentFloorIndex: 0
+    CurrentRoomIndex: 0
   StageID: 1
   CurrentPhase: 0
   Reset: 0
   IsEnemyAction: 0
   Player: {fileID: 0}
-  StageManager: {fileID: 0}
   _currentScene: 2
 --- !u!4 &1667290980
 Transform:
@@ -1201,7 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapView
   _roomPrefab: {fileID: 3089660790677874845, guid: 9b4534cd03eaa7e428f5d7ec36071bac, type: 3}
   _linePrefab: {fileID: 2072531040229180677, guid: 42cf60e78a89f72458e47f8464c680e5, type: 3}
-  _mapManager: {fileID: 1444402189}
+  _mapManager: {fileID: 1449941518}
 --- !u!224 &1898323066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1218,7 +1175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 950.33}
+  m_AnchoredPosition: {x: 0, y: 950.3303}
   m_SizeDelta: {x: 0, y: 2013.33}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2064653525
@@ -1264,5 +1221,4 @@ SceneRoots:
   - {fileID: 1554867822}
   - {fileID: 1449941514}
   - {fileID: 1352834980}
-  - {fileID: 1444402188}
   - {fileID: 1667290980}

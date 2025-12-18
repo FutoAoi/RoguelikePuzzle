@@ -9,6 +9,11 @@ public class MapView : MonoBehaviour
 
     private Room[][] _roomViews;
 
+    public void Start()
+    {
+        CreateMap(GameManager.Instance.GenerateMapData);
+    }
+
     public void CreateMap(GenerateMapData mapData)
     {
         int floorCount = mapData.Floors.Length;
@@ -64,7 +69,6 @@ public class MapView : MonoBehaviour
         }
     }
 
-    // ---------- UI用ライン描画 ----------
     private void DrawUILine(RectTransform from, RectTransform to)
     {
         RectTransform line = Instantiate(_linePrefab, transform);
@@ -75,16 +79,13 @@ public class MapView : MonoBehaviour
         Vector2 dir = end - start;
         float distance = dir.magnitude;
 
-        // 位置：中点
         line.anchoredPosition = start + dir * 0.5f;
 
-        // 長さ
         line.sizeDelta = new Vector2(
             line.sizeDelta.x,
             distance
         );
 
-        // 回転
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         line.localRotation = Quaternion.Euler(0, 0, angle - 90f);
     }
