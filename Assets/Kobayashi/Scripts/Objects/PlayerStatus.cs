@@ -1,9 +1,11 @@
+using System.Xml.Linq;
 using UnityEngine;
 /// <summary>
 /// ステータスのデータ
 /// </summary>
 public class PlayerStatus
 {
+    public bool IsDead { get; private set; }
     public int MaxHP => _maxHP;
     public int CurrentHP => _currentHP;
     public int MaxCost => _maxCost;
@@ -32,7 +34,7 @@ public class PlayerStatus
     /// PlayerHPの回復
     /// </summary>
     /// <param name="plus"></param>
-    public void IncreaseCurrentHP(int plus)
+    public void RecoveryHP(int plus)
     {
         _currentHP = Mathf.Clamp(_currentHP + plus, 0, _maxHP);
     }
@@ -40,9 +42,13 @@ public class PlayerStatus
     /// PlayerHPの更新
     /// </summary>
     /// <param name="hp"></param>
-    public void UpdateHP(int hp)
+    public void Damaged(int damage)
     {
-        _currentHP = hp;
+        _currentHP -= damage;
+        if(_currentHP <= 0)
+        {
+            PlayerDead();
+        }
     }
     /// <summary>
     /// お金を支払う
@@ -65,5 +71,14 @@ public class PlayerStatus
     public void GetMoney(int plus)
     {
         _money += plus;
+    }
+    /// <summary>
+    /// プレイヤーがやられた
+    /// </summary>
+    /// <returns></returns>
+    public void PlayerDead()
+    {
+        IsDead = false;
+        Debug.Log("倒れてしまった…");
     }
 }
