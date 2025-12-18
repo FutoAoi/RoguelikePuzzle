@@ -29,6 +29,7 @@ public class Room : MonoBehaviour, IPointerClickHandler
         if (_floorIndex == _mapManager.MapData.CurrentFloorIndex + 1)
         {
             _mapManager.MoveTo(_roomIndex);
+            GameManager.Instance.StageID = _stageID;
         }
         else
         {

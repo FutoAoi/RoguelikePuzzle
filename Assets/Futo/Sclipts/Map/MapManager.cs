@@ -6,6 +6,11 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] GenerateMapData _mapData;
 
+    private void Start()
+    {
+        _mapData = GameManager.Instance.GenerateMapData;
+    }
+
     public GenerateRoomData CurrentRoom
     {
         get
@@ -51,5 +56,7 @@ public class MapManager : MonoBehaviour
         MapData.CurrentRoomIndex = nextRoomIndex;
 
         Debug.Log($"ˆÚ“®æ Floor:{MapData.CurrentFloorIndex} Room:{nextRoomIndex}");
+
+        GameManager.Instance.SceneChange(SceneType.InGameScene);
     }
 }
