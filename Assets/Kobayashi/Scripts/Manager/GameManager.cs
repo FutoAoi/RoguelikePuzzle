@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
                         {
                             DeckManager.Instance.ShuffleDeck();
                             StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
+                            PlayerStatus.SetCost();
                             _isDraw = true;
                         }
                         if (!_isOrganize)

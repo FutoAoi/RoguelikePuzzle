@@ -2,9 +2,12 @@ using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{   
+{
+    private GameManager _gameManager;
     private void Start()
     {
-        GameManager.Instance.Player = this;
+        _gameManager = GameManager.Instance;
+        _gameManager.Player = this;
     }
+    
 }

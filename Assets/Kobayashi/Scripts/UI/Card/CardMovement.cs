@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public int ID;
+    private GameManager _gameManager;
+    private PlayerStatus _playerStatus;
     private GameObject _dropTarget,_cardPrefab,_newCard;
     private Transform _trOriginalParent,_trHandArea;
     private Canvas _canvas;
@@ -14,9 +16,12 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Card _card;
     private UIManager_Battle _uiManager;
     private bool _isBoardCard = false;
+    private int _cost;
 
     private void Start()
     {
+        _gameManager = GameManager.Instance;
+        _playerStatus = _gameManager.PlayerStatus;
         _uiManager = FindAnyObjectByType<UIManager_Battle>();
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
@@ -38,7 +43,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        if (_gameManager.CurrentPhase != BattlePhase.Set) return;
         _trOriginalParent = transform.parent;
         TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
         if(tileSlot != null && tileSlot.IsLastTimeCard)return;
@@ -47,17 +52,18 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _canvasGroup.alpha = 0.6f;
         _card = GetComponent<Card>();
         if(_card != null) ID = _card._cardID;
+        _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        if (_gameManager.CurrentPhase != BattlePhase.Set) return;
         TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
         if (tileSlot != null && tileSlot.IsLastTimeCard) return;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        if (_gameManager.CurrentPhase != BattlePhase.Set) return;
         TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
         if (tileSlot != null && tileSlot.IsLastTimeCard) return;
         _canvasGroup.alpha = 1f;
@@ -67,7 +73,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             _tileSlot = _dropTarget.GetComponent<TileSlot>();
             //カードが存在するとき元に戻す
-            if (_tileSlot.IsOccupied)
+            if (_tileSlot.IsOccupied || !_playerStatus.ConsumeCost(_cost))
             {
                 transform.SetParent(_trOriginalParent);
                 _rectTransform.anchoredPosition = Vector2.zero;
@@ -79,6 +85,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _trOriginalParent.GetComponent<TileSlot>().ClearSlot();
             }
             _tileSlot.PlaceCard(ID);
+            _playerStatus.ChangeCost(_cost, true);
             Card card = GetComponent<Card>();
             if (card != null)
             {
@@ -100,7 +107,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GameManager.Instance.CurrentPhase != BattlePhase.Set) return;
+        if (_gameManager.CurrentPhase != BattlePhase.Set) return;
         if (eventData.button == PointerEventData.InputButton.Right && _isBoardCard)
         {
             TileSlot tileSlot = _trOriginalParent.GetComponent<TileSlot>();
@@ -110,6 +117,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 if(tileSlot.IsLastTimeCard)return;
                 tileSlot.ClearSlot();
             }
+            _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
+            _playerStatus.ChangeCost(_cost, false);
             #region 手札にカードを生成
             _newCard = Instantiate(_cardPrefab,_trHandArea);
             _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea);
