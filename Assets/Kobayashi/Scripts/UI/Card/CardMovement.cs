@@ -15,7 +15,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private TileSlot _tileSlot;
     private Card _card;
     private UIManager_Battle _uiManager;
-    private bool _isBoardCard = false;
+    private bool _isBoardCard = false,_refundedCostOnDrag = false;
     private int _cost;
 
     private void Start()
@@ -53,6 +53,13 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _card = GetComponent<Card>();
         if(_card != null) ID = _card._cardID;
         _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
+        if(_isBoardCard && _trOriginalParent.GetComponent<TileSlot>() != null && 
+            _playerStatus.CurrentCost < _playerStatus.MaxCost)
+        {
+            _playerStatus.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _refundedCostOnDrag = true;
+}
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -75,8 +82,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //カードが存在するとき元に戻す
             if (_tileSlot.IsOccupied || !_playerStatus.ConsumeCost(_cost))
             {
-                transform.SetParent(_trOriginalParent);
-                _rectTransform.anchoredPosition = Vector2.zero;
+                ReturnToOriginalSlot();
                 return;
             }
             //盤面上から動かされてたらスロットを空に
@@ -86,6 +92,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             _tileSlot.PlaceCard(ID);
             _playerStatus.ChangeCost(_cost, true);
+            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
             Card card = GetComponent<Card>();
             if (card != null)
             {
@@ -97,8 +104,18 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
         else
         {
-            transform.SetParent(_trOriginalParent);
-            _rectTransform.anchoredPosition = Vector2.zero;
+            ReturnToOriginalSlot();
+        }
+    }
+    private void ReturnToOriginalSlot()
+    {
+        transform.SetParent(_trOriginalParent);
+        _rectTransform.anchoredPosition = Vector2.zero;
+        if (_refundedCostOnDrag)
+        {
+            _playerStatus.ChangeCost(_cost, true);
+            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _refundedCostOnDrag = false;
         }
     }
     /// <summary>
@@ -119,6 +136,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
             _playerStatus.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
             #region 手札にカードを生成
             _newCard = Instantiate(_cardPrefab,_trHandArea);
             _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea);
