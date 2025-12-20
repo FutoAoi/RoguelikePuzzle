@@ -196,7 +196,7 @@ public class AttackMagic : MonoBehaviour
             }
             else
             {
-                _attackedEnemy = _stageManager.EnemyList[startPos.x];
+                _attackedEnemy = _stageManager.EnemyList[_currentSlot.x];
                 _attackedEnemy.Damaged(AttackPower);
                 Debug.Log("©");
             }
