@@ -41,6 +41,7 @@ public class AttackMagic : MonoBehaviour
     public void Initialize(Action onDisable)
     {
         _onDisable = onDisable;
+        AttackPower = 1;
     }
     /// <summary>
     /// –‚–@‚ð‰ó‚·
@@ -91,7 +92,7 @@ public class AttackMagic : MonoBehaviour
             }
             else
             {
-                _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute();
+                _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute(this);
                 _tileSlot.DecreaseTimes(1);
             }
 

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class EffectBase : ScriptableObject
 {
-    public void Excute()
+    public void Excute(AttackMagic magic)
     {
-        OnExcute();
+        OnExcute(magic);
     }
-    protected abstract void OnExcute();
+    protected abstract void OnExcute(AttackMagic magic);
 }
