@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e779f02e9cda4ab2e5cb2a38b45f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  _deckMain: 0100000002000000030000000400000005000000
+  _deckMain: e9030000ea030000eb030000ec030000d1070000
 --- !u!1 &551759323
 GameObject:
   m_ObjectHideFlags: 0
