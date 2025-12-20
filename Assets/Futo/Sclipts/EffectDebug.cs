@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CardEffect/EffectDebug")]
+[CreateAssetMenu(menuName = "Effect/EffectDebug")]
 public class EffectDebug : EffectBase
 {
     protected override void OnExcute()
