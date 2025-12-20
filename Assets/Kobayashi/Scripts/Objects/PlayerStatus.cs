@@ -9,11 +9,14 @@ public class PlayerStatus
     public int MaxHP => _maxHP;
     public int CurrentHP => _currentHP;
     public int MaxCost => _maxCost;
+    public int CurrentCost => _currentCost;
     public int Money => _money;
     private int _maxHP = 10;
     private int _currentHP = 10;
     private int _maxCost = 8;
     private int _money = 0;
+    private int _currentCost;
+
     /// <summary>
     /// HP上限値の上昇
     /// </summary>
@@ -80,5 +83,38 @@ public class PlayerStatus
     {
         IsDead = false;
         Debug.Log("倒れてしまった…");
+    }
+    /// <summary>
+    /// コストの初期化
+    /// </summary>
+    public void SetCost()
+    {
+        _currentCost = _maxCost;
+    }
+    /// <summary>
+    /// コスト消費できるかどうか
+    /// </summary>
+    /// <param name="cost"></param>
+    /// <returns></returns>
+    public bool ConsumeCost(int cost)
+    {
+        return _currentCost >= cost;
+    }
+    /// <summary>
+    /// コストの更新
+    /// </summary>
+    /// <param name="cost"></param>
+    /// <param name="isConsume"></param>
+    public void ChangeCost(int cost,bool isConsume)
+    {
+        if (isConsume)
+        {
+            _currentCost -= cost;
+        }
+        else
+        {
+            _currentCost += cost;
+        }
+        Debug.Log($"残り{_currentCost}コスト");
     }
 }

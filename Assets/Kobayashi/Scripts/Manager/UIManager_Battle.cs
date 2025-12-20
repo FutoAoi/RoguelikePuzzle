@@ -7,13 +7,14 @@ using UnityEngine.UI;
 /// <summary>
 /// インゲームのバトル時のUIManager
 /// </summary>
-public class UIManager_Battle : UIManagerBase,IBattleUI
+public class UIManager_Battle : UIManagerBase, IBattleUI
 {
     [Header("手札")] public List<GameObject> HandCard = new List<GameObject>();
 
     [Header("数値設定")]
     [SerializeField, Tooltip("手札の数")] private int _handRange = 5;
     [SerializeField, Tooltip("ドロー間隔")] private float _distance = 0.1f;
+    [SerializeField, Tooltip("数字が増える演出時間")] private float _valueDuration = 0.2f;
 
     [Header("コンポーネント設定")]
     [SerializeField, Tooltip("場所")] private RectTransform _playerHandTr;
@@ -24,9 +25,12 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
     [SerializeField, Tooltip("フェード用のパネル")] private Image _fadePanel;
-    
+    [SerializeField, Tooltip("消費コストテキスト")] private TextMeshProUGUI _costText;
+    [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
+
     public bool _isFinishCutIn = false;
 
+    private PlayerStatus _status;
     private DeckManager _deckManager;
     private RewardManager _rewardManager;
     private GameObject _card;
@@ -34,6 +38,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
     private Image _panelimg;
     private RectTransform _panelRectTr;
     private Color _defaultColor;
+    private int _currentNumber;
     public override void InitUI()
     {
         _deckManager = DeckManager.Instance;
@@ -42,6 +47,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         _text = _enemyAttackPanel.GetComponentInChildren<TextMeshProUGUI>();
         _panelimg = _enemyAttackPanel.GetComponent<Image>();
         _panelRectTr = _enemyAttackPanel.GetComponent<RectTransform>();
+        _status = GameManager.Instance.PlayerStatus;
         _defaultColor = _panelimg.color;
         _enemyAttackPanel.SetActive(false);
         _fadePanel.gameObject.SetActive(false);
@@ -53,6 +59,7 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
             CreateCard();
             yield return new WaitForSeconds(_distance);
         }
+        SetupCostText();
     }
 
     public void HandOrganize()
@@ -63,12 +70,12 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(_playerHandTr);
     }
-    
+
     private void CreateCard()
     {
         _card = Instantiate(CardPrefab, _playerHandTr);
         Card card = _card.GetComponent<Card>();
-        card.SetCard(_deckManager.DrawCard(),DescriptionArea);
+        card.SetCard(_deckManager.DrawCard(), DescriptionArea);
         HandCard.Add(_card);
     }
     /// <summary>
@@ -124,5 +131,30 @@ public class UIManager_Battle : UIManagerBase,IBattleUI
                 _fadePanel.gameObject.SetActive(false);
                 StartCoroutine(_rewardManager.RewardAnimation());
             });
+    }
+    /// <summary>
+    /// コスト表記の初期化
+    /// </summary>
+    public void SetupCostText()
+    {
+        _currentNumber = _status.MaxCost;
+        _costText.text = _status.MaxCost.ToString();
+        _maxCostText.text = _status.MaxCost.ToString();
+    }
+    /// <summary>
+    /// コストテキストの更新
+    /// </summary>
+    /// <param name="targetValue"></param>
+    public void UpdateCostText(int targetValue)
+    {
+        DOTween.To(() => _currentNumber, 
+            x =>
+            {
+                _currentNumber = x;
+                _costText.text = _currentNumber.ToString();
+            },
+            targetValue,
+            _valueDuration
+        );
     }
 }
