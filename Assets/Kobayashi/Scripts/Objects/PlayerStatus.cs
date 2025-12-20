@@ -115,6 +115,5 @@ public class PlayerStatus
         {
             _currentCost += cost;
         }
-        Debug.Log($"残り{_currentCost}コスト");
     }
 }
