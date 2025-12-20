@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class TileSlot : MonoBehaviour
     [NonSerialized] public int ID;
     public bool IsLastTimeCard = false;//前のフェーズで置かれたものかどうか
     public bool IsOccupied { get; private set; } = false;//すでに置かれているか
+    private GameManager _gameManager;
     private GameObject _newCard;
     private CardMovement _tileMovement;
     private Image _img;
@@ -20,6 +22,7 @@ public class TileSlot : MonoBehaviour
         _index = UnityEngine.Random.Range(0, _tileSprites.Length - 1);
         _img.sprite = _tileSprites[_index];
         IsLastTimeCard = false;
+        _gameManager = GameManager.Instance;
     }
     /// <summary>
     /// カードを置く
@@ -30,11 +33,12 @@ public class TileSlot : MonoBehaviour
         if(IsOccupied)return;
         ID = id;
         _newCard = Instantiate(_tileBoardPrefab,transform);
-        _newCard.GetComponent<Image>().sprite = GameManager.Instance.CardDataBase.GetCardData(id).Sprite;
+        _newCard.GetComponent<Image>().sprite = _gameManager.CardDataBase.GetCardData(id).Sprite;
+        _newCard.GetComponentInChildren<TextMeshProUGUI>().text = _gameManager.CardDataBase.GetCardData(id).MaxTimes.ToString();
         _tileMovement = _newCard.GetComponent<CardMovement>();
         _tileMovement.ID = id;
         _tileMovement.SetAsBoardCard();
-        _currentnumber = GameManager.Instance.CardDataBase.GetCardData(id).MaxTimes;
+        _currentnumber = _gameManager.CardDataBase.GetCardData(id).MaxTimes;
         IsOccupied = true;
     }
     /// <summary>
@@ -58,7 +62,8 @@ public class TileSlot : MonoBehaviour
         if (!IsOccupied) return;
 
         _currentnumber -= times;
-        if(_currentnumber <= 0)
+        _newCard.GetComponentInChildren<TextMeshProUGUI>().text = _currentnumber.ToString();
+        if (_currentnumber <= 0)
         {
             ClearSlot();
         }
