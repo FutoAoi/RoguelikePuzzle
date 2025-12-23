@@ -4,12 +4,13 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance { get; private set; }
+
     [Header("メインデッキ")]
     [SerializeField] private List<int> _deckMain = new List<int>();
 
-    private List<int> _deck;
     private int _randomIndex;
     private int _temp;
+    private List<int> _deck;
 
     private void Awake()
     {

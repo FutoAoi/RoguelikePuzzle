@@ -13,18 +13,5 @@ MonoBehaviour:
   m_Name: EnemyDataBase
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataBase
   _enemys:
-  - _enemyID: 1
-    _sprite: {fileID: 8378225185371500638, guid: dae2a63ceaecfd24bb9081db0872657b, type: 3}
-    _enemyHP: 3
-    _enemyAP: 1
-    _enemyAT: 1
-  - _enemyID: 2
-    _sprite: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
-    _enemyHP: 5
-    _enemyAP: 1
-    _enemyAT: 1
-  - _enemyID: 0
-    _sprite: {fileID: 0}
-    _enemyHP: 0
-    _enemyAP: 0
-    _enemyAT: 0
+  - {fileID: 11400000, guid: f5fa29d3e935f5440922e678f83ca5f8, type: 2}
+  - {fileID: 11400000, guid: 4420f336e9e5d094abd33aec6b0b3ef8, type: 2}

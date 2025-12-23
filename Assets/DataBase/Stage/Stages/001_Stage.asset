@@ -17,5 +17,7 @@ MonoBehaviour:
   _width: 5
   _height: 5
   _enemies:
-  - _enemyID: 1
+  - _enemyID: 101
     _enemyPosition: 1
+  - _enemyID: 101
+    _enemyPosition: 3

@@ -9,18 +9,19 @@ public class Enemy : MonoBehaviour
 {
     public bool IsAttackTurn => _isAttackTurn;
     public bool IsDead => _isDead;
-    [SerializeField] private Image _enemyImage;
-    [SerializeField] private TextMeshProUGUI _attackTurnTMP;
-    [SerializeField] private int _enemyHP;
-    [SerializeField] private int _enemyAP;
-    [SerializeField] private int _enemyAT;
 
-    private bool _isAttackTurn = false;
-
+    [Header("エネミー詳細")]
+    [SerializeField, Tooltip("エネミーの画像")] private Image _enemyImage;
+    [SerializeField, Tooltip("攻撃ターンの表示")] private TextMeshProUGUI _attackTurnTMP;
+    [SerializeField, Tooltip("エネミーのHP")] private int _enemyHP;
+    [SerializeField, Tooltip("エネミーの攻撃力")] private int _enemyAP;
+    [SerializeField, Tooltip("エネミーの攻撃までのターン数")] private int _enemyAT;
 
     private EnemyData _enemy;
-    private bool _isDead = false;
     private int _id;
+    private bool _isAttackTurn = false;
+    private bool _isDead = false;
+
     /// <summary>
     /// エネミーにステータスをセット
     /// </summary>
@@ -55,6 +56,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Dead());
         }
     }
+
     /// <summary>
     /// 攻撃ターンを縮める
     /// </summary>
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
             _enemyAT = _enemy.EnemyAT;
         }
     }
+
     /// <summary>
     /// 攻撃終了
     /// </summary>
@@ -80,6 +83,11 @@ public class Enemy : MonoBehaviour
         if(_isDead)return ;
         _attackTurnTMP.text = _enemyAT.ToString();
     }
+
+    /// <summary>
+    /// 死亡コルーチン
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Dead()
     {
         yield return null;
