@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Datas/Card")]
@@ -11,15 +12,16 @@ public class CardData : ScriptableObject
     [TextArea(3, 10)]
     [SerializeField, Tooltip("カードの説明")] private string _description;
     [SerializeField, Tooltip("カードのコスト")] private int _cost;
-    [SerializeField, Tooltip("効果エフェクト")] private EffectBase _effect;
     [SerializeField, Tooltip("最大回数")] private int _maxTimes;
+
+    [SerializeReference, SubclassSelector] private IEffect[] _effect;
 
     public int CardID => _cardID;
     public Sprite Sprite => _sprite;
     public string Name => _name;
     public string Description => _description;
     public int Cost => _cost;
-    public EffectBase Effect => _effect;
+    public IEffect[] Effect => _effect;
     public int MaxTimes => _maxTimes;
     public CardRarity Rarity => _rarity;
 }

@@ -18,5 +18,13 @@ MonoBehaviour:
   _name: "\u5A01\u529B\u4E0A\u6607(\u5F37)"
   _description: "\u9B54\u6CD5\u5F3E\u306E\u653B\u6483\u529B\u3092+5\u3059\u308B"
   _cost: 3
-  _effect: {fileID: 11400000, guid: c98698285b0ff3e488e84b865540550d, type: 2}
   _maxTimes: 2
+  _effect:
+  - rid: 2182131988473577539
+  references:
+    version: 2
+    RefIds:
+    - rid: 2182131988473577539
+      type: {class: EffectAddPawer, ns: , asm: Assembly-CSharp}
+      data:
+        _addPower: 5
