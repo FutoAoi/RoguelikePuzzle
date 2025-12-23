@@ -10,12 +10,22 @@ public class MapView : MonoBehaviour
     [SerializeField] private Image _circle;
 
     private Room[][] _roomViews;
+    float _xSpacing;
+    float _ySpacing;
+    float _offsetX;
+    float _offsetY;
+    float _x;
+    float _y;
 
     public void Start()
     {
         CreateMap(GameManager.Instance.GenerateMapData);
     }
 
+    /// <summary>
+    /// マップツリーの表示
+    /// </summary>
+    /// <param name="mapData"></param>
     public void CreateMap(GenerateMapData mapData)
     {
         int floorCount = mapData.Floors.Length;
@@ -45,7 +55,7 @@ public class MapView : MonoBehaviour
             {
                 GenerateRoomData roomData = mapData.Floors[f].Rooms[r];
                 List<Room> nextRooms = new();
-
+                
                 foreach (int nextIndex in roomData.NextRoomIndices)
                 {
                     nextRooms.Add(_roomViews[f+1][nextIndex]);
@@ -54,6 +64,7 @@ public class MapView : MonoBehaviour
                 _roomViews[f][r].SetNextRoom(nextRooms.ToArray());
             }
         }
+
         for (int f = 0; f < floorCount - 1; f++)
         {
             for (int r = 0; r < _roomViews[f].Length; r++)
@@ -73,6 +84,11 @@ public class MapView : MonoBehaviour
         _circle.transform.localPosition = _roomViews[GameManager.Instance.GenerateMapData.CurrentFloorIndex][GameManager.Instance.GenerateMapData.CurrentRoomIndex].transform.localPosition;
     }
 
+    /// <summary>
+    /// 部屋と部屋を線でつなぐ
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
     private void DrawUILine(RectTransform from, RectTransform to)
     {
         RectTransform line = Instantiate(_linePrefab, transform);
@@ -94,17 +110,24 @@ public class MapView : MonoBehaviour
         line.localRotation = Quaternion.Euler(0, 0, angle - 90f);
     }
 
+    /// <summary>
+    /// 部屋の位置を決める
+    /// </summary>
+    /// <param name="floorIndex"></param>
+    /// <param name="roomIndex"></param>
+    /// <param name="roomCount"></param>
+    /// <returns></returns>
     private Vector3 GetRoomPosition(int floorIndex, int roomIndex, int roomCount)
     {
-        float xSpacing = 200f;
-        float ySpacing = 200f;
+        _xSpacing = 200f;
+        _ySpacing = 200f;
 
-        float offsetX = -(roomCount - 1) * xSpacing * 0.5f;
-        float offsetY = -700f;
+        _offsetX = -(roomCount - 1) * _xSpacing * 0.5f;
+        _offsetY = -700f;
 
-        float x = offsetX + roomIndex * xSpacing;
-        float y = offsetY + floorIndex * ySpacing;
+        _x = _offsetX + roomIndex * _xSpacing;
+        _y = _offsetY + floorIndex * _ySpacing;
 
-        return new Vector3(x, y, 0f);
+        return new Vector3(_x, _y, 0f);
     }
 }

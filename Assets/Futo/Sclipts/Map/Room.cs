@@ -10,6 +10,12 @@ public class Room : MonoBehaviour, IPointerClickHandler
     private MapManager _mapManager;
     private int _floorIndex;
     private int _roomIndex;
+
+    /// <summary>
+    /// ルーム情報セット
+    /// </summary>
+    /// <param name="roomData"></param>
+    /// <param name="mapManager"></param>
     public void SetRoomData(GenerateRoomData roomData,MapManager mapManager)
     {
         _roomType = roomData.RoomType;

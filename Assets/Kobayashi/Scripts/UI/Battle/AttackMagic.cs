@@ -92,7 +92,7 @@ public class AttackMagic : MonoBehaviour
             }
             else
             {
-                _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.Excute(this);
+                _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect.OnExcute(this);
                 _tileSlot.DecreaseTimes(1);
             }
 

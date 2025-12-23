@@ -4,16 +4,22 @@ using System.Collections.Generic;
 
 public class StageManager : MonoBehaviour
 {
+    public List<List<GameObject>> SlotList => _slotList;
+    public List<Enemy> EnemyList => _enemyList;
+
+    [Header("ステージの情報")]
     [SerializeField, Tooltip("ステージのタイルリスト")] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
     [SerializeField, Tooltip("ステージのエネミーリスト")] private List<Enemy> _enemyList = new();
 
     [Header("コンポーネント設定")]
-    [SerializeField] private GameObject _tailPrefab;
-    [SerializeField] private Image _backGroundImage;
-    [SerializeField] private GameObject _enemySlot;
-    [SerializeField] private GameObject _enemyPanel;
-    [SerializeField] private float _widthSize = 0.8f;
-    [SerializeField] private float _heightSize = 0.8f;
+    [SerializeField, Tooltip("生成するタイル")] private GameObject _tailPrefab;
+    [SerializeField, Tooltip("背景の画像")] private Image _backGroundImage;
+    [SerializeField, Tooltip("生成するエネミースロット")] private GameObject _enemySlot;
+    [SerializeField, Tooltip("エネミーのパネル")] private GameObject _enemyPanel;
+
+    [Header("タイルの幅")]
+    [SerializeField, Tooltip("横幅")] private float _widthSize = 0.8f;
+    [SerializeField, Tooltip("縦幅")] private float _heightSize = 0.8f;
 
     private GridLayoutGroup _layoutGroup;
     private StageData _stage;
@@ -22,8 +28,6 @@ public class StageManager : MonoBehaviour
     private GameObject _slot;
     private GameObject _enemy;
 
-    public List<List<GameObject>> SlotList => _slotList;
-    public List<Enemy> EnemyList => _enemyList;
 
     private void Awake()
     {

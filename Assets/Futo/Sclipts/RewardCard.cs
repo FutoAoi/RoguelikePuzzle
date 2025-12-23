@@ -24,10 +24,11 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
     public bool IsFinish { get; private set; } = false;
 
     private CardData _data;
-    private Vector3 normalScale;
     private Transform _tr;
-    private float selectedScale = 1.1f;
-    private float animationTime = 0.2f;
+    private Vector3 _normalScale;
+    private float _selectedScale = 1.1f;
+    private float _animationTime = 0.2f;
+
     private void Awake()
     {
         _tr = transform;
@@ -35,6 +36,10 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
         _cardBackObj.SetActive(true);
     }
 
+    /// <summary>
+    /// クリック判定
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
         _rewardManager.SetRewardNumber(_rewardNumber);
@@ -45,6 +50,10 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
         Select();
     }
 
+    /// <summary>
+    /// カード情報をセットする
+    /// </summary>
+    /// <param name="ID"></param>
     public void SetCard(int ID)
     {
         _data = GameManager.Instance.CardDataBase.GetCardData(ID);
@@ -55,14 +64,17 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
         _description.text = _data.Description;
         _cost.text = $"{_data.Cost}";
         _maxTimes.text = $"{_data.MaxTimes}";
-        normalScale = _tr.localScale;
+        _normalScale = _tr.localScale;
     }
 
+    /// <summary>
+    /// カード選択のアニメーション
+    /// </summary>
     public void Select()
     {
         _tr.DOKill();
 
-        _tr.DOScale(normalScale * selectedScale, animationTime)
+        _tr.DOScale(_normalScale * _selectedScale, _animationTime)
                  .SetEase(Ease.OutBack);
     }
 
@@ -73,9 +85,10 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
     {
         _tr.DOKill();
 
-        _tr.DOScale(normalScale, animationTime)
+        _tr.DOScale(_normalScale, _animationTime)
                  .SetEase(Ease.OutQuad);
     }
+
     /// <summary>
     /// カードをめくるアニメーション
     /// </summary>
