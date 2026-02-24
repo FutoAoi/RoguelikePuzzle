@@ -65,7 +65,7 @@ public class AttackMagic : MonoBehaviour
                 _attackRectTr = GetComponent<RectTransform>();
                 _attackRectTr.position = startRectTr.position;
                 _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
-                _attackRectTr.DOMoveX(_nextRectTr.position.x, interval)
+                _attackRectTr.DOMove(_nextRectTr.position, interval)
                     .SetEase(Ease.Linear);
             }
             else

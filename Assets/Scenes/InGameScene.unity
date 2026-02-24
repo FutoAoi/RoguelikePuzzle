@@ -226,6 +226,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
   _deckMain: e9030000ea030000eb030000ec030000d1070000
+--- !u!1 &349422005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349422006}
+  - component: {fileID: 349422007}
+  m_Layer: 5
+  m_Name: AttackPointSerectPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &349422006
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349422005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293538817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -565, y: -39}
+  m_SizeDelta: {x: -1730, y: -72}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &349422007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349422005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 100
+    m_Bottom: 200
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &551759323
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +610,8 @@ MonoBehaviour:
   _backGroundImage: {fileID: 1254527068}
   _enemySlot: {fileID: 3407070511455606843, guid: 3449dc56daefdb74aabb4b172fb41a4b, type: 3}
   _enemyPanel: {fileID: 551759323}
+  _serectPanel: {fileID: 349422005}
+  _attackPointButton: {fileID: 1760919499865584810, guid: fd6738a40f17c854fb069900153190ab, type: 3}
   _widthSize: 0.5
   _heightSize: 0.6
 --- !u!1 &681618455
@@ -1050,6 +1114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   HandCard: []
+  DiscardCard: 
+  RemoveCard: 
   _handRange: 5
   _distance: 0.1
   _valueDuration: 0.3
@@ -1081,6 +1147,7 @@ MonoBehaviour:
   _playerPos: {fileID: 1500904885}
   _interval: 0.2
   _duration: 3
+  AttackStartPos: 0
 --- !u!114 &1154090791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1334,7 @@ RectTransform:
   - {fileID: 903282712}
   - {fileID: 655437300}
   - {fileID: 551759324}
+  - {fileID: 349422006}
   - {fileID: 2118124055}
   - {fileID: 269812594}
   - {fileID: 932584180}
