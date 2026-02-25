@@ -9,7 +9,10 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager_Battle : UIManagerBase, IBattleUI
 {
-    [Header("èD")] public List<GameObject> HandCard = new List<GameObject>();
+    [Header("ƒJ[ƒh")] 
+    [Tooltip("èD")] public List<GameObject> HandCard = new List<GameObject>();
+    [Tooltip("Ì‚ÄD")] public List<int> DiscardCard = new List<int>();
+    [Tooltip("œŠOD")] public List<int> RemoveCard = new List<int>();
 
     [Header("”’lİ’è")]
     [SerializeField, Tooltip("èD‚Ì”")] private int _handRange = 5;
@@ -44,6 +47,8 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         _deckManager = DeckManager.Instance;
         GameManager.Instance.CurrentPhase = BattlePhase.BuildStage;
         HandCard.Clear();
+        DiscardCard.Clear();
+        RemoveCard.Clear();
         _text = _enemyAttackPanel.GetComponentInChildren<TextMeshProUGUI>();
         _panelimg = _enemyAttackPanel.GetComponent<Image>();
         _panelRectTr = _enemyAttackPanel.GetComponent<RectTransform>();
@@ -71,6 +76,17 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         LayoutRebuilder.ForceRebuildLayoutImmediate(_playerHandTr);
     }
 
+    public void ClearCard()
+    {
+        foreach(GameObject hand in HandCard)
+        {
+            Card card = hand.GetComponent<Card>();
+        }
+    }
+    public void ResisterDiscardCard(int id)
+    {
+        DiscardCard.Add(id);
+    }
     private void CreateCard()
     {
         _card = Instantiate(CardPrefab, _playerHandTr);

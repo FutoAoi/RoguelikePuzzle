@@ -16,6 +16,8 @@ public class StageManager : MonoBehaviour
     [SerializeField, Tooltip("背景の画像")] private Image _backGroundImage;
     [SerializeField, Tooltip("生成するエネミースロット")] private GameObject _enemySlot;
     [SerializeField, Tooltip("エネミーのパネル")] private GameObject _enemyPanel;
+    [SerializeField, Tooltip("攻撃場所選択パネル")] private GameObject _serectPanel;
+    [SerializeField, Tooltip("攻撃場所選択ボタン")] private GameObject _attackPointButton;
 
     [Header("タイルの幅")]
     [SerializeField, Tooltip("横幅")] private float _widthSize = 0.8f;
@@ -26,7 +28,7 @@ public class StageManager : MonoBehaviour
     private Transform _parent;
     private Transform _enemyParent;
     private GameObject _slot;
-    private GameObject _enemy;
+    private GameObject _enemy,_button;
 
 
     private void Awake()
@@ -46,6 +48,7 @@ public class StageManager : MonoBehaviour
         _backGroundImage.sprite = _stage.Background;
         _parent = this.transform;
         _enemyParent = _enemyPanel.transform;
+        _serectPanel.gameObject.SetActive(true);
         SlotList.Clear();
         AdjustCellSize();
         
@@ -65,6 +68,9 @@ public class StageManager : MonoBehaviour
         {
             _enemy = Instantiate(_enemySlot, Vector3.zero, Quaternion.identity, _enemyParent);
             _enemyList.Add(_enemy.GetComponent<Enemy>());
+
+            _button = Instantiate(_attackPointButton, Vector3.zero, Quaternion.identity, _serectPanel.transform);
+            _button.GetComponent<AttackPointSerectButton>().AttackNumber = i;
         }
 
         for (int i = 0; i < _stage.Enemies.Length; i++)

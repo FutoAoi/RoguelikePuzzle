@@ -15,4 +15,8 @@ public interface IBattleUI
     /// リワード画面を表示
     /// </summary>
     void DisplayReward();
+    /// <summary>
+    /// 手札の残りのカードを捨てる
+    /// </summary>
+    void ClearCard();
 }
