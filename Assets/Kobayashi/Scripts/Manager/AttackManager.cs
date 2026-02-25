@@ -15,6 +15,8 @@ public class AttackManager : MonoBehaviour
     [SerializeField, Tooltip("タイル間の移動時間")] private float _interval = 2.0f;
     [SerializeField, Tooltip("敵の攻撃時カットインアニメーション時間")] private float _duration = 3f;
 
+    public int AttackStartPos;
+
     private GameManager _gameManager;
     private MagicObjectPool _magicPool;
     private AttackMagic _magic;
@@ -31,6 +33,7 @@ public class AttackManager : MonoBehaviour
         _magicPool = MagicObjectPool.Instance;
         _height = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Height;
         _width = _gameManager.StageDataBase.GetStageData(_gameManager.StageID).Width;
+        AttackStartPos = _height / 2;
     }
     /// <summary>
     /// 攻撃指示
@@ -43,7 +46,7 @@ public class AttackManager : MonoBehaviour
         _magic.gameObject.SetActive(true);
         if (isPlayer)
         {
-            StartCoroutine(_magic.Attack(new Vector2Int(_height / 2, 0),
+            StartCoroutine(_magic.Attack(new Vector2Int(AttackStartPos, 0),
                 MagicVector.Right, _playerPos, _interval, true));
         }
         else
