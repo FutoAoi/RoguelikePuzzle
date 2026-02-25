@@ -18,5 +18,13 @@ MonoBehaviour:
   _name: "\u65B9\u5411\u8EE2\u63DB(\u53F3)"
   _description: "\u9B54\u6CD5\u5F3E\u306E\u9032\u884C\u65B9\u5411\u3092\u53F3\u5411\u304D\u306B\u5909\u66F4\u3059\u308B"
   _cost: 1
-  _effect: {fileID: 11400000, guid: f10544b74318ffe47a93c457fce87f44, type: 2}
   _maxTimes: 3
+  _effect:
+  - rid: 2182131988473577535
+  references:
+    version: 2
+    RefIds:
+    - rid: 2182131988473577535
+      type: {class: EffectChangeToAnyAllow, ns: , asm: Assembly-CSharp}
+      data:
+        _vector: 2

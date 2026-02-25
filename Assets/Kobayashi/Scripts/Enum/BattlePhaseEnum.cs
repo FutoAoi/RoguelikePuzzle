@@ -48,3 +48,13 @@ public enum SceneType : int
     InGameScene,
     StageSerectScene
 }
+/// <summary>
+/// カードのタイプ
+/// </summary>
+public enum CardType : int
+{
+    Nomal,
+    Combo,
+    Berserker,
+    Variation
+}
