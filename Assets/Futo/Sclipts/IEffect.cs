@@ -1,10 +1,12 @@
 using UnityEngine;
+using System;
 
 public interface IEffect 
 {
     public void OnExcute(AttackMagic magic);
 }
 
+[Serializable]
 public class EffectDebug : IEffect
 {
     public void OnExcute(AttackMagic magic)
@@ -13,6 +15,7 @@ public class EffectDebug : IEffect
     }
 }
 
+[Serializable]
 public class EffectChangeToAnyAllow : IEffect
 {
     [SerializeField] private MagicVector _vector;
@@ -23,6 +26,7 @@ public class EffectChangeToAnyAllow : IEffect
     }
 }
 
+[Serializable]
 public class EffectAddPawer : IEffect
 {
     [Header("çUåÇóÕè„è∏íl")]
