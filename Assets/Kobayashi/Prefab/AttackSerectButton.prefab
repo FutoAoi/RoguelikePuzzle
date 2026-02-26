@@ -59,6 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b790f164d739cc418657277298cf58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackPointSerectButton
+  _alpha: 0.7
+  _duration: 0.2
   AttackNumber: 0
 --- !u!114 &4783658628122604052
 MonoBehaviour:
