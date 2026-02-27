@@ -27,6 +27,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
+    [SerializeField, Tooltip("攻撃場所選択パネル")] private GameObject _attackPosPanel;
     [SerializeField, Tooltip("フェード用のパネル")] private Image _fadePanel;
     [SerializeField, Tooltip("消費コストテキスト")] private TextMeshProUGUI _costText;
     [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
@@ -56,6 +57,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         _defaultColor = _panelimg.color;
         _enemyAttackPanel.SetActive(false);
         _fadePanel.gameObject.SetActive(false);
+        _attackPosPanel.gameObject.SetActive(true);
     }
     public IEnumerator DrawCard()
     {

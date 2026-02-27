@@ -1,23 +1,26 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class AttackPointSelectButton : MonoBehaviour
 {
+    [Header("数値設定")]
     [SerializeField, Tooltip("非選択時透明度")] private float _alpha = 0.7f;
     [SerializeField, Tooltip("演出時間")] private float _duration = 0.4f;
+    [SerializeField, Tooltip("選択時倍率")] private float _selectMag = 1.3f;
 
     public int AttackNumber;
-    public bool IsSelect { get; private set; } = false;
+    public bool IsSelect = false;
 
     AttackPointManager _attackPointManager;
     Image _img;
     GameManager _gameManager;
+    RectTransform _rt;
     Button _button;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(!IsSelect)
         ResetButton();
     }
 
@@ -26,6 +29,7 @@ public class AttackPointSelectButton : MonoBehaviour
         _gameManager = GameManager.Instance;
         _img = GetComponent<Image>();
         _attackPointManager = GetComponentInParent<AttackPointManager>();
+        _rt = GetComponent<RectTransform>();
         _button = GetComponent<Button>();
         _button.onClick.AddListener(RegisterAttackPosition);
         IsSelect = false;
@@ -47,8 +51,8 @@ public class AttackPointSelectButton : MonoBehaviour
         _attackPointManager.ChangeButtonState(AttackNumber);
 
         //演出
-        _img.color = new Color(1f, 1f, 1f, 1f);
-        Debug.Log("b");
+        _rt.DOScale(Vector2.one * _selectMag,_duration * 0.5f);
+        _img.DOColor(Color.white, _duration * 0.5f);
     }
 
     /// <summary>
@@ -58,6 +62,7 @@ public class AttackPointSelectButton : MonoBehaviour
     {
         IsSelect = false;
 
+        _rt.DOScale(Vector2.one, _duration);
         _img.DOColor(new Color(1f,1f,1f,_alpha),_duration);
     }
 }

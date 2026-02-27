@@ -19,6 +19,5 @@ public class AttackPointManager : MonoBehaviour
     public void CheckStartAttackPosition()
     {
         AttackPointButtonList[AttackPointButtonList.Count/2].RegisterAttackPosition();
-        Debug.Log("a");
     }
 }
