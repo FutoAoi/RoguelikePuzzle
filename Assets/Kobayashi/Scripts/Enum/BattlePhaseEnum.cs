@@ -46,7 +46,8 @@ public enum SceneType : int
 {
     TitleScene,
     InGameScene,
-    StageSerectScene
+    StageSerectScene,
+    CampScene
 }
 /// <summary>
 /// カードのタイプ
