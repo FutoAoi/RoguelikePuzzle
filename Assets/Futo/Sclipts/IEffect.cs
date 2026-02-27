@@ -22,7 +22,7 @@ public class EffectChangeToAnyAllow : IEffect
 
     public void OnExcute(AttackMagic magic)
     {
-        MagicObjectPool.Instance.ActiveMagics[0].ChangeVector(_vector);
+        magic.ChangeVector(_vector);
     }
 }
 
