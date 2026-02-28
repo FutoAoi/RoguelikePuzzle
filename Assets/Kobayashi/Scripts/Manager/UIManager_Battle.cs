@@ -31,6 +31,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("フェード用のパネル")] private Image _fadePanel;
     [SerializeField, Tooltip("消費コストテキスト")] private TextMeshProUGUI _costText;
     [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
+    [SerializeField, Tooltip("デッキ確認用パネル")] private GameObject _deckPanel;
 
     public bool _isFinishCutIn = false;
 
@@ -58,6 +59,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         _enemyAttackPanel.SetActive(false);
         _fadePanel.gameObject.SetActive(false);
         _attackPosPanel.gameObject.SetActive(true);
+        _deckPanel.gameObject.SetActive(false);
     }
     public IEnumerator DrawCard()
     {
