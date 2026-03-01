@@ -35,6 +35,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
 
     public bool _isFinishCutIn = false;
 
+    private GameManager _gameManager;
     private PlayerStatus _status;
     private DeckManager _deckManager;
     private RewardManager _rewardManager;
@@ -47,14 +48,15 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     public override void InitUI()
     {
         _deckManager = DeckManager.Instance;
-        GameManager.Instance.CurrentPhase = BattlePhase.BuildStage;
+        _gameManager = GameManager.Instance;
+        _gameManager.CurrentPhase = BattlePhase.BuildStage;
         HandCard.Clear();
         DiscardCard.Clear();
         RemoveCard.Clear();
         _text = _enemyAttackPanel.GetComponentInChildren<TextMeshProUGUI>();
         _panelimg = _enemyAttackPanel.GetComponent<Image>();
         _panelRectTr = _enemyAttackPanel.GetComponent<RectTransform>();
-        _status = GameManager.Instance.PlayerStatus;
+        _status = _gameManager.PlayerStatus;
         _defaultColor = _panelimg.color;
         _enemyAttackPanel.SetActive(false);
         _fadePanel.gameObject.SetActive(false);
@@ -85,11 +87,32 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         foreach(GameObject hand in HandCard)
         {
             Card card = hand.GetComponent<Card>();
+            if (_gameManager.CardDataBase.GetCardData(card.CardID).IsDestruction)
+            {
+                RegisterRemoveCard(card.CardID);
+            }
+            else
+            {
+                ResisterDiscardCard(card.CardID);
+            }
+            //アニメーションをつくるならここ
+            Destroy(hand);
         }
+        HandCard.Clear();
     }
     public void ResisterDiscardCard(int id)
     {
         DiscardCard.Add(id);
+        //アニメーションをつくるならここ
+    }
+    public void RegisterRemoveCard(int id)
+    {
+        RemoveCard.Add(id);
+        //アニメーションをつくるならここ
+    }
+    public void ResetDeck()
+    {
+        DiscardCard.Clear();
     }
     private void CreateCard()
     {

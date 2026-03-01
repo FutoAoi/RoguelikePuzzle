@@ -51,7 +51,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
         _card = GetComponent<Card>();
-        if(_card != null) ID = _card._cardID;
+        if(_card != null) ID = _card.CardID;
         _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
         if(_isBoardCard && _trOriginalParent.GetComponent<TileSlot>() != null && 
             _playerStatus.CurrentCost < _playerStatus.MaxCost)

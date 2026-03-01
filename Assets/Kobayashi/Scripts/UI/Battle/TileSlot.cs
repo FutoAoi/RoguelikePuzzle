@@ -65,7 +65,15 @@ public class TileSlot : MonoBehaviour
         _newCard.GetComponentInChildren<TextMeshProUGUI>().text = _currentnumber.ToString();
         if (_currentnumber <= 0)
         {
-            ClearSlot();
+            if (_gameManager.CardDataBase.GetCardData(ID).IsDestruction)
+            {
+                (_gameManager.CurrentUIManager as IBattleUI)?.RegisterRemoveCard(ID);
+            }
+            else
+            {
+                (_gameManager.CurrentUIManager as IBattleUI)?.ResisterDiscardCard(ID);
+            }
+                ClearSlot();
         }
     }
 }

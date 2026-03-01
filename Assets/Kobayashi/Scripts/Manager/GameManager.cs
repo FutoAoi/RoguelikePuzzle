@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public StageManager StageManager;
 
     private AttackManager _attackManager;
-    private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false;
+    private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false,
+        _isBattleUIManager;
 
     [SerializeField]private SceneType _currentScene;
 
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
                         {
                             _attackManager = FindAnyObjectByType<AttackManager>();
                             _attackManager.AttackTurn(true);
+                            (CurrentUIManager as IBattleUI)?.ClearCard();
                             _isAction = true;
                         }
                         if (IsEnemyAction)

@@ -19,4 +19,18 @@ public interface IBattleUI
     /// 手札の残りのカードを捨てる
     /// </summary>
     void ClearCard();
+    /// <summary>
+    /// カードを捨て札に登録する
+    /// </summary>
+    /// <param name="id"></param>
+    void ResisterDiscardCard(int id);
+    /// <summary>
+    /// カードを除外札に登録
+    /// </summary>
+    /// <param name="id"></param>
+    void RegisterRemoveCard(int id);
+    /// <summary>
+    /// デッキをリセット
+    /// </summary>
+    void ResetDeck();
 }

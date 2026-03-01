@@ -21,7 +21,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     [SerializeField,Tooltip("表示アニメーション時間")] private float _duration = 0.2f;
     [SerializeField, Tooltip("非表示アニメーション時間")] private float _hideSpeed = 0.1f;
 
-    public int _cardID;
+    public int CardID;
 
     private Tween _activeTween;
     private CardDataBase _cardData;
@@ -33,17 +33,17 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void SetCard(int id,RectTransform descriptionArea)
     {
         _cardData = GameManager.Instance.CardDataBase;
-        _cardID = id;
-        _cardImage.sprite = _cardData.GetCardData(_cardID).Sprite;
-        _nameText.text = _cardData.GetCardData(_cardID).Name;
-        _cardCost = _cardData.GetCardData(_cardID).Cost;
+        CardID = id;
+        _cardImage.sprite = _cardData.GetCardData(CardID).Sprite;
+        _nameText.text = _cardData.GetCardData(CardID).Name;
+        _cardCost = _cardData.GetCardData(CardID).Cost;
         _costText.text = _cardCost.ToString();
-        _description = _cardData.GetCardData(_cardID).Description;
+        _description = _cardData.GetCardData(CardID).Description;
 
         _panel.SetParent(descriptionArea,false);
         _defaultScale = _panel.localScale;
         _panel.localScale = Vector2.zero;
-        _image.sprite = _cardData.GetCardData(_cardID).Sprite;
+        _image.sprite = _cardData.GetCardData(CardID).Sprite;
         _effectText.text = _description;
 
         #region ドローアニメーション
