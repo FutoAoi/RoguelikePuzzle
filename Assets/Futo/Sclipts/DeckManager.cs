@@ -8,6 +8,8 @@ public class DeckManager : MonoBehaviour
     [Header("メインデッキ")]
     [SerializeField] private List<int> _deckMain = new List<int>();
 
+    private GameManager _gameManager;
+    private UIManager_Battle _UIManager_Battle;
     private int _randomIndex;
     private int _temp;
     private List<int> _deck;
@@ -21,6 +23,7 @@ public class DeckManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        _gameManager = GameManager.Instance;
     }
     /// <summary>
     /// 報酬などでメインのデッキに入れるために使用予定
@@ -36,7 +39,8 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void ShuffleDeck()
     {
-        _deck = new List<int>(_deckMain);
+        if (_UIManager_Battle == null) _UIManager_Battle = FindAnyObjectByType<UIManager_Battle>();
+        ReconstructionDeck(_UIManager_Battle.RemoveCard);
         for(int i = 0; i < _deck.Count; i++)
         {
             _randomIndex = Random.Range(i, _deck.Count);
@@ -56,11 +60,26 @@ public class DeckManager : MonoBehaviour
     {
         if (_deck.Count == 0)
         {
+            if(_gameManager == null)_gameManager = GameManager.Instance;
+            (_gameManager.CurrentUIManager as IBattleUI)?.ResetDeck();
             ShuffleDeck();
         }
 
         int _topCard = _deck[0];
         _deck.RemoveAt(0);
         return _topCard;
+    }
+
+    private void ReconstructionDeck(List<int> deleteID)
+    {
+        if(deleteID.Count == 0)
+        {
+            _deck = new List<int>(_deckMain);
+            return;
+        }
+        foreach(int id in deleteID)
+        {
+            _deck.Remove(id);
+        }
     }
 }

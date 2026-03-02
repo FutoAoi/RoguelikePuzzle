@@ -113,6 +113,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     public void ResetDeck()
     {
         DiscardCard.Clear();
+
     }
     private void CreateCard()
     {
