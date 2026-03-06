@@ -21,7 +21,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     [SerializeField,Tooltip("表示アニメーション時間")] private float _duration = 0.2f;
     [SerializeField, Tooltip("非表示アニメーション時間")] private float _hideSpeed = 0.1f;
 
-    public int _cardID;
+    public int CardID;
 
     private Tween _activeTween;
     private CardDataBase _cardData;
@@ -30,28 +30,32 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private bool _ignorePointer = false;
     private float _displayTime;
     private string _description;
-    public void SetCard(int id,RectTransform descriptionArea)
+    public void SetCard(int id,RectTransform descriptionArea,bool isDraw)
     {
         _cardData = GameManager.Instance.CardDataBase;
-        _cardID = id;
-        _cardImage.sprite = _cardData.GetCardData(_cardID).Sprite;
-        _nameText.text = _cardData.GetCardData(_cardID).Name;
-        _cardCost = _cardData.GetCardData(_cardID).Cost;
+        CardID = id;
+        CardData data = _cardData.GetCardData(CardID);
+        _cardImage.sprite = data.Sprite;
+        _nameText.text = data.Name;
+        _cardCost = data.Cost;
         _costText.text = _cardCost.ToString();
-        _description = _cardData.GetCardData(_cardID).Description;
+        _description = data.Description;
 
         _panel.SetParent(descriptionArea,false);
         _defaultScale = _panel.localScale;
         _panel.localScale = Vector2.zero;
-        _image.sprite = _cardData.GetCardData(_cardID).Sprite;
+        _image.sprite = data.Sprite;
         _effectText.text = _description;
 
-        #region ドローアニメーション
-        _view.localScale = Vector3.zero;
-        _view.anchoredPosition = new Vector2(0, -200);
-        _view.DOScale(1f, 0.25f).SetEase(Ease.OutBack);
-        _view.DOAnchorPos(Vector2.zero, 0.25f).SetEase(Ease.OutCubic);
-        #endregion
+        if (isDraw)
+        {
+            #region ドローアニメーション
+            _view.localScale = Vector3.zero;
+            _view.anchoredPosition = new Vector2(0, -200);
+            _view.DOScale(1f, 0.25f).SetEase(Ease.OutBack);
+            _view.DOAnchorPos(Vector2.zero, 0.25f).SetEase(Ease.OutCubic);
+            #endregion
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

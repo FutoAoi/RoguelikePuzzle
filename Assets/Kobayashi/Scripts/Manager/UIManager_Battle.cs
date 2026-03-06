@@ -9,7 +9,8 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager_Battle : UIManagerBase, IBattleUI
 {
-    [Header("カード")] 
+    [Header("カード")]
+    [Tooltip("山札")] public List<int> DeckCard = new List<int>();
     [Tooltip("手札")] public List<GameObject> HandCard = new List<GameObject>();
     [Tooltip("捨て札")] public List<int> DiscardCard = new List<int>();
     [Tooltip("除外札")] public List<int> RemoveCard = new List<int>();
@@ -27,12 +28,15 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
+    [SerializeField, Tooltip("攻撃場所選択パネル")] private GameObject _attackPosPanel;
     [SerializeField, Tooltip("フェード用のパネル")] private Image _fadePanel;
     [SerializeField, Tooltip("消費コストテキスト")] private TextMeshProUGUI _costText;
     [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
+    [SerializeField, Tooltip("デッキ確認用パネル")] private GameObject _deckPanel;
 
     public bool _isFinishCutIn = false;
 
+    private GameManager _gameManager;
     private PlayerStatus _status;
     private DeckManager _deckManager;
     private RewardManager _rewardManager;
@@ -45,17 +49,25 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     public override void InitUI()
     {
         _deckManager = DeckManager.Instance;
-        GameManager.Instance.CurrentPhase = BattlePhase.BuildStage;
+        _gameManager = GameManager.Instance;
+        _gameManager.CurrentPhase = BattlePhase.BuildStage;
+        DeckCard.Clear();
+        foreach(int id in _deckManager.DeckMain)
+        {
+            DeckCard.Add(id);
+        }
         HandCard.Clear();
         DiscardCard.Clear();
         RemoveCard.Clear();
         _text = _enemyAttackPanel.GetComponentInChildren<TextMeshProUGUI>();
         _panelimg = _enemyAttackPanel.GetComponent<Image>();
         _panelRectTr = _enemyAttackPanel.GetComponent<RectTransform>();
-        _status = GameManager.Instance.PlayerStatus;
+        _status = _gameManager.PlayerStatus;
         _defaultColor = _panelimg.color;
         _enemyAttackPanel.SetActive(false);
         _fadePanel.gameObject.SetActive(false);
+        _attackPosPanel.gameObject.SetActive(true);
+        _deckPanel.gameObject.SetActive(false);
     }
     public IEnumerator DrawCard()
     {
@@ -81,17 +93,47 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         foreach(GameObject hand in HandCard)
         {
             Card card = hand.GetComponent<Card>();
+            if (_gameManager.CardDataBase.GetCardData(card.CardID).IsDestruction)
+            {
+                RegisterRemoveCard(card.CardID);
+            }
+            else
+            {
+                ResisterDiscardCard(card.CardID);
+            }
+            //アニメーションをつくるならここ
+            Destroy(hand);
         }
+        HandCard.Clear();
     }
     public void ResisterDiscardCard(int id)
     {
+        DeckCard.Remove(id);
         DiscardCard.Add(id);
+        //アニメーションをつくるならここ
+    }
+    public void RegisterRemoveCard(int id)
+    {
+        DeckCard.Remove(id);
+        RemoveCard.Add(id);
+        //アニメーションをつくるならここ
+    }
+    public void ResetDeck()
+    {
+        DeckCard.Clear();
+        DeckCard = _deckManager.DeckMain;
+        foreach(int id in RemoveCard)
+        {
+            DeckCard.Remove(id);
+        }
+        DiscardCard.Clear();
     }
     private void CreateCard()
     {
         _card = Instantiate(CardPrefab, _playerHandTr);
         Card card = _card.GetComponent<Card>();
-        card.SetCard(_deckManager.DrawCard(), DescriptionArea);
+        card.SetCard(_deckManager.DrawCard(), DescriptionArea,true);
+        DeckCard.Remove(card.CardID);
         HandCard.Add(_card);
     }
     /// <summary>

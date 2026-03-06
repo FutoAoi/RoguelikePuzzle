@@ -64,14 +64,20 @@ public class StageManager : MonoBehaviour
             _slotList.Add(slotListH);
         }
 
+        AttackPointManager attackPointManager = FindAnyObjectByType<AttackPointManager>();
+
         for (int i = 0; i < _stage.Height; i++)
         {
             _enemy = Instantiate(_enemySlot, Vector3.zero, Quaternion.identity, _enemyParent);
             _enemyList.Add(_enemy.GetComponent<Enemy>());
 
             _button = Instantiate(_attackPointButton, Vector3.zero, Quaternion.identity, _serectPanel.transform);
-            _button.GetComponent<AttackPointSerectButton>().AttackNumber = i;
+            AttackPointSelectButton attackButton = _button.GetComponent<AttackPointSelectButton>();
+            attackPointManager.AttackPointButtonList.Add(attackButton);
+            attackButton.AttackNumber = i;
         }
+
+        attackPointManager.CheckStartAttackPosition();
 
         for (int i = 0; i < _stage.Enemies.Length; i++)
         {
