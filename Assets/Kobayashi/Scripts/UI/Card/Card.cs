@@ -30,28 +30,32 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private bool _ignorePointer = false;
     private float _displayTime;
     private string _description;
-    public void SetCard(int id,RectTransform descriptionArea)
+    public void SetCard(int id,RectTransform descriptionArea,bool isDraw)
     {
         _cardData = GameManager.Instance.CardDataBase;
         CardID = id;
-        _cardImage.sprite = _cardData.GetCardData(CardID).Sprite;
-        _nameText.text = _cardData.GetCardData(CardID).Name;
-        _cardCost = _cardData.GetCardData(CardID).Cost;
+        CardData data = _cardData.GetCardData(CardID);
+        _cardImage.sprite = data.Sprite;
+        _nameText.text = data.Name;
+        _cardCost = data.Cost;
         _costText.text = _cardCost.ToString();
-        _description = _cardData.GetCardData(CardID).Description;
+        _description = data.Description;
 
         _panel.SetParent(descriptionArea,false);
         _defaultScale = _panel.localScale;
         _panel.localScale = Vector2.zero;
-        _image.sprite = _cardData.GetCardData(CardID).Sprite;
+        _image.sprite = data.Sprite;
         _effectText.text = _description;
 
-        #region ドローアニメーション
-        _view.localScale = Vector3.zero;
-        _view.anchoredPosition = new Vector2(0, -200);
-        _view.DOScale(1f, 0.25f).SetEase(Ease.OutBack);
-        _view.DOAnchorPos(Vector2.zero, 0.25f).SetEase(Ease.OutCubic);
-        #endregion
+        if (isDraw)
+        {
+            #region ドローアニメーション
+            _view.localScale = Vector3.zero;
+            _view.anchoredPosition = new Vector2(0, -200);
+            _view.DOScale(1f, 0.25f).SetEase(Ease.OutBack);
+            _view.DOAnchorPos(Vector2.zero, 0.25f).SetEase(Ease.OutCubic);
+            #endregion
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

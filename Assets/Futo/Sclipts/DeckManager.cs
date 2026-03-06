@@ -8,6 +8,8 @@ public class DeckManager : MonoBehaviour
     [Header("メインデッキ")]
     [SerializeField] private List<int> _deckMain = new List<int>();
 
+    public List<int> DeckMain => _deckMain;
+
     private GameManager _gameManager;
     private UIManager_Battle _UIManager_Battle;
     private int _randomIndex;
@@ -72,12 +74,10 @@ public class DeckManager : MonoBehaviour
 
     private void ReconstructionDeck(List<int> deleteID)
     {
-        if(deleteID.Count == 0)
-        {
-            _deck = new List<int>(_deckMain);
-            return;
-        }
-        foreach(int id in deleteID)
+        _deck = new List<int>(_deckMain);
+        if (deleteID.Count == 0) return;
+
+        foreach (int id in deleteID)
         {
             _deck.Remove(id);
         }

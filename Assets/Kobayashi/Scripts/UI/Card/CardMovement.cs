@@ -139,7 +139,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _uiManager.UpdateCostText(_playerStatus.CurrentCost);
             #region èD‚ÉƒJ[ƒh‚ğ¶¬
             _newCard = Instantiate(_cardPrefab,_trHandArea);
-            _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea);
+            _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea,true);
             CanvasGroup cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;

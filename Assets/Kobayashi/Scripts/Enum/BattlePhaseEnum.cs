@@ -59,3 +59,13 @@ public enum CardType : int
     Berserker,
     Variation
 }
+/// <summary>
+/// ƒJ[ƒh‚ª‚Ç‚±‚É‚ ‚é‚©
+/// </summary>
+ public enum InGameDeckType : byte
+{
+    Deck,
+    Hand,
+    Discard,
+    Remove
+}
