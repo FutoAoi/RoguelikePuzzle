@@ -13,6 +13,8 @@ public class AttackMagic : MonoBehaviour
 
     [NonSerialized] public MagicVector _currentVector;
 
+    public Vector2Int CurrentSlot => _currentSlot;
+
     private GameManager _gameManager;
     private AttackManager _attackManager;
     private Player _player;
@@ -52,9 +54,10 @@ public class AttackMagic : MonoBehaviour
         _onDisable?.Invoke();
         gameObject.SetActive(false);
     }
-    public IEnumerator Attack(Vector2Int startPos, MagicVector startVector, RectTransform startRectTr,float interval,bool isPlayer)
+    public IEnumerator Attack(Vector2Int startPos, MagicVector startVector, RectTransform startRectTr,float interval)
     {
         _currentSlot = startPos;//‰Šúƒ|ƒW
+        bool isPlayer = _attackManager.IsPlayerTurn;
         while (!_finish)
         {
             //–‚–@‚ÌˆÚ“®
@@ -232,5 +235,10 @@ public class AttackMagic : MonoBehaviour
     public void ChangeVector(MagicVector vector)
     {
         _currentVector = vector;
+    }
+
+    public void Split(MagicVector vector,Vector2Int start,RectTransform rect)
+    {
+        StartCoroutine(Attack(start,vector,rect,_attackManager.Interval));
     }
 }

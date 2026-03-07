@@ -14,7 +14,9 @@ public class EffectDebug : IEffect
         Debug.Log("”­“®");
     }
 }
-
+/// <summary>
+/// •ûŒü“]Š·
+/// </summary>
 [Serializable]
 public class EffectChangeToAnyAllow : IEffect
 {
@@ -25,7 +27,9 @@ public class EffectChangeToAnyAllow : IEffect
         magic.ChangeVector(_vector);
     }
 }
-
+/// <summary>
+/// UŒ‚—Íã¸
+/// </summary>
 [Serializable]
 public class EffectAddPawer : IEffect
 {
@@ -34,5 +38,29 @@ public class EffectAddPawer : IEffect
     public void OnExcute(AttackMagic magic)
     {
         magic.AttackPower += _addPower;
+    }
+}
+/// <summary>
+/// •ªŠ„
+/// </summary>
+[Serializable]
+public class EffectSplitAttack : IEffect
+{
+    [Header("•ªŠ„•ûŒü"),SerializeField] private MagicVector[] _vector;
+    public void OnExcute(AttackMagic magic)
+    {
+        MagicObjectPool pool = MagicObjectPool.Instance;
+        for (int i = 0; i < _vector.Length; i++)
+        {
+            AttackMagic attack = magic;
+            if (i != 0)
+            {
+                attack = pool.GetAttackMagic();
+            }
+
+            attack.AttackPower = attack.AttackPower / _vector.Length;
+            attack.Split(_vector[i],magic.CurrentSlot, 
+                magic.gameObject.GetComponent<RectTransform>());
+        }
     }
 }

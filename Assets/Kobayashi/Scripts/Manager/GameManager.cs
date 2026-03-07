@@ -94,12 +94,14 @@ public class GameManager : MonoBehaviour
                         if (!_isAction)
                         {
                             _attackManager = FindAnyObjectByType<AttackManager>();
+                            _attackManager.SwichTurn(true);
                             _attackManager.AttackTurn(true);
                             (CurrentUIManager as IBattleUI)?.ClearCard();
                             _isAction = true;
                         }
                         if (IsEnemyAction)
                         {
+                            _attackManager.SwichTurn(false);
                             StartCoroutine(_attackManager.EnemyTurn());
                             IsEnemyAction = false;
                         }
