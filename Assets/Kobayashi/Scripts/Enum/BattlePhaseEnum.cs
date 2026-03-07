@@ -69,3 +69,10 @@ public enum CardType : int
     Discard,
     Remove
 }
+
+public enum PlayerType
+{
+    Combo,
+    Berserker,
+    Technical
+}

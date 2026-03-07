@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private int _id;
     private bool _isAttackTurn = false;
     private bool _isDead = false;
+    private RectTransform _rect;
 
     /// <summary>
     /// エネミーにステータスをセット
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
         _enemyHP = _enemy.EnemyHP;
         _enemyAP = _enemy.EnemyAP;
         _enemyAT = _enemy.EnemyAT;
+        _rect = GetComponent<RectTransform>();
         _enemyImage.sprite = _enemy.Sprite;
         _attackTurnTMP.text = _enemyAT.ToString();
         if (enemyID == 0) _enemyImage.color = new Color(1f,1f,1f,0f);
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
     {
         if (_isDead) return;
         _enemyHP -= damage;
+        DamagePopUpObjectPool.Instance.Get(_rect.anchoredPosition + new Vector2(Random.Range(-50f, 50f), 0f), damage);
         Debug.Log($"{damage}を与えた");
         if(_enemyHP <= 0)
         {
