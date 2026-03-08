@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 61922297}
   - component: {fileID: 61922296}
   m_Layer: 5
-  m_Name: Scrollbar Vertical
+  m_Name: '[PNL]ScrollbarVertical'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761826947}
   m_HandleRect: {fileID: 761826946}
   m_Direction: 2
-  m_Value: -0.0000008991532
-  m_Size: 0.52798
+  m_Value: -0.00000012845045
+  m_Size: 0.52798104
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 725700710}
   m_Layer: 5
-  m_Name: Sliding Area
+  m_Name: '[PNL]SlidingArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 761826948}
   - component: {fileID: 761826947}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: '[IMG]Handle'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 814355461}
   - component: {fileID: 814355460}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: '[MG]EventSystem'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 837272717}
   - component: {fileID: 837272716}
   m_Layer: 5
-  m_Name: Viewport
+  m_Name: '[PNL]MapViewport'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 999490226}
   - component: {fileID: 999490225}
   m_Layer: 5
-  m_Name: Circle
+  m_Name: '[IMG]PlayerIcon'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 1110753831}
   - component: {fileID: 1110753830}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: '[IMG]Handle'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 1355552623}
   - component: {fileID: 1355552622}
   m_Layer: 5
-  m_Name: Scrollbar Horizontal
+  m_Name: '[PNL]ScrollbarHorizontal'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 1428560363}
   - component: {fileID: 1428560362}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: '[PNL]MapScrollView'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 1449941515}
   - component: {fileID: 1449941518}
   m_Layer: 5
-  m_Name: canvas
+  m_Name: '[CVS]CampCanvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 1554867821}
   - component: {fileID: 1554867820}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: '[C]MainCamera'
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 1667290979}
   - component: {fileID: 1667290977}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: '[MG]GameManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 1898323066}
   - component: {fileID: 1898323065}
   m_Layer: 5
-  m_Name: Content
+  m_Name: '[PNLMapContent'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1243,7 +1243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 950.33075}
+  m_AnchoredPosition: {x: 0, y: 950.3301}
   m_SizeDelta: {x: 0, y: 2013.33}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2064653525
@@ -1256,7 +1256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064653526}
   m_Layer: 5
-  m_Name: Sliding Area
+  m_Name: '[PNL]SlidingArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1287,6 +1287,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1554867822}
-  - {fileID: 1449941514}
   - {fileID: 1667290980}
   - {fileID: 814355462}
+  - {fileID: 1449941514}
