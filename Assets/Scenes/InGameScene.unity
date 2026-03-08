@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166588134}
   m_Layer: 5
-  m_Name: DeckPanelEffect
+  m_Name: '[PNL]DeckPanelEffect'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 269812594}
   m_Layer: 5
-  m_Name: DragLayer
+  m_Name: '[PNL]DragLayer'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 330289938}
   - component: {fileID: 330289940}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: '[MG]GameManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 349422007}
   - component: {fileID: 349422008}
   m_Layer: 5
-  m_Name: AttackPointSerectPanel
+  m_Name: '[PNL]AttackPointSerectPanel'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 551759326}
   - component: {fileID: 551759325}
   m_Layer: 5
-  m_Name: EnemyArea
+  m_Name: '[PNL]EnemyArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 610626538}
   - component: {fileID: 610626537}
   m_Layer: 5
-  m_Name: BackgroundCanvas
+  m_Name: '[CVS]BackgroundCanvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 628158626}
   - component: {fileID: 628158628}
   m_Layer: 5
-  m_Name: DeckPanel
+  m_Name: '[PNL]DeckPanel'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 655437301}
   - component: {fileID: 655437304}
   m_Layer: 5
-  m_Name: BoardArea
+  m_Name: '[PNL]BoardArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 734608029}
   - component: {fileID: 734608028}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: '[TEXT]Cost'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 903282714}
   - component: {fileID: 903282713}
   m_Layer: 5
-  m_Name: CostBackground
+  m_Name: '[PNL]CostBackground'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,7 +1121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932584180}
   m_Layer: 5
-  m_Name: EffectDescriptionArea
+  m_Name: '[PNL]EffectDescriptionArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 1016627550}
   - component: {fileID: 1016627552}
   m_Layer: 5
-  m_Name: Deck
+  m_Name: '[PNL]Deck'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1259,7 +1259,7 @@ GameObject:
   - component: {fileID: 1154090790}
   - component: {fileID: 1154090791}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: '[MG]UIManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 1254527069}
   - component: {fileID: 1254527068}
   m_Layer: 5
-  m_Name: BackgroundImage
+  m_Name: '[IMG]BackgroundImage'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1432,7 +1432,7 @@ GameObject:
   - component: {fileID: 1293538815}
   - component: {fileID: 1293538814}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: '[CVS]MainCanvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1513,6 +1513,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1500904885}
   - {fileID: 903282712}
   - {fileID: 655437300}
   - {fileID: 551759324}
@@ -1521,7 +1522,6 @@ RectTransform:
   - {fileID: 269812594}
   - {fileID: 932584180}
   - {fileID: 1906802089}
-  - {fileID: 1500904885}
   - {fileID: 1435232784}
   - {fileID: 1908586315}
   - {fileID: 1688558823}
@@ -1546,11 +1546,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5271152038707005775, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
       propertyPath: m_Name
-      value: CutInPanel
+      value: '[PNL]CutInPanel'
       objectReference: {fileID: 0}
     - target: {fileID: 5271152038707005775, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288702541656522358, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]CutInText'
       objectReference: {fileID: 0}
     - target: {fileID: 6190332033990190398, guid: 6d2557a33a2dbbd429778df7d5d19778, type: 3}
       propertyPath: m_text
@@ -1692,7 +1696,7 @@ GameObject:
   - component: {fileID: 1455643544}
   - component: {fileID: 1455643543}
   m_Layer: 5
-  m_Name: DeckButton
+  m_Name: '[BTN]DeckOpenButton'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1847,7 +1851,7 @@ GameObject:
   - component: {fileID: 1500904886}
   - component: {fileID: 1500904887}
   m_Layer: 5
-  m_Name: Player
+  m_Name: '[IMG]Player'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1955,7 +1959,7 @@ GameObject:
   - component: {fileID: 1524835712}
   - component: {fileID: 1524835711}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: '[MG]EventSystem'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2035,7 +2039,7 @@ GameObject:
   - component: {fileID: 1629837109}
   - component: {fileID: 1629837111}
   m_Layer: 5
-  m_Name: Destruction
+  m_Name: '[PNL]Destruction'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2134,7 +2138,7 @@ GameObject:
   - component: {fileID: 1678552871}
   - component: {fileID: 1678552870}
   m_Layer: 5
-  m_Name: MaxCost
+  m_Name: '[TEXT]MaxCost'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2271,7 +2275,7 @@ GameObject:
   - component: {fileID: 1688558825}
   - component: {fileID: 1688558824}
   m_Layer: 5
-  m_Name: FadePanel
+  m_Name: '[PNL]FadePanel'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2347,7 +2351,7 @@ GameObject:
   - component: {fileID: 1760399132}
   - component: {fileID: 1760399134}
   m_Layer: 5
-  m_Name: Discard
+  m_Name: '[PNL]Discard'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,7 +2450,7 @@ GameObject:
   - component: {fileID: 1797461619}
   - component: {fileID: 1797461618}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: '[C]MainCamera'
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2539,7 +2543,7 @@ GameObject:
   - component: {fileID: 1837613434}
   - component: {fileID: 1837613433}
   m_Layer: 5
-  m_Name: DeckButton (1)
+  m_Name: '[BTN]DeckCloseButton'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2696,7 +2700,7 @@ GameObject:
   - component: {fileID: 1906802090}
   - component: {fileID: 1906802093}
   m_Layer: 5
-  m_Name: PharseChangeButton
+  m_Name: '[BTN]PharseChangeButton'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2827,6 +2831,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1293538817}
     m_Modifications:
+    - target: {fileID: 208298020788340352, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 263041955243331415, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[BTN]Get'
+      objectReference: {fileID: 0}
+    - target: {fileID: 669429603026758792, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]RewardCardView'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023145187736239968, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]BackImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120838920330558471, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401889225880456534, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561546617130023020, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]BackView'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628486168422995083, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[SL]RewardCard_02'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724317692179617999, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardBase'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922889969364090369, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]CardText'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166795413213186553, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Cost'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363861243228819437, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617889194536819316, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardBase'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676006925074142768, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[SL]RewardCard_03'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960527043938319546, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]CardName'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197649959088890940, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Cost'
+      objectReference: {fileID: 0}
     - target: {fileID: 3204041110071214213, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: _getButton
       value: 
@@ -2835,6 +2903,78 @@ PrefabInstance:
       propertyPath: _skipButton
       value: 
       objectReference: {fileID: 1908586317}
+    - target: {fileID: 3256608436651112130, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290052592268102466, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Cost'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428140873267708244, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Skip'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557448320856835131, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147434403387080515, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Get'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253913693567311582, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702922145889978468, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[Text]CatdName'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913867948885496034, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Cost'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999005967700410908, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477882607348035242, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardBase'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580755373510484718, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[SL]RewardCard_01'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638755929621253641, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]BackView'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954060343684029165, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]RewardCardView'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005878411133299200, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081370175304665698, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186162325169867013, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]BackImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417450288177557733, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752479172390036019, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[BTN]Skip'
+      objectReference: {fileID: 0}
     - target: {fileID: 6753346817545138618, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2915,13 +3055,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6981625110129240251, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997344510031960150, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]RewardCardView'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377798132318161854, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]BackImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484912625223616729, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Times'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521872201244409127, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[TEXT]Cost'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564321353089253543, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]CardImage'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613993320827687513, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Cost'
+      objectReference: {fileID: 0}
     - target: {fileID: 8863899278799771408, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: m_Name
-      value: RewardPanel
+      value: '[PNL]RewardPanel'
       objectReference: {fileID: 0}
     - target: {fileID: 8863899278799771408, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873577520880630152, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[IMG]Description'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077707845466131634, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: m_Name
+      value: '[PNL]BackView'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2972,7 +3148,7 @@ GameObject:
   - component: {fileID: 1987333037}
   - component: {fileID: 1987333036}
   m_Layer: 5
-  m_Name: Cost
+  m_Name: '[TEXT]CurrentCost'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3110,7 +3286,7 @@ GameObject:
   - component: {fileID: 2118124057}
   - component: {fileID: 2118124056}
   m_Layer: 5
-  m_Name: HandArea
+  m_Name: '[PNL]HandArea'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

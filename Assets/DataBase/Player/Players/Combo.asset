@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72e3a6207b706849864f5792bcc5ceb, type: 3}
+  m_Name: Combo
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  _playerID: 1
+  _playerName: "\u30A2\u30BA\u30EA\u30A2"
+  _playerType: 0
+  _playerMaxHp: 50
+  _playerSprite: {fileID: 0}
+  _isPlayable: 1
+  _playerDescription: "\u8AAC\u660E"
