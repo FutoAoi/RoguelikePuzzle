@@ -64,6 +64,8 @@ public class AttackManager : MonoBehaviour
     /// <param name="isPlayer"></param>
     public void AttackFinish(bool isPlayer)
     {
+        if (!CheckAttackFinish()) return;
+
         if (isPlayer)
         {
             _gameManager.IsEnemyAction = true;
@@ -72,6 +74,19 @@ public class AttackManager : MonoBehaviour
         {
             _isFinishEnemyAttack = true;
         }
+    }
+
+    private bool CheckAttackFinish()
+    {
+        foreach(AttackMagic magic in _magicPool.ActiveMagics)
+        {
+            if (magic.IsAttack)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
     /// <summary>
     /// ìGÇÃçUåÇÉ^Å[Éì

@@ -58,9 +58,34 @@ public class EffectSplitAttack : IEffect
                 attack = pool.GetAttackMagic();
             }
 
-            attack.AttackPower = attack.AttackPower / _vector.Length;
-            attack.Split(_vector[i],magic.CurrentSlot, 
-                magic.gameObject.GetComponent<RectTransform>());
+            attack.AttackPower = Mathf.Max(1, magic.AttackPower / _vector.Length);
+
+            Vector2Int vector = new();
+            switch (_vector[i])
+            {
+                case MagicVector.UP:
+                    vector = new Vector2Int(-1, 0);
+                    break;
+                case MagicVector.Down:
+                    vector = new Vector2Int(1, 0);
+                    break;
+                case MagicVector.Left:
+                    vector = new Vector2Int(0, -1);
+                    break;
+                case MagicVector.Right:
+                    vector = new Vector2Int(0, 1);
+                    break;
+            }
+            if(i == 0)
+            {
+                attack.ChangeVector(_vector[i]);
+            }
+            else
+            {
+                attack.Split(_vector[i], magic.CurrentSlot + vector,
+                    magic.gameObject.GetComponent<RectTransform>());
+            }
+                
         }
     }
 }

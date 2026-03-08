@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AttackMagic : MonoBehaviour
 {
     public int AttackPower = 1;
+    public bool IsAttack { get; private set; } = false;
 
     [SerializeField, Tooltip("タイルの発光色")] private Color _glowingColor;
 
@@ -50,12 +51,14 @@ public class AttackMagic : MonoBehaviour
     /// </summary>
     public void DestroyMagic(bool isPlayer)
     {
+        IsAttack = false;
         _attackManager.AttackFinish(isPlayer);
         _onDisable?.Invoke();
         gameObject.SetActive(false);
     }
     public IEnumerator Attack(Vector2Int startPos, MagicVector startVector, RectTransform startRectTr,float interval)
     {
+        IsAttack = true;
         _currentSlot = startPos;//初期ポジ
         bool isPlayer = _attackManager.IsPlayerTurn;
         while (!_finish)
