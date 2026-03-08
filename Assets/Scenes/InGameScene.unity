@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e779f02e9cda4ab2e5cb2a38b45f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  _deckMain: e9030000ea030000eb030000ec030000d1070000
+  _deckMain: e9030000ea030000eb030000ec030000d1070000f3030000
 --- !u!1 &349422005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   HandCard: []
   DiscardCard: 
   RemoveCard: 
-  _handRange: 2
+  _handRange: 4
   _distance: 0.1
   _valueDuration: 0.3
   _playerHandTr: {fileID: 2118124055}

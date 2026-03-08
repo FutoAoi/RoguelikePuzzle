@@ -16,6 +16,9 @@ public class AttackManager : MonoBehaviour
     [SerializeField, Tooltip("敵の攻撃時カットインアニメーション時間")] private float _duration = 3f;
 
     public int AttackStartPos;
+    private bool _isPlayerTurn = true;
+    public bool IsPlayerTurn => _isPlayerTurn;
+    public float Interval => _interval;
 
     private GameManager _gameManager;
     private MagicObjectPool _magicPool;
@@ -47,12 +50,12 @@ public class AttackManager : MonoBehaviour
         if (isPlayer)
         {
             StartCoroutine(_magic.Attack(new Vector2Int(AttackStartPos, 0),
-                MagicVector.Right, _playerPos, _interval, true));
+                MagicVector.Right, _playerPos, _interval));
         }
         else
         {
             StartCoroutine(_magic.Attack(_enemyPos, 
-                MagicVector.Left, _enemyRectTr, _interval, false));
+                MagicVector.Left, _enemyRectTr, _interval));
         }
     }
     /// <summary>
@@ -61,6 +64,8 @@ public class AttackManager : MonoBehaviour
     /// <param name="isPlayer"></param>
     public void AttackFinish(bool isPlayer)
     {
+        if (!CheckAttackFinish()) return;
+
         if (isPlayer)
         {
             _gameManager.IsEnemyAction = true;
@@ -69,6 +74,19 @@ public class AttackManager : MonoBehaviour
         {
             _isFinishEnemyAttack = true;
         }
+    }
+
+    private bool CheckAttackFinish()
+    {
+        foreach(AttackMagic magic in _magicPool.ActiveMagics)
+        {
+            if (magic.IsAttack)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
     /// <summary>
     /// 敵の攻撃ターン
@@ -121,5 +139,10 @@ public class AttackManager : MonoBehaviour
             if (!enemy.IsDead) return false;
         }
         return true;
+    }
+
+    public void SwichTurn(bool isPlayer)
+    {
+        _isPlayerTurn = isPlayer;
     }
 }
