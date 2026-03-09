@@ -70,16 +70,56 @@ public class AttackMagic : MonoBehaviour
                 _currentVector = startVector;
                 _attackRectTr = GetComponent<RectTransform>();
                 _attackRectTr.position = startRectTr.position;
-                _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
-                _attackRectTr.DOMove(_nextRectTr.position, interval)
-                    .SetEase(Ease.Linear);
+            }
+            if (isPlayer)
+            {
+                if (_currentSlot.y >= _width)//プレイヤー攻撃成功時
+                {
+                    _finish = true;
+                    _isAttack = true;
+                    break;
+                }
+                else if (_currentSlot.x < 0 || _currentSlot.x > _height - 1)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = false;
+                    break;
+                }
+                else if (_currentSlot.y < 0)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = true;
+                    break;
+                }
             }
             else
             {
-                _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
-                _attackRectTr.DOMove(_nextRectTr.position, interval)
-                    .SetEase(Ease.Linear);
+                if (_currentSlot.y < 0)//エネミー攻撃成功時
+                {
+                    _finish = true;
+                    _isAttack = true;
+                    break;
+                }
+                else if (_currentSlot.x < 0 || _currentSlot.x > _height - 1)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = false;
+                    break;
+                }
+                else if (_currentSlot.y >= _width)
+                {
+                    _finish = true;
+                    _isAttack = false;
+                    _isSelfHarm = true;
+                    break;
+                }
             }
+            _nextRectTr = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<RectTransform>();
+            _attackRectTr.DOMove(_nextRectTr.position, interval)
+                .SetEase(Ease.Linear);
             yield return new WaitForSeconds(interval * 0.5f);
 
             _slotImg = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<Image>();
