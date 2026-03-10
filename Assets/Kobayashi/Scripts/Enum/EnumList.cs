@@ -1,7 +1,7 @@
 /// <summary>
 /// 戦闘時のフェイズ
 /// </summary>
-public enum BattlePhase:int
+public enum BattlePhase: byte
 {
     Draw,
     Set,
@@ -13,7 +13,7 @@ public enum BattlePhase:int
 /// <summary>
 /// 攻撃の方向指定
 /// </summary>
-public enum MagicVector : int
+public enum MagicVector : byte
 {
     UP,
     Down,
@@ -23,7 +23,7 @@ public enum MagicVector : int
 /// <summary>
 /// カードのレアリティ
 /// </summary>
-public enum CardRarity : int
+public enum CardRarity : byte
 {
     Uncommon,
     Common,
@@ -34,7 +34,7 @@ public enum CardRarity : int
 /// <summary>
 /// エネミーの攻撃種類
 /// </summary>
-public enum EnemyAttackType : int
+public enum EnemyAttackType : byte
 {
     Normal,
     Penetrating,
@@ -42,7 +42,7 @@ public enum EnemyAttackType : int
 /// <summary>
 /// シーンの名前
 /// </summary>
-public enum SceneType : int
+public enum SceneType : byte
 {
     TitleScene,
     InGameScene,
@@ -52,7 +52,7 @@ public enum SceneType : int
 /// <summary>
 /// カードのタイプ
 /// </summary>
-public enum CardType : int
+public enum CardType : byte
 {
     Nomal,
     Combo,
