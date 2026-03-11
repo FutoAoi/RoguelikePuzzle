@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 186182904}
   - component: {fileID: 186182903}
   - component: {fileID: 186182906}
+  - component: {fileID: 186182907}
   m_Layer: 5
   m_Name: '[BTN]Stage'
   m_TagString: Untagged
@@ -308,6 +309,20 @@ MonoBehaviour:
   - {fileID: 782690147}
   - {fileID: 1000801747}
   _tutorialButton: {fileID: 1675598205}
+--- !u!114 &186182907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186182901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc513b400cd27774f9df80923a0cb5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageSelectAnimation
+  _duration: 0.3
+  _scaleMag: 1.1
 --- !u!1 &211550574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1388,7 @@ GameObject:
   - component: {fileID: 1433984771}
   - component: {fileID: 1433984770}
   - component: {fileID: 1433984769}
+  - component: {fileID: 1433984772}
   m_Layer: 5
   m_Name: '[BTN]Title'
   m_TagString: Untagged
@@ -1481,6 +1497,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433984767}
   m_CullTransparentMesh: 1
+--- !u!114 &1433984772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433984767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc513b400cd27774f9df80923a0cb5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageSelectAnimation
+  _duration: 0.3
+  _scaleMag: 1.2
 --- !u!1 &1565068755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2109,7 @@ GameObject:
   - component: {fileID: 1692808177}
   - component: {fileID: 1692808176}
   - component: {fileID: 1692808175}
+  - component: {fileID: 1692808178}
   m_Layer: 5
   m_Name: '[BTN]Shop'
   m_TagString: Untagged
@@ -2187,6 +2218,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692808173}
   m_CullTransparentMesh: 1
+--- !u!114 &1692808178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692808173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc513b400cd27774f9df80923a0cb5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageSelectAnimation
+  _duration: 0.3
+  _scaleMag: 1.2
 --- !u!1 &1817860600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,6 +2336,7 @@ GameObject:
   - component: {fileID: 2132025199}
   - component: {fileID: 2132025198}
   - component: {fileID: 2132025197}
+  - component: {fileID: 2132025200}
   m_Layer: 5
   m_Name: '[BTN]PictureBook'
   m_TagString: Untagged
@@ -2399,6 +2445,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132025195}
   m_CullTransparentMesh: 1
+--- !u!114 &2132025200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132025195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc513b400cd27774f9df80923a0cb5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageSelectAnimation
+  _duration: 0.3
+  _scaleMag: 1.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
