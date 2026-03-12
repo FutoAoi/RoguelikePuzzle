@@ -126,6 +126,9 @@ public class GameManager : MonoBehaviour
                 break;
             case SceneType.StageSerectScene:
                 break;
+            case SceneType.CampScene: 
+                
+                break;
         }
     }
 
