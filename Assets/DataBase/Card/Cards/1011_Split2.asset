@@ -30,4 +30,4 @@ MonoBehaviour:
     - rid: 9212134124967952449
       type: {class: EffectSplitAttack, ns: , asm: Assembly-CSharp}
       data:
-        _vector: 0000000001000000
+        _vector: 0001

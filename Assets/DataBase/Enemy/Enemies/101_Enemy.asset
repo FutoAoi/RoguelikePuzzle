@@ -16,4 +16,7 @@ MonoBehaviour:
   _sprite: {fileID: 7921184317453744328, guid: b39a289a29fb37b448197722a3a25294, type: 3}
   _enemyHP: 3
   _enemyAP: 1
+  _enemyAttackTime: 0
   _enemyAT: 1
+  _enemyConfirmedAttack: 0
+  _enemyEventTurn: 0
