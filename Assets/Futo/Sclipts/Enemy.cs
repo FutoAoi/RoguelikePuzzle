@@ -17,11 +17,24 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("エネミーの攻撃力")] private int _enemyAP;
     [SerializeField, Tooltip("エネミーの攻撃までのターン数")] private int _enemyAT;
 
+    [Header("HPアニメーション設定")]
+    [SerializeField, Tooltip("背景イメージ")] private GameObject _backGround;
+    [SerializeField, Tooltip("メインバー")] private Image _mainBar;
+    [SerializeField, Tooltip("ゴーストバー")] private Image _ghostBar;
+    [SerializeField, Tooltip("メインバーが減るスピード")] private float _mainSpeed = 0.2f;
+    [SerializeField, Tooltip("ゴーストバーが動くまでの時間")] private float _ghostDelay = 0.5f;
+    [SerializeField, Tooltip("ゴーストバーが動くスピード")] private float _ghostSpeed = 0.5f;
+    [SerializeField, Tooltip("エネミーのHPテキスト")] private TMP_Text _enemyHpText;
+
     private EnemyData _enemy;
     private int _id;
     private bool _isAttackTurn = false;
     private bool _isDead = false;
     private RectTransform _rect;
+    private int _currentHp = 0;
+    private float _ghostHp;
+    private float _hpRatio;
+    private Tween _ghostTween;
 
     /// <summary>
     /// エネミーにステータスをセット
@@ -33,14 +46,21 @@ public class Enemy : MonoBehaviour
         _enemyHP = _enemy.EnemyHP;
         _enemyAP = _enemy.EnemyAP;
         _enemyAT = _enemy.EnemyAT;
+        _currentHp = _enemyHP;
         _rect = GetComponent<RectTransform>();
         _enemyImage.sprite = _enemy.Sprite;
         _attackTurnTMP.text = _enemyAT.ToString();
-        if (enemyID == 0) _enemyImage.color = new Color(1f,1f,1f,0f);
-        if (_enemyHP <= 0)
+        _hpRatio = (float)_currentHp / _enemyHP;
+        _mainBar.fillAmount = _hpRatio;
+        _ghostBar.fillAmount = _hpRatio;
+        _enemyHpText.text = $"{_currentHp}/{_enemyHP}";
+        if (enemyID == 0)
         {
+            _enemyImage.color = new Color(1f,1f,1f,0f);
+            _attackTurnTMP.text = null;
+            _enemyHpText.text = null;
             _isDead = true;
-            StartCoroutine(Dead());
+            _backGround.SetActive(false);
         }
     }
     /// <summary>
@@ -50,13 +70,22 @@ public class Enemy : MonoBehaviour
     public void Damaged(int damage)
     {
         if (_isDead) return;
-        _enemyHP -= damage;
+        _currentHp -= damage;
+        _currentHp = Mathf.Max(0, _currentHp);
+        _hpRatio = (float)_currentHp / _enemyHP;
         DamagePopUpObjectPool.Instance.Get(_rect.anchoredPosition + new Vector2(Random.Range(-50f, 50f), 0f), damage);
+        _enemyHpText.text = $"{_currentHp}/{_enemyHP}";
+        _mainBar.DOFillAmount(_hpRatio, _mainSpeed);
+        if(_ghostTween != null && _ghostTween.IsActive())
+        {
+            _ghostTween.Kill();
+        }
+        _ghostTween = _ghostBar.DOFillAmount(_hpRatio, _ghostSpeed).SetDelay(_ghostDelay);
         Debug.Log($"{damage}を与えた");
-        if(_enemyHP <= 0)
+        if(_currentHp <= 0)
         {
             _isDead = true;
-            StartCoroutine(Dead());
+            _mainBar.DOFillAmount(0f, _mainSpeed).OnComplete(() => StartCoroutine(Dead()));
         }
     }
 
@@ -95,6 +124,8 @@ public class Enemy : MonoBehaviour
     {
         yield return null;
         _attackTurnTMP.text = null;
+        _enemyHpText.text = null;
+        _backGround.SetActive(false);
         _enemyImage.DOFade(0f,0.1f);
         Debug.Log($"{name}を倒した！");
     }
