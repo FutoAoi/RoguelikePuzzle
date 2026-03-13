@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public abstract class UIManagerBase : MonoBehaviour
 {
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         GameManager.Instance.RegisterUIManager(this);
     }
