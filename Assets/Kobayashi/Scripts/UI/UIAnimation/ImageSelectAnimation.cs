@@ -21,7 +21,11 @@ public class ImageSelectAnimation : MonoBehaviour,IPointerEnterHandler,IPointerE
         _rt = GetComponent<RectTransform>();
         _startScale = _rt.localScale;
     }
-
+    private void OnDisable()
+    {
+        _tween?.Kill();
+        _rt.localScale = _startScale;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         ChangeScaleAnimation(_scaleMag);
