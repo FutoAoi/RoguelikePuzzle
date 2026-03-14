@@ -14,9 +14,6 @@ public class DeckPanel : MonoBehaviour
     GameManager _gameManager;
     UIManager_Battle _uiManager;
 
-    List<int> _deckID = new List<int>();
-    List<int> _discardID = new List<int>();
-    List<int> _removeID = new List<int>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
