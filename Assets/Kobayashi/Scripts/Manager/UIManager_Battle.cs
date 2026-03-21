@@ -33,6 +33,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("消費コストテキスト")] private TextMeshProUGUI _costText;
     [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
     [SerializeField, Tooltip("デッキ確認用パネル")] private GameObject _deckPanel;
+    [SerializeField, Tooltip("ゲームオーバー用パネル")] private GameObject _gameoverPanel;
 
     public bool _isFinishCutIn = false;
 
@@ -214,5 +215,24 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
             targetValue,
             _valueDuration
         );
+    }
+
+    public void DisplayGameOverPanel()
+    {
+        _fadePanel.gameObject.SetActive(true);
+
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(0.3f)
+            .Append(_fadePanel.DOFade(1f, 0.4f).SetEase(Ease.OutQuad))
+            .AppendCallback(() =>
+            {
+                _gameoverPanel.SetActive(true);
+            })
+            .AppendInterval(0.2f)
+            .Append(_fadePanel.DOFade(0f, 0.4f))
+            .OnComplete(() =>
+            {
+                _fadePanel.gameObject.SetActive(false);
+            });
     }
 }

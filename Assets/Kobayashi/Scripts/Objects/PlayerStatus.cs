@@ -82,6 +82,7 @@ public class PlayerStatus
     public void PlayerDead()
     {
         IsDead = false;
+        GameManager.Instance.CurrentUIManager.GetComponent<UIManager_Battle>().DisplayGameOverPanel();
         Debug.Log("“|‚ê‚Ä‚µ‚Ü‚Á‚½c");
     }
     /// <summary>

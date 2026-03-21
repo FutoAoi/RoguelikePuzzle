@@ -202,7 +202,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 761826946}
   m_Direction: 2
   m_Value: -0.00000012845045
-  m_Size: 0.52798104
+  m_Size: 0.5279583
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7560464374655081226, guid: 5bc6542959130374ca54e3c01951dc72, type: 3}
+  m_Sprite: {fileID: 4753959750254769153, guid: e955812e403d81f468e606dc7962827c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1029,6 +1029,7 @@ MonoBehaviour:
     Floors: []
     CurrentFloorIndex: 0
     CurrentRoomIndex: 0
+  _roomIconData: {fileID: 11400000, guid: b65f5ea5ace3dfd4fb7ef095f4c85420, type: 2}
 --- !u!1 &1554867819
 GameObject:
   m_ObjectHideFlags: 0

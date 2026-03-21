@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3089660790677874845}
   - component: {fileID: 8588625237552088677}
   - component: {fileID: 5116110501743048507}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   _roomType: 0
   _stageID: 0
   _nextroom: []
+  _roomImage: {fileID: 5116110501743048507}
 --- !u!222 &8588625237552088677
 CanvasRenderer:
   m_ObjectHideFlags: 0

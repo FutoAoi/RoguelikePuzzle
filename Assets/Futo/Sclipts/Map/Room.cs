@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Room : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private RoomType _roomType;
     [SerializeField] private int _stageID;
     [SerializeField] private Room[] _nextroom;
+    [SerializeField] private Image _roomImage;
 
     private MapManager _mapManager;
     private int _floorIndex;
@@ -23,6 +25,7 @@ public class Room : MonoBehaviour, IPointerClickHandler
         _floorIndex = roomData.FloorIndex;
         _roomIndex = roomData.RoomIndex;
         _mapManager = mapManager;
+        _roomImage.sprite = _mapManager.RoomIconData.GetSprite(_roomType);
     }
 
     public void SetNextRoom(Room[] nextRoom)

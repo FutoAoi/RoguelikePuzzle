@@ -3,8 +3,10 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     public GenerateMapData MapData => _mapData;
+    public RoomIconData RoomIconData => _roomIconData;
 
     [SerializeField] GenerateMapData _mapData;
+    [SerializeField] RoomIconData _roomIconData;
 
     private void Start()
     {
