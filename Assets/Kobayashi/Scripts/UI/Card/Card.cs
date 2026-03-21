@@ -27,7 +27,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     private CardDataBase _cardData;
     private Vector2 _defaultScale,_targetScale;
     private int _cardCost;
-    private bool _ignorePointer = false;
+    private bool _ignorePointer = false,_isGhostCircle;
     private float _displayTime;
     private string _description;
     public void SetCard(int id,RectTransform descriptionArea,bool isDraw)
@@ -40,6 +40,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         _cardCost = data.Cost;
         _costText.text = _cardCost.ToString();
         _description = data.Description;
+        _isGhostCircle = data.IsGhost;
 
         _panel.SetParent(descriptionArea,false);
         _defaultScale = _panel.localScale;

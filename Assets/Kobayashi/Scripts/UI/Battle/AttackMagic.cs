@@ -138,9 +138,16 @@ public class AttackMagic : MonoBehaviour
             }
             else
             {
-                foreach(var Effects in _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect)
+                foreach(IEffect Effects in _gameManager.CardDataBase.GetCardData(_tileSlot.ID).Effect)
                 {
-                    Effects.OnExcute(this);
+                    if (_gameManager.CardDataBase.GetCardData(_tileSlot.ID).IsGhost)
+                    {
+
+                    }
+                    else
+                    {
+                        Effects.OnExcute(this);
+                    }
                 }
                 
                 _tileSlot.DecreaseTimes(1);

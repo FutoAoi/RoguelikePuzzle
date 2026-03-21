@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,7 +67,15 @@ public class TileSlot : MonoBehaviour
         _newCard.GetComponentInChildren<TextMeshProUGUI>().text = _currentnumber.ToString();
         if (_currentnumber <= 0)
         {
-            if (_gameManager.CardDataBase.GetCardData(ID).IsDestruction)
+            CardData data = _gameManager.CardDataBase.GetCardData(ID);
+            if (data.IsGhost)
+            {
+                foreach(IEffect effect in data.Effect)
+                {
+                    effect.OnExcute(null);
+                }
+            }
+            if (data.IsDestruction)
             {
                 (_gameManager.CurrentUIManager as IBattleUI)?.RegisterRemoveCard(ID);
             }
