@@ -92,6 +92,7 @@ public class MapView : MonoBehaviour
     private void DrawUILine(RectTransform from, RectTransform to)
     {
         RectTransform line = Instantiate(_linePrefab, transform);
+        line.SetSiblingIndex(0);
 
         Vector2 start = from.anchoredPosition;
         Vector2 end = to.anchoredPosition;
