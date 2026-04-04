@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841466d708f25044e9924998fbd238fc, type: 3}
+  m_Name: New Event Choice
+  m_EditorClassIdentifier: Assembly-CSharp::EventChoice
+  _choiceText: "\u3084\u3042"
+  _resultText: 
+  _eventEffects:
+  - rid: 2977463296770965570
+  references:
+    version: 2
+    RefIds:
+    - rid: 2977463296770965570
+      type: {class: EventDebug, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u3053\u3093\u3061\u3083"

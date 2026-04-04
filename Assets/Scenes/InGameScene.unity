@@ -1907,7 +1907,7 @@ MonoBehaviour:
   HandCard: []
   DiscardCard: 
   RemoveCard: 
-  _handRange: 4
+  _handRange: 9
   _distance: 0.1
   _valueDuration: 0.3
   _playerHandTr: {fileID: 2118124055}
