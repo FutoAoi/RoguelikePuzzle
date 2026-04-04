@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -60,5 +61,19 @@ public class MapManager : MonoBehaviour
         Debug.Log($"ˆÚ“®æ Floor:{MapData.CurrentFloorIndex} Room:{nextRoomIndex}");
 
         GameManager.Instance.SceneChange(SceneType.InGameScene);
+    }
+
+    public void OpenEventPanel(int nextRoomIndex, int eventID)
+    {
+        if (!CanMoveTo(nextRoomIndex))
+        {
+            Debug.LogWarning("ˆÚ“®‚Å‚«‚È‚¢•”‰®‚Å‚·");
+            return;
+        }
+
+        CurrentRoom.IsCleared = true;
+
+        MapData.CurrentFloorIndex++;
+        MapData.CurrentRoomIndex = nextRoomIndex;
     }
 }
