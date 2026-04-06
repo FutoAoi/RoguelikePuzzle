@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 841466d708f25044e9924998fbd238fc, type: 3}
-  m_Name: New Event Choice 1
+  m_Name: Choice_Debug
   m_EditorClassIdentifier: Assembly-CSharp::EventChoice
-  _choiceText: "\u304A\u3044"
-  _resultText: 
+  _choiceText: "100\u30B4\u30FC\u30EB\u30C9\u3092\u6255\u3044HP\u309230\u56DE\u5FA9\u3059\u308B"
+  _resultText: "100\u30B4\u30FC\u30EB\u30C9\u3092\u3082\u3089\u3044HP\u309230\u56DE\u5FA9\u3057\u305F"
   _eventEffects:
   - rid: 2977463296770965570
   references:
@@ -22,4 +22,4 @@ MonoBehaviour:
     - rid: 2977463296770965570
       type: {class: EventDebug, ns: , asm: Assembly-CSharp}
       data:
-        text: nannjya
+        text: "100\u30B4\u30FC\u30EB\u30C9\u3092\u6255\u3044HP\u309230\u56DE\u5FA9\u3059\u308B"
