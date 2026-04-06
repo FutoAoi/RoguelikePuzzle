@@ -22,6 +22,8 @@ MonoBehaviour:
   _maxTimes: 3
   _isGhost: 0
   _isDestruction: 0
+  _canEvolution: 0
+  _evolutionID: 0
   _effect:
   - rid: 2977463319095410753
   references:
