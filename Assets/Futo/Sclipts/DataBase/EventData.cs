@@ -15,4 +15,3 @@ public class EventData : ScriptableObject
     public Sprite BackGround => _backGround;
     public EventChoice[] Choices => _choices;
 }
-

@@ -8,6 +8,7 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] GenerateMapData _mapData;
     [SerializeField] RoomIconData _roomIconData;
+    [SerializeField] EventPanelController _eventPanelController;
 
     private void Start()
     {
@@ -72,6 +73,8 @@ public class MapManager : MonoBehaviour
         }
 
         CurrentRoom.IsCleared = true;
+
+        _eventPanelController.SetupEvent(eventID);
 
         MapData.CurrentFloorIndex++;
         MapData.CurrentRoomIndex = nextRoomIndex;

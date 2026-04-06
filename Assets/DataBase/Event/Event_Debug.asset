@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6f8b1786ba97344eaad67d2c9701e71, type: 3}
-  m_Name: TestEvent
+  m_Name: Event_Debug
   m_EditorClassIdentifier: Assembly-CSharp::EventData
   _eventID: 1
   _name: "\u30C7\u30D0\u30C3\u30AF"
-  _description: "\u3069\u3046\u3059\u308B\uFF1F"
-  _backGround: {fileID: 4743504061861994634, guid: 03a6b68cff93df347922e10dbd549375, type: 3}
+  _description: "\u5546\u4EBA\u304C\u4EA4\u6E09\u3057\u3066\u304D\u305F"
+  _backGround: {fileID: 4101596918973430153, guid: aacad7922cff00848a548460c7293e3a, type: 3}
   _choices:
   - {fileID: 11400000, guid: 606158613b98f1d42a0ca5bde34e375b, type: 2}
   - {fileID: 11400000, guid: 14ede8cd76538454caac89b32a1536d2, type: 2}
