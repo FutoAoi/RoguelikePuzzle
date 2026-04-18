@@ -11,9 +11,9 @@ public class EffectSplitAttack : IEffect
     public void OnExcute(AttackMagic magic)
     {
         MagicObjectPool pool = MagicObjectPool.Instance;
+        AttackMagic attack = magic;
         for (int i = 0; i < _vector.Length; i++)
         {
-            AttackMagic attack = magic;
             if (i != 0)
             {
                 attack = pool.GetAttackMagic();
@@ -46,7 +46,6 @@ public class EffectSplitAttack : IEffect
                 attack.Split(_vector[i], magic.CurrentSlot + vector,
                     magic.gameObject.GetComponent<RectTransform>());
             }
-
         }
     }
 }

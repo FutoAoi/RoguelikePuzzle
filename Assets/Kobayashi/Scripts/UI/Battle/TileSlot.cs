@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,8 +16,11 @@ public class TileSlot : MonoBehaviour
     private GameManager _gameManager;
     private GameObject _newCard;
     private CardMovement _tileMovement;
+    private UIManager_Battle _uiManager;
+    private DOTween _tween;
     private Image _img;
     private int _index,_currentnumber;
+    private bool _isDestroy = false,_isColorChange = false;
 
     private void Start()
     {
@@ -25,6 +29,10 @@ public class TileSlot : MonoBehaviour
         _img.sprite = _tileSprites[_index];
         IsLastTimeCard = false;
         _gameManager = GameManager.Instance;
+        if(_gameManager.CurrentUIManager.TryGetComponent<UIManager_Battle>(out var manager))
+        {
+            _uiManager = manager;
+        }
     }
     /// <summary>
     /// カードを置く
@@ -61,12 +69,13 @@ public class TileSlot : MonoBehaviour
     /// <param name="times"></param>
     public void DecreaseTimes(int times)
     {
-        if (!IsOccupied) return;
+        if (!IsOccupied || _isDestroy) return;
 
         _currentnumber -= times;
         _newCard.GetComponentInChildren<TextMeshProUGUI>().text = _currentnumber.ToString();
         if (_currentnumber <= 0)
         {
+            _isDestroy = true;
             CardData data = _gameManager.CardDataBase.GetCardData(ID);
             if (data.IsGhost)
             {
@@ -83,7 +92,29 @@ public class TileSlot : MonoBehaviour
             {
                 (_gameManager.CurrentUIManager as IBattleUI)?.ResisterDiscardCard(ID);
             }
-                ClearSlot();
+            _isDestroy = false;
+            ClearSlot();
         }
+    }
+    /// <summary>
+    /// タイルを発光させる
+    /// </summary>
+    /// <param name="duration">演出時間</param>
+    /// <param name="toGrow">明るくさせるかどうか</param>
+    public void TileColorChangeAnimation(float duration,bool toGrow)
+    {
+        if (_isColorChange) return;
+
+        Color startColor = _img.color;
+        Color endColor = toGrow ? _uiManager.GrowColor : Color.white;
+
+        if(startColor == endColor) return;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(_img.DOColor(endColor, duration).SetEase(Ease.Linear))
+            .OnStart(() => _isColorChange = true)
+            .OnComplete(() => _isColorChange = false)
+            .OnKill(() => _isColorChange = false);
     }
 }
