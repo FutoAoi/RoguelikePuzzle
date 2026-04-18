@@ -122,16 +122,12 @@ public class AttackMagic : MonoBehaviour
                 .SetEase(Ease.Linear);
             yield return new WaitForSeconds(interval * 0.5f);
 
-            _slotImg = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<Image>();
-            _startColor = _slotImg.color;
-            _slotImg.DOColor(_glowingColor, interval * 0.1f)
-                .SetEase(Ease.Linear);
+            _tileSlot = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<TileSlot>();
+            _tileSlot.TileColorChangeAnimation(interval * 0.1f,true);
 
             yield return new WaitForSeconds(interval * 0.2f);
 
             //å¯â ÇÃåƒÇ—èoÇµ
-            _tileSlot = _stageManager.SlotList[_currentSlot.x][_currentSlot.y].GetComponent<TileSlot>();
-
             if (!_tileSlot.IsOccupied)
             {
                 Debug.Log("âΩÇ‡Ç»Ç©Ç¡ÇΩ,,,");
@@ -212,8 +208,7 @@ public class AttackMagic : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(interval * 0.3f);
-            _slotImg.DOColor(_startColor, interval * 0.1f)
-                .SetEase(Ease.Linear);
+            _tileSlot.TileColorChangeAnimation(interval * 0.1f,false);
         }
 
         _player = _gameManager.Player;

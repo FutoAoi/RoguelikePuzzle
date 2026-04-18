@@ -126,6 +126,9 @@ public class Enemy : MonoBehaviour
         _enemyHpText.text = null;
         _backGround.SetActive(false);
         _enemyImage.DOFade(0f,0.1f);
+
+        GameManager.Instance.PlayerStatus.GetMoney(_enemy.RandomReword());
+
         Debug.Log($"{name}Çì|ÇµÇΩÅI");
     }
 }

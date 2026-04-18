@@ -11,6 +11,7 @@ public class EnemyData : ScriptableObject
     [SerializeField, Tooltip("エネミーのアタックターン")] private int _enemyAT;
     [SerializeField, Tooltip("エネミーの確定ダメージのターン")] private int _enemyConfirmedAttack;
     [SerializeField, Tooltip("エネミーのイベント(盤面鑑賞)")] private int _enemyEventTurn;
+    [SerializeField, Tooltip("報酬量")] private int[] _rewardAmount = new int[2];
 
     public int EnemyID => _enemyID;
     public Sprite Sprite => _sprite;
@@ -20,4 +21,14 @@ public class EnemyData : ScriptableObject
     public int EnemyAT => _enemyAT;
     public int EnemyConfirmedAttack => _enemyConfirmedAttack;
     public int EnemyEventTurn => _enemyEventTurn;
+    public int[] RewardAmount => _rewardAmount;
+
+    /// <summary>
+    /// ランダムな報酬量を決める
+    /// </summary>
+    /// <returns>報酬量</returns>
+    public int RandomReword()
+    {
+        return _rewardAmount[Random.Range(0, _rewardAmount.Length)];
+    }
 }

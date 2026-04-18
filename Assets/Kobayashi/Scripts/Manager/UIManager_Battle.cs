@@ -19,6 +19,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("手札の数")] private int _handRange = 5;
     [SerializeField, Tooltip("ドロー間隔")] private float _distance = 0.1f;
     [SerializeField, Tooltip("数字が増える演出時間")] private float _valueDuration = 0.2f;
+    [SerializeField, Tooltip("タイルの発行色")] public Color GrowColor = Color.orange;
 
     [Header("コンポーネント設定")]
     [SerializeField, Tooltip("場所")] private RectTransform _playerHandTr;
