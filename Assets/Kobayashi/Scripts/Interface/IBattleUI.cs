@@ -8,6 +8,10 @@ public interface IBattleUI
     /// </summary>
     IEnumerator DrawCard();
     /// <summary>
+    /// ƒhƒ[”‚ğ‘Œ¸‚³‚¹‚é
+    /// </summary>
+    void ChangeDrawCount(int delta = 0);
+    /// <summary>
     /// èD‚ğ•À‚×‚é
     /// </summary>
     void HandOrganize();

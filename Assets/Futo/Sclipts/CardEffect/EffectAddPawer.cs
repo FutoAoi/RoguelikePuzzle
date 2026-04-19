@@ -11,6 +11,7 @@ public class EffectAddPawer : IEffect
     [SerializeField] private int _addPower = 1;
     public void OnExcute(AttackMagic magic)
     {
-        magic.AttackPower += _addPower;
+        if(magic != null)
+            magic.AttackPower += _addPower;
     }
 }
