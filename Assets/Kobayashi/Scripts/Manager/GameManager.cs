@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public AttackManager AttackManager;
     [NonSerialized] public StageManager StageManager;
 
+    private IBattleUI _uiManagerButtle;
     private AttackManager _attackManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false,
         _isBattleUIManager;
@@ -69,6 +70,10 @@ public class GameManager : MonoBehaviour
                         {
                             StageManager.CreateStage(StageID);
                             CurrentPhase = BattlePhase.Draw;
+                            if(CurrentUIManager.TryGetComponent<IBattleUI>(out var Battle))
+                            {
+                                _uiManagerButtle = Battle;
+                            }
                             _isReward = false;
                         }
                         break;
@@ -76,16 +81,20 @@ public class GameManager : MonoBehaviour
                         if (!_isDraw)
                         {
                             DeckManager.Instance.ShuffleDeck();
-                            StartCoroutine((CurrentUIManager as IBattleUI)?.DrawCard());
+                            StartCoroutine(_uiManagerButtle.DrawCard());
                             PlayerStatus.SetCost();
                             _isDraw = true;
                         }
                         if (!_isOrganize)
                         {
-                            (CurrentUIManager as IBattleUI)?.HandOrganize();
+                            _uiManagerButtle.HandOrganize();
                             _isOrganize = true;
                         }
-                        if (_isDraw && _isOrganize) CurrentPhase = BattlePhase.Set;
+                        if (_isDraw && _isOrganize)
+                        {
+                            CurrentPhase = BattlePhase.Set;
+                            _uiManagerButtle.ChangeDrawCount();
+                        }
                         break;
                     case BattlePhase.Set:
 
@@ -96,7 +105,7 @@ public class GameManager : MonoBehaviour
                             _attackManager = FindAnyObjectByType<AttackManager>();
                             _attackManager.SwichTurn(true);
                             _attackManager.AttackTurn(true);
-                            (CurrentUIManager as IBattleUI)?.ClearCard();
+                            _uiManagerButtle.ClearCard();
                             _isAction = true;
                         }
                         if (IsEnemyAction)
@@ -117,7 +126,7 @@ public class GameManager : MonoBehaviour
                     case BattlePhase.Reward:
                         if (!_isReward)
                         {
-                            (CurrentUIManager as IBattleUI)?.DisplayReward();
+                            _uiManagerButtle.DisplayReward();
                             _isReward = true;
                         }
                         InitializeBool();

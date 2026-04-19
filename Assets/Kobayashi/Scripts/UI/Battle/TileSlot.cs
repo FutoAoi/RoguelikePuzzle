@@ -66,7 +66,7 @@ public class TileSlot : MonoBehaviour
     /// <summary>
     /// スロットの使用回数減少
     /// </summary>
-    /// <param name="times"></param>
+    /// <param name="times">使用回数</param>
     public void DecreaseTimes(int times)
     {
         if (!IsOccupied || _isDestroy) return;

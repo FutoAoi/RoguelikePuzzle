@@ -47,7 +47,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     private Image _panelimg;
     private RectTransform _panelRectTr;
     private Color _defaultColor;
-    private int _currentNumber;
+    private int _currentNumber,_deltaDrawCount = 0;
     public override void InitUI()
     {
         _deckManager = DeckManager.Instance;
@@ -73,7 +73,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     }
     public IEnumerator DrawCard()
     {
-        for (int i = 0; i < _handRange; i++)
+        for (int i = 0; i < _handRange + _deltaDrawCount; i++)
         {
             CreateCard();
             yield return new WaitForSeconds(_distance);
@@ -235,5 +235,13 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
             {
                 _fadePanel.gameObject.SetActive(false);
             });
+    }
+    /// <summary>
+    /// ƒhƒ[”‚ğ‘Œ¸‚³‚¹‚é
+    /// </summary>
+    /// <param name="delta">•Ï‰»—Ê</param>
+    public void ChangeDrawCount(int delta = 0)
+    {
+        _deltaDrawCount += delta;
     }
 }

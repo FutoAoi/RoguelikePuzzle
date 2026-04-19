@@ -11,6 +11,7 @@ public class EffectChangeToAnyAllow : IEffect
 
     public void OnExcute(AttackMagic magic)
     {
-        magic.ChangeVector(_vector);
+        if (magic != null)
+            magic.ChangeVector(_vector);
     }
 }

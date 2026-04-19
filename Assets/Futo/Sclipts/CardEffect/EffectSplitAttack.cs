@@ -10,6 +10,7 @@ public class EffectSplitAttack : IEffect
     [Header("•ªŠ„•ûŒü"), SerializeField] private MagicVector[] _vector;
     public void OnExcute(AttackMagic magic)
     {
+        if (magic == null) return;
         MagicObjectPool pool = MagicObjectPool.Instance;
         AttackMagic attack = magic;
         for (int i = 0; i < _vector.Length; i++)
