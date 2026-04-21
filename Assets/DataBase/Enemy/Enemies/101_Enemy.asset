@@ -18,5 +18,10 @@ MonoBehaviour:
   _enemyAP: 1
   _enemyAttackTime: 0
   _enemyAT: 1
+  _canBoardInterference: 0
+  _boardInterferenceTurn: 0
+  _canBuff: 0
+  _buffTurn: 0
+  _canConfirmedAttack: 0
   _enemyConfirmedAttack: 0
-  _enemyEventTurn: 0
+  _rewardAmount: 0000000000000000
