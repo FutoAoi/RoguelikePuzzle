@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7e1249da3dc7c24fbf5545de881e023, type: 3}
-  m_Name: 2001_AddPowerS
+  m_Name: 1106_Down++
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  _cardID: 2001
-  _rarity: 0
+  _cardID: 1106
+  _rarity: 2
   _type: 0
-  _sprite: {fileID: 8378225185371500638, guid: dae2a63ceaecfd24bb9081db0872657b, type: 3}
-  _name: "\u5A01\u529B\u4E0A\u6607(\u5F31)"
-  _description: "\u9B54\u6CD5\u5F3E\u306E\u653B\u6483\u529B\u3092+1\u3059\u308B"
+  _sprite: {fileID: -2094629856210381461, guid: 9f124002399aeea41948df51d7cc4de9, type: 3}
+  _name: "\u65B9\u5411\u8EE2\u63DB(\u4E0B)++"
+  _description: "\u9B54\u6CD5\u5F3E\u306E\u9032\u884C\u65B9\u5411\u3092\u4E0B\u5411\u304D\u306B\u5909\u66F4\u3059\u308B"
   _cost: 1
-  _maxTimes: 5
+  _maxTimes: 8
   _isGhost: 0
   _isDestruction: 0
+  _canEvolution: 0
+  _evolutionID: 0
   _effect:
-  - rid: 2182131988473577537
+  - rid: 2977463319095410754
   references:
     version: 2
     RefIds:
-    - rid: 2182131988473577537
-      type: {class: EffectAddPawer, ns: , asm: Assembly-CSharp}
+    - rid: 2977463319095410754
+      type: {class: EffectChangeToAnyAllow, ns: , asm: Assembly-CSharp}
       data:
-        _addPower: 1
+        _vector: 1

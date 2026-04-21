@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7e1249da3dc7c24fbf5545de881e023, type: 3}
-  m_Name: 1406_GetMoneyL
+  m_Name: 1403_DrawCard++
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  _cardID: 1406
+  _cardID: 1403
   _rarity: 3
   _type: 0
-  _sprite: {fileID: 2093941788613158730, guid: 62ff1806187134a4aa3476e256eccd7c, type: 3}
-  _name: "\u304A\u91D1"
-  _description: "\u304A\u91D1\u3092\u7372\u5F97\u3067\u304D\u308B"
-  _cost: 2
+  _sprite: {fileID: 1727333087660148702, guid: cdb135115c14c4444bd223298ebcff8b, type: 3}
+  _name: "\u30AB\u30FC\u30C9\u30C9\u30ED\u30FC++"
+  _description: "\u6B21\u306E\u30BF\u30FC\u30F3+3\u679A\u30C9\u30ED\u30FC\u3059\u308B"
+  _cost: 1
   _maxTimes: 3
   _isGhost: 1
   _isDestruction: 0
   _canEvolution: 0
   _evolutionID: 0
   _effect:
-  - rid: 7767192443970125891
+  - rid: 7767192443970125890
   references:
     version: 2
     RefIds:
-    - rid: 7767192443970125891
-      type: {class: EffectGetMoney, ns: , asm: Assembly-CSharp}
+    - rid: 7767192443970125890
+      type: {class: EffectCardDraw, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 10000
+        _drawNumber: 3

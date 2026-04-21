@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7e1249da3dc7c24fbf5545de881e023, type: 3}
-  m_Name: 1405_GetMoneyM
+  m_Name: 1117_SplitRL+
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  _cardID: 1405
-  _rarity: 2
+  _cardID: 1117
+  _rarity: 1
   _type: 0
-  _sprite: {fileID: 2093941788613158730, guid: 62ff1806187134a4aa3476e256eccd7c, type: 3}
-  _name: "\u304A\u91D1"
-  _description: "\u304A\u91D1\u3092\u7372\u5F97\u3067\u304D\u308B"
+  _sprite: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
+  _name: "\u5206\u5272\u53F3\u5DE6+"
+  _description: "\u9B54\u6CD5\u5F3E\u3092\u4E8C\u3064\u306B\u5206\u3051\u3066\u3001\u4E8C\u65B9\u5411\u306B\u5C04\u51FA\u3059\u308B"
   _cost: 2
-  _maxTimes: 3
-  _isGhost: 1
+  _maxTimes: 5
+  _isGhost: 0
   _isDestruction: 0
   _canEvolution: 1
-  _evolutionID: 1406
+  _evolutionID: 1118
   _effect:
-  - rid: 7767192443970125891
+  - rid: 9212134124967952449
   references:
     version: 2
     RefIds:
-    - rid: 7767192443970125891
-      type: {class: EffectGetMoney, ns: , asm: Assembly-CSharp}
+    - rid: 9212134124967952449
+      type: {class: EffectSplitAttack, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 1000
+        _vector: 0203

@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e779f02e9cda4ab2e5cb2a38b45f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  _deckMain: e9030000ea030000eb030000ec030000d1070000f3030000790500007a0500007c0500007d0500005f04000061090000
+  _deckMain: 4d0400005004000053040000560400005f04000060040000590400006109000079050000
 --- !u!114 &330289941
 MonoBehaviour:
   m_ObjectHideFlags: 0
