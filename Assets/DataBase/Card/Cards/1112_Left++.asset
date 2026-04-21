@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7e1249da3dc7c24fbf5545de881e023, type: 3}
-  m_Name: 1403_CardDrawL
+  m_Name: 1112_Left++
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  _cardID: 1403
-  _rarity: 3
+  _cardID: 1112
+  _rarity: 2
   _type: 0
-  _sprite: {fileID: 1727333087660148702, guid: cdb135115c14c4444bd223298ebcff8b, type: 3}
-  _name: "\u30AB\u30FC\u30C9\u30C9\u30ED\u30FC++"
-  _description: "\u6B21\u306E\u30BF\u30FC\u30F3+3\u679A\u30C9\u30ED\u30FC\u3059\u308B"
+  _sprite: {fileID: 8172642504681914817, guid: 86136b8d48954d74384826c3def4768c, type: 3}
+  _name: "\u65B9\u5411\u8EE2\u63DB(\u5DE6)++"
+  _description: "\u9B54\u6CD5\u5F3E\u306E\u9032\u884C\u65B9\u5411\u3092\u5DE6\u5411\u304D\u306B\u5909\u66F4\u3059\u308B"
   _cost: 1
-  _maxTimes: 3
-  _isGhost: 1
+  _maxTimes: 8
+  _isGhost: 0
   _isDestruction: 0
   _canEvolution: 0
   _evolutionID: 0
   _effect:
-  - rid: 7767192443970125890
+  - rid: 2977463319095410756
   references:
     version: 2
     RefIds:
-    - rid: 7767192443970125890
-      type: {class: EffectCardDraw, ns: , asm: Assembly-CSharp}
+    - rid: 2977463319095410756
+      type: {class: EffectChangeToAnyAllow, ns: , asm: Assembly-CSharp}
       data:
-        _drawNumber: 3
+        _vector: 3

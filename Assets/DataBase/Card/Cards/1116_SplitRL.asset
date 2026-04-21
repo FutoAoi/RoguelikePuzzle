@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7e1249da3dc7c24fbf5545de881e023, type: 3}
-  m_Name: 1002_Down
+  m_Name: 1116_SplitRL
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  _cardID: 1002
-  _rarity: 0
+  _cardID: 1116
+  _rarity: 1
   _type: 0
-  _sprite: {fileID: -2094629856210381461, guid: 9f124002399aeea41948df51d7cc4de9, type: 3}
-  _name: "\u65B9\u5411\u8EE2\u63DB(\u4E0B)"
-  _description: "\u9B54\u6CD5\u5F3E\u306E\u9032\u884C\u65B9\u5411\u3092\u4E0B\u5411\u304D\u306B\u5909\u66F4\u3059\u308B"
-  _cost: 1
+  _sprite: {fileID: -4906167379763698644, guid: 0c8ee3b894a85694dbb4fcafd6ae31bb, type: 3}
+  _name: "\u5206\u5272\u53F3\u5DE6"
+  _description: "\u9B54\u6CD5\u5F3E\u3092\u4E8C\u3064\u306B\u5206\u3051\u3066\u3001\u4E8C\u65B9\u5411\u306B\u5C04\u51FA\u3059\u308B"
+  _cost: 2
   _maxTimes: 3
   _isGhost: 0
   _isDestruction: 0
+  _canEvolution: 1
+  _evolutionID: 1117
   _effect:
-  - rid: 2977463319095410754
+  - rid: 9212134124967952449
   references:
     version: 2
     RefIds:
-    - rid: 2977463319095410754
-      type: {class: EffectChangeToAnyAllow, ns: , asm: Assembly-CSharp}
+    - rid: 9212134124967952449
+      type: {class: EffectSplitAttack, ns: , asm: Assembly-CSharp}
       data:
-        _vector: 1
+        _vector: 0203
