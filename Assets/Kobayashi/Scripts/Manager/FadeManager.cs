@@ -34,6 +34,14 @@ public class FadeManager : MonoBehaviour
     {
         if (duration == 0f) duration = _fadeTime;
         float to = isFadeIN? 0f : 1f;
-        _panel.DOFade(to,duration).SetEase(ease);
+        float start = isFadeIN ? 1f : 0f;
+        _panel.color = new Color(0f, 0f, 0f,start);
+        _panel.raycastTarget = true;
+        _panel.DOFade(to, duration)
+            .SetEase(ease)
+            .OnComplete(() =>
+            {
+                _panel.raycastTarget = false;
+            });
     }
 }
