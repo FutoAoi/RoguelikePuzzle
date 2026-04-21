@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     private IBattleUI _uiManagerButtle;
     private AttackManager _attackManager;
+    private FadeManager _fadeManager;
     private bool _isOrganize = false,_isDraw = false,_isAction = false,_isReward = false,
         _isBattleUIManager;
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         _generateMapData = MapGenerator.GenerateMap(_mapData);
+        _fadeManager = FadeManager.Instance;
     }
 
     private void Awake()
@@ -149,8 +151,13 @@ public class GameManager : MonoBehaviour
 
     public void SceneChange(SceneType sceneType)
     {
-        SceneManager.LoadScene($"{sceneType}");
-        _currentScene = sceneType;
+        if (_fadeManager == null) _fadeManager = FadeManager.Instance;
+        _fadeManager.FadePanel(false, () =>
+        {
+            SceneManager.LoadScene($"{sceneType}");
+            _currentScene = sceneType;
+            _fadeManager.FadePanel(true);
+        });
     }
 
     private void InitializeBool()
