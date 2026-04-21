@@ -16,7 +16,7 @@ public class CardData : ScriptableObject
     [SerializeField, Tooltip("霊陣")] private bool _isGhost = false;
     [SerializeField, Tooltip("破棄")] private bool _isDestruction = false;
     [SerializeField, Tooltip("進化できるかのフラグ")] private bool _canEvolution;
-    [SerializeField, Tooltip("進化先のID")] private int _evolutionID;
+    [ShowIf("_canEvolution"),SerializeField, Tooltip("進化先のID")] private int _evolutionID;
 
     [Header("効果")]
     [SerializeReference, SubclassSelector] private IEffect[] _effect;
