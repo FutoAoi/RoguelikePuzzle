@@ -23,30 +23,33 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public int CardID;
 
+    private IBattleUI _battleUI;
     private Tween _activeTween;
-    private CardDataBase _cardData;
+    private CardDataBase _cardDataBase;
     private Vector2 _defaultScale,_targetScale;
     private int _cardCost;
     private bool _ignorePointer = false,_isGhostCircle;
     private float _displayTime;
-    private string _description;
-    public void SetCard(int id,RectTransform descriptionArea,bool isDraw)
+
+    private void Start()
     {
-        _cardData = GameManager.Instance.CardDataBase;
+        
+    }
+    public void SetCard(int id,bool isDraw)
+    {
+        _cardDataBase = GameManager.Instance.CardDataBase;
         CardID = id;
-        CardData data = _cardData.GetCardData(CardID);
+        CardData data = _cardDataBase.GetCardData(CardID);
         _cardImage.sprite = data.Sprite;
         _nameText.text = data.Name;
         _cardCost = data.Cost;
         _costText.text = _cardCost.ToString();
-        _description = data.Description;
         _isGhostCircle = data.IsGhost;
 
-        _panel.SetParent(descriptionArea,false);
-        _defaultScale = _panel.localScale;
-        _panel.localScale = Vector2.zero;
-        _image.sprite = data.Sprite;
-        _effectText.text = _description;
+        if(GameManager.Instance.CurrentUIManager.TryGetComponent<IBattleUI>(out var battleUI))
+        {
+            _battleUI = battleUI;
+        }
 
         if (isDraw)
         {
@@ -61,36 +64,14 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        DisplayPanel(true);
+        _battleUI.UpdateDescriptionPanel(CardID,false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        DisplayPanel(false);
+        _battleUI.UpdateDescriptionPanel(CardID,true);
     }
-    /// <summary>
-    /// 効果説明パネルの表示/非表示
-    /// </summary>
-    /// <param name="show"></param>
-    public void DisplayPanel(bool show)
-    {
-        if (_ignorePointer) return;
 
-        if (show)
-        {
-            _targetScale = _defaultScale;
-            _displayTime = _duration;
-        }
-        else
-        {
-            _targetScale = Vector2.zero;
-            _displayTime = _hideSpeed;
-        }
-
-        _activeTween?.Kill();
-        _activeTween = _panel.DOScale(_targetScale, _displayTime)
-            .SetEase(Ease.OutBack);
-    }
     /// <summary>
     /// カーソルが一定時間重なってるかフラグ
     /// </summary>

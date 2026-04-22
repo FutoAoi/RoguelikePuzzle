@@ -37,4 +37,9 @@ public interface IBattleUI
     /// デッキをリセット
     /// </summary>
     void ResetDeck();
+    /// <summary>
+    /// 説明パネルを更新
+    /// </summary>
+    /// <param name="data"></param>
+    void UpdateDescriptionPanel(int id,bool isClear);
 }

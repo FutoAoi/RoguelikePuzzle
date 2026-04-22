@@ -11,7 +11,6 @@ public class DeckPanelManager : MonoBehaviour
 
     [Header("参照")]
     [SerializeField, Tooltip("生成するカード")] private GameObject _cardPrefab;
-    [SerializeField, Tooltip("効果パネル場所")] private RectTransform _textEffectParent;
 
     private DeckManager _deckManager;
     private GameManager _gameManager;
@@ -142,7 +141,7 @@ public class DeckPanelManager : MonoBehaviour
         if (card.TryGetComponent(out Card cardData))
         {
             cardData.CardID = id;
-            cardData.SetCard(id, _textEffectParent, false);
+            cardData.SetCard(id, false);
         }
 
         dict[id].Add(card);

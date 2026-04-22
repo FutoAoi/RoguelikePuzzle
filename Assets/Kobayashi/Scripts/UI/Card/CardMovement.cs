@@ -96,7 +96,6 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Card card = GetComponent<Card>();
             if (card != null)
             {
-                card.DisplayPanel(false);
                 card.IgnorePointerFor(0.2f);
             }
             _uiManager.HandCard.Remove(gameObject);
@@ -139,7 +138,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _uiManager.UpdateCostText(_playerStatus.CurrentCost);
             #region èD‚ÉƒJ[ƒh‚ğ¶¬
             _newCard = Instantiate(_cardPrefab,_trHandArea);
-            _newCard.GetComponent<Card>().SetCard(ID,_uiManager.DescriptionArea,true);
+            _newCard.GetComponent<Card>().SetCard(ID,true);
             CanvasGroup cg = _newCard.GetComponent<CanvasGroup>();
             if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
             cg.blocksRaycasts = true;

@@ -26,7 +26,6 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("手札の場所")] public Transform HandArea;
     [SerializeField, Tooltip("カードの基盤")] public GameObject CardPrefab;
     [SerializeField, Tooltip("ドラッグ時の場所")] public RectTransform DragLayer;
-    [SerializeField, Tooltip("効果説明パネル")] public RectTransform DescriptionArea;
     [SerializeField, Tooltip("カットインパネル")] private GameObject _enemyAttackPanel;
     [SerializeField, Tooltip("リザルトパネル")] private GameObject _resultPanel;
     [SerializeField, Tooltip("攻撃場所選択パネル")] private GameObject _attackPosPanel;
@@ -35,6 +34,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     [SerializeField, Tooltip("最大コストテキスト")] private TextMeshProUGUI _maxCostText;
     [SerializeField, Tooltip("デッキ確認用パネル")] private GameObject _deckPanel;
     [SerializeField, Tooltip("ゲームオーバー用パネル")] private GameObject _gameoverPanel;
+    [SerializeField, Tooltip("説明パネル")] public GameObject _descriptionPanel;
 
     public bool _isFinishCutIn = false;
 
@@ -42,9 +42,10 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     private PlayerStatus _status;
     private DeckManager _deckManager;
     private RewardManager _rewardManager;
+    private DescriptionPanel _description;
     private GameObject _card;
-    private TextMeshProUGUI _text;
-    private Image _panelimg;
+    private TextMeshProUGUI _text,_descriptionText;
+    private Image _panelimg,_descptionImage;
     private RectTransform _panelRectTr;
     private Color _defaultColor;
     private int _currentNumber,_deltaDrawCount = 0;
@@ -70,6 +71,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         _fadePanel.gameObject.SetActive(false);
         _attackPosPanel.gameObject.SetActive(true);
         _deckPanel.gameObject.SetActive(false);
+        _descriptionPanel.gameObject.SetActive(true);
     }
     public IEnumerator DrawCard()
     {
@@ -134,7 +136,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
     {
         _card = Instantiate(CardPrefab, _playerHandTr);
         Card card = _card.GetComponent<Card>();
-        card.SetCard(_deckManager.DrawCard(), DescriptionArea,true);
+        card.SetCard(_deckManager.DrawCard(),true);
         DeckCard.Remove(card.CardID);
         HandCard.Add(_card);
     }
@@ -235,6 +237,15 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
             {
                 _fadePanel.gameObject.SetActive(false);
             });
+    }
+    public void UpdateDescriptionPanel(int id, bool isClear)
+    {
+        if (!_descriptionPanel.activeSelf) return;
+
+        if (_description == null)
+            _description = _descriptionPanel.GetComponent<DescriptionPanel>();
+
+        _description.UpdateText(_gameManager.CardDataBase.GetCardData(id),isClear);
     }
     /// <summary>
     /// ドロー数を増減させる
