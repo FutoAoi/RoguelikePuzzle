@@ -12,11 +12,6 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     [SerializeField, Tooltip("カード名")] private TextMeshProUGUI _nameText;
     [SerializeField, Tooltip("コスト表示")]private TextMeshProUGUI _costText;
 
-    [Header("効果表示パネル")]
-    [SerializeField, Tooltip("パネル")] private RectTransform _panel;
-    [SerializeField, Tooltip("表示画像")] private Image _image;
-    [SerializeField, Tooltip("効果テキスト")] private TextMeshProUGUI _effectText;
-
     [Header("数値設定")]
     [SerializeField,Tooltip("表示アニメーション時間")] private float _duration = 0.2f;
     [SerializeField, Tooltip("非表示アニメーション時間")] private float _hideSpeed = 0.1f;
@@ -24,12 +19,9 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int CardID;
 
     private IBattleUI _battleUI;
-    private Tween _activeTween;
     private CardDataBase _cardDataBase;
-    private Vector2 _defaultScale,_targetScale;
     private int _cardCost;
     private bool _ignorePointer = false,_isGhostCircle;
-    private float _displayTime;
 
     private void Start()
     {
