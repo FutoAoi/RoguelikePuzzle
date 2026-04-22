@@ -589,7 +589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4636773860857036971, guid: 31e6febe8b53d7346b7aa23dbe3d915a, type: 3}
+  m_Sprite: {fileID: 562307298181425329, guid: 7fc0f5d9ca72a83428a9ab1156881abe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2232,7 +2232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackManager
   _stageManager: {fileID: 655437304}
   _uiManager: {fileID: 1154090789}
-  _playerPos: {fileID: 0}
+  _playerPos: {fileID: 460636252}
   _interval: 0.2
   _duration: 3
   AttackStartPos: 0

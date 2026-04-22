@@ -152,9 +152,9 @@ public class GameManager : MonoBehaviour
     public void SceneChange(SceneType sceneType)
     {
         if (_fadeManager == null) _fadeManager = FadeManager.Instance;
-        _fadeManager.FadePanel(false, () =>
+        _fadeManager.FadePanel(false, async () =>
         {
-            SceneManager.LoadScene($"{sceneType}");
+            await SceneManager.LoadSceneAsync($"{sceneType}");
             _currentScene = sceneType;
             _fadeManager.FadePanel(true);
         });
