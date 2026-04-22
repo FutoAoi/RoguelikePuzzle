@@ -43,6 +43,6 @@ public class FadeManager : MonoBehaviour
             {
                 _panel.raycastTarget = false;
                 onComplate?.Invoke();
-            });
+            }).SetAutoKill(true);
     }
 }
