@@ -61,7 +61,7 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _battleUI.UpdateDescriptionPanel(CardID,true);
+        //_battleUI.UpdateDescriptionPanel(CardID,true);
     }
 
     /// <summary>

@@ -340,7 +340,7 @@ public class AttackMagic : MonoBehaviour
 
                 int indexX = _currentSlot.x - 1 + i;
                 int indexY = _currentSlot.y - 1 + j;
-                if (indexX < 0 || indexX < 0 || indexX > _height - 1 || indexY >= _width) return;
+                if (indexX < 0 || indexY < 0 || indexX > _height - 1 || indexY >= _width) return;
                 if (_stageManager
                     .SlotList[_currentSlot.x - 1 + i][_currentSlot.y - 1 + j]
                     .TryGetComponent<TileSlot>(out var slot))

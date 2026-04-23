@@ -76,3 +76,21 @@ public enum PlayerType
     Berserker,
     Technical
 }
+
+public enum BuffType : byte
+{
+    Poizon,
+    Strength,
+    Weaken,
+    Tired,
+    Regeneration,
+    Counter,
+    Combo,
+    Berserker,
+    Technical,
+    CostMinus,
+    CostPlus,
+    CardPlus,
+    Rapid,
+    End
+}
