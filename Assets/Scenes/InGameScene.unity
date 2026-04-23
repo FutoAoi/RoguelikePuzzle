@@ -806,10 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feadc0944e91e649be48c3804cae688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescriptionPanel
-  Name: {fileID: 792955347}
-  Cost: {fileID: 1460829955}
-  Durability: {fileID: 2023314368}
-  Description: {fileID: 1159417359}
+  _name: {fileID: 792955347}
+  _cost: {fileID: 1460829955}
+  _durability: {fileID: 2023314368}
+  _description: {fileID: 1159417359}
 --- !u!114 &494222119
 MonoBehaviour:
   m_ObjectHideFlags: 0
