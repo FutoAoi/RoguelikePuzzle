@@ -7,7 +7,7 @@ public class BuffData : ScriptableObject
     [SerializeField] private string _name;
     [TextArea(3, 10)]
     [SerializeField] private string _description;
-    [SerializeField] private IBuff[] _effect;
+    [SerializeReference, SubclassSelector] private IBuff[] _effect;
 
     public BuffType Type => _type;
     public string Name => _name;
