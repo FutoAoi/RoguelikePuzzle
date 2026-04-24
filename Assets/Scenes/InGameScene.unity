@@ -2828,6 +2828,7 @@ MonoBehaviour:
   _distance: 0.1
   _valueDuration: 0.3
   GrowColor: {r: 1, g: 0.5571428, b: 0, a: 1}
+  SelectColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   _playerHandTr: {fileID: 2118124055}
   HandArea: {fileID: 2118124055}
   CardPrefab: {fileID: 8233745660893882452, guid: 292f5517cfce1fa4189433030bf34c2b, type: 3}

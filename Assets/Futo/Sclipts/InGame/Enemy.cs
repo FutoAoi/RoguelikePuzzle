@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : CharacterBase
 {
     public bool IsAttackTurn => _isAttackTurn;
     public bool IsDead => _isDead;
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
     /// エネミーに攻撃
     /// </summary>
     /// <param name="damage"></param>
-    public void Damaged(int damage)
+    public override void Damaged(int damage)
     {
         if (_isDead) return;
         _currentHp -= damage;
