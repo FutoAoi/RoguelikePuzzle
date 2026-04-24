@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TileSlot : MonoBehaviour
+public class TileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject _tileBoardPrefab;
     [SerializeField] private Sprite[] _tileSprites;
@@ -116,5 +117,17 @@ public class TileSlot : MonoBehaviour
             .OnStart(() => _isColorChange = true)
             .OnComplete(() => _isColorChange = false)
             .OnKill(() => _isColorChange = false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _img.DOColor(_uiManager.SelectColor, 0.1f);
+        if (!IsOccupied) return;
+        _uiManager.UpdateDescriptionPanel(ID,false);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _img.DOColor(Color.white, 0.1f);
     }
 }

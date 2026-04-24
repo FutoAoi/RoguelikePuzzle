@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
+  _buffDataBase: {fileID: 11400000, guid: d7505e2156f97bc45825e7c5a58c379b, type: 2}
   _stageDataBase: {fileID: 11400000, guid: de974fe0ee6462e4da49dfcc42f365db, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
   _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
@@ -806,10 +807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feadc0944e91e649be48c3804cae688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescriptionPanel
-  Name: {fileID: 792955347}
-  Cost: {fileID: 1460829955}
-  Durability: {fileID: 2023314368}
-  Description: {fileID: 1159417359}
+  _name: {fileID: 792955347}
+  _cost: {fileID: 1460829955}
+  _durability: {fileID: 2023314368}
+  _description: {fileID: 1159417359}
 --- !u!114 &494222119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2828,6 +2829,7 @@ MonoBehaviour:
   _distance: 0.1
   _valueDuration: 0.3
   GrowColor: {r: 1, g: 0.5571428, b: 0, a: 1}
+  SelectColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   _playerHandTr: {fileID: 2118124055}
   HandArea: {fileID: 2118124055}
   CardPrefab: {fileID: 8233745660893882452, guid: 292f5517cfce1fa4189433030bf34c2b, type: 3}

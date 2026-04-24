@@ -6,12 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public CardDataBase CardDataBase => _cardDataBase;
+    public BuffDataBase BuffDataBase => _buffDataBase;
     public StageDataBase StageDataBase => _stageDataBase;
     public EnemyDataBase EnemyDataBase => _enemyDataBase;
     public GenerateMapData GenerateMapData => _generateMapData;
 
     [Header("データベース")]
     [SerializeField, Tooltip("カード")] private CardDataBase _cardDataBase;
+    [SerializeField, Tooltip("バフ")] private BuffDataBase _buffDataBase;
     [SerializeField, Tooltip("ステージ")] private StageDataBase _stageDataBase;
     [SerializeField, Tooltip("エネミー")] private EnemyDataBase _enemyDataBase;
     [SerializeField, Tooltip("マップデータ")] private MapData _mapData;
