@@ -6,9 +6,9 @@ public class DeckManager : MonoBehaviour
     public static DeckManager Instance { get; private set; }
 
     [Header("メインデッキ")]
-    [SerializeField] private List<int> _deckMain = new List<int>();
+    [SerializeField] private DeckData _deckData;
 
-    public List<int> DeckMain => _deckMain;
+    public List<int> DeckMain => _deckData.Cards;
 
     private GameManager _gameManager;
     private UIManager_Battle _UIManager_Battle;
@@ -33,7 +33,7 @@ public class DeckManager : MonoBehaviour
     /// <param name="id"></param>
     public void AddDeck(int id)
     {
-        _deckMain.Add(id);
+        _deckData.Cards.Add(id);
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public class DeckManager : MonoBehaviour
 
     private void ReconstructionDeck(List<int> deleteID)
     {
-        _deck = new List<int>(_deckMain);
+        _deck = new List<int>(_deckData.Cards);
         if (deleteID.Count == 0) return;
 
         foreach (int id in deleteID)

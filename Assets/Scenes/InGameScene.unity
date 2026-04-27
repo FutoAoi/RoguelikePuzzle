@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e779f02e9cda4ab2e5cb2a38b45f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  _deckMain: 4d0400005004000053040000560400005f04000060040000590400006109000079050000
+  _deckData: {fileID: 11400000, guid: a00ec754788d02b4c95595d9daf204fb, type: 2}
 --- !u!114 &330289941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 220, y: 170}
+  m_CellSize: {x: 176, y: 136}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
   m_ConstraintCount: 5
@@ -5016,6 +5016,10 @@ PrefabInstance:
     - target: {fileID: 3197649959088890940, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: m_Name
       value: '[IMG]Cost'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204041110071214213, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
+      propertyPath: _rarity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3204041110071214213, guid: 81c858b017dcc134b9092a758c237e94, type: 3}
       propertyPath: _getButton
