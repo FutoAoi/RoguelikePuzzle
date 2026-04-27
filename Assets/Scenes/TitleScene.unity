@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727e779f02e9cda4ab2e5cb2a38b45f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  _deckMain: 4d0400005004000053040000560400005c040000
+  _deckData: {fileID: 11400000, guid: a00ec754788d02b4c95595d9daf204fb, type: 2}
 --- !u!114 &217468533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
+  _buffDataBase: {fileID: 0}
   _stageDataBase: {fileID: 11400000, guid: de974fe0ee6462e4da49dfcc42f365db, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
   _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
