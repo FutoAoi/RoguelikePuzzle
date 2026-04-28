@@ -36,8 +36,9 @@ public enum CardRarity : byte
 /// </summary>
 public enum EnemyAttackType : byte
 {
-    Normal,
-    Penetrating,
+    Buff,
+    BoardInterface,
+
 }
 /// <summary>
 /// ƒV[ƒ“‚Ì–¼‘O
@@ -65,9 +66,9 @@ public enum CardType : byte
  public enum InGameDeckType : byte
 {
     Deck,
-    Hand,
     Discard,
-    Remove
+    Remove,
+    Hand
 }
 
 public enum PlayerType
