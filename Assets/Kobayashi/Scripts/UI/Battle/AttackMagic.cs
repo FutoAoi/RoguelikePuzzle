@@ -284,9 +284,14 @@ public class AttackMagic : MonoBehaviour
     /// <param name="slot"></param>
     private void ActivateMagic(TileSlot slot,int decreaseCount = 1,bool _isDecreaseEffect = false)
     {
-        foreach (IEffect Effects in _gameManager.CardDataBase.GetCardData(slot.ID).Effect)
+        CardData cardData = _gameManager.CardDataBase.GetCardData(slot.ID);
+        if(cardData.MoveEffect != null)
         {
-            if (_gameManager.CardDataBase.GetCardData(slot.ID).IsGhost)
+            cardData.MoveEffect.OnExcute(this);
+        }
+        foreach (IEffect Effects in cardData.Effect)
+        {
+            if (cardData.IsGhost)
             {
 
             }

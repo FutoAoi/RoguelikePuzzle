@@ -123,11 +123,13 @@ public class TileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         _img.DOColor(_uiManager.SelectColor, 0.1f);
         if (!IsOccupied) return;
+        _uiManager.DisplayDescriptionPanel(true);
         _uiManager.UpdateDescriptionPanel(ID,false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        _uiManager.DisplayDescriptionPanel(false);
         _img.DOColor(Color.white, 0.1f);
     }
 }

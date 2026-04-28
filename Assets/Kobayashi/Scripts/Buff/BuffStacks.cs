@@ -25,7 +25,7 @@ public struct BuffStacks
     {
         for(byte i = 0; i < _counts.Length; i++)
         {
-            if (_counts[i] == 0) continue;
+            if (_counts[i] == 0 || _counts[i] == 255) continue;
 
             _counts[i] -= amount;
             if (_counts[i] < 0)
