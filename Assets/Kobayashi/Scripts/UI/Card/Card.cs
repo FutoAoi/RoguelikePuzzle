@@ -56,12 +56,13 @@ public class Card : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        _battleUI.DisplayDescriptionPanel(true);
         _battleUI.UpdateDescriptionPanel(CardID,false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //_battleUI.UpdateDescriptionPanel(CardID,true);
+        _battleUI.DisplayDescriptionPanel(false);
     }
 
     /// <summary>

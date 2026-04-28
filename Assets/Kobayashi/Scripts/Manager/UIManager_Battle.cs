@@ -72,7 +72,7 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
         _fadePanel.gameObject.SetActive(false);
         _attackPosPanel.gameObject.SetActive(true);
         _deckPanel.gameObject.SetActive(false);
-        _descriptionPanel.gameObject.SetActive(true);
+        _descriptionPanel.gameObject.SetActive(false);
     }
     public IEnumerator DrawCard()
     {
@@ -247,6 +247,11 @@ public class UIManager_Battle : UIManagerBase, IBattleUI
             _description = _descriptionPanel.GetComponent<DescriptionPanel>();
 
         _description.UpdateText(_gameManager.CardDataBase.GetCardData(id),isClear);
+    }
+
+    public void DisplayDescriptionPanel(bool isDisplay)
+    {
+        _descriptionPanel.SetActive(isDisplay);
     }
     /// <summary>
     /// ƒhƒ[”‚ğ‘Œ¸‚³‚¹‚é

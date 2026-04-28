@@ -1,5 +1,7 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DescriptionPanel : MonoBehaviour
 {
@@ -9,8 +11,15 @@ public class DescriptionPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _durability;
     [SerializeField] private TextMeshProUGUI _description;
 
+    [Header("-----アニメーション設定-----")]
+    [SerializeField] private float _duration = 0.1f;
+
+    private bool _isTween;
+    private Image _img;
+
     private void Start()
     {
+        _img = GetComponent<Image>();
         UpdateText(null, true);
     }
     /// <summary>

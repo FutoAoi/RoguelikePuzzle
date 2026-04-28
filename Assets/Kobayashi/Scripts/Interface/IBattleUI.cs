@@ -42,4 +42,9 @@ public interface IBattleUI
     /// </summary>
     /// <param name="data"></param>
     void UpdateDescriptionPanel(int id,bool isClear);
+    /// <summary>
+    /// à–¾ƒpƒlƒ‹•\¦
+    /// </summary>
+    /// <param name="isDisplay"></param>
+    void DisplayDescriptionPanel(bool isDisplay);
 }
