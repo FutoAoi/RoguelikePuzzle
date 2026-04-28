@@ -19,6 +19,7 @@ public class CardData : ScriptableObject
     [ShowIf("_canEvolution"),SerializeField, Tooltip("i‰»æ‚ÌID")] private int _evolutionID;
 
     [Header("Œø‰Ê")]
+    [SerializeReference, SubclassSelector] private IEffect _moveEffect;
     [SerializeReference, SubclassSelector] private IEffect[] _effect;
 
     public int CardID => _cardID;
@@ -26,6 +27,7 @@ public class CardData : ScriptableObject
     public string Name => _name;
     public string Description => _description;
     public int Cost => _cost;
+    public IEffect MoveEffect => _moveEffect;
     public IEffect[] Effect => _effect;
     public int MaxTimes => _maxTimes;
     public CardRarity Rarity => _rarity;
