@@ -20,7 +20,6 @@ public class DescriptionPanel : MonoBehaviour
     private void Start()
     {
         _img = GetComponent<Image>();
-        UpdateText(null, true);
     }
     /// <summary>
     /// 説明パネルの魔法陣情報を更新

@@ -101,6 +101,16 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _uiManager.HandCard.Remove(gameObject);
             Destroy(gameObject,0.05f);
         }
+        else if(_isBoardCard)
+        {
+            if (tileSlot.IsLastTimeCard) return;
+            tileSlot.ClearSlot();
+            _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
+            _playerStatus.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            InstanceHandCard(ID);
+            Destroy(gameObject, 0.05f);
+        }
         else
         {
             ReturnToOriginalSlot();
@@ -136,18 +146,24 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
             _playerStatus.ChangeCost(_cost, false);
             _uiManager.UpdateCostText(_playerStatus.CurrentCost);
-            #region 手札にカードを生成
-            _newCard = Instantiate(_cardPrefab,_trHandArea);
-            _newCard.GetComponent<Card>().SetCard(ID,true);
-            CanvasGroup cg = _newCard.GetComponent<CanvasGroup>();
-            if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
-            cg.blocksRaycasts = true;
-            cg.alpha = 1f;
-            RectTransform rt = _newCard.GetComponent<RectTransform>();
-            rt.anchoredPosition = Vector2.zero;
-            _uiManager.HandCard.Add(_newCard);
-            #endregion
+            InstanceHandCard(ID);
             Destroy(gameObject,0.05f);
         }
+    }
+    /// <summary>
+    /// 手札にカード生成
+    /// </summary>
+    /// <param name="id">ID</param>
+    private void InstanceHandCard(int id)
+    {
+        _newCard = Instantiate(_cardPrefab, _trHandArea);
+        _newCard.GetComponent<Card>().SetCard(id, true);
+        CanvasGroup cg = _newCard.GetComponent<CanvasGroup>();
+        if (cg == null) cg = _newCard.AddComponent<CanvasGroup>();
+        cg.blocksRaycasts = true;
+        cg.alpha = 1f;
+        RectTransform rt = _newCard.GetComponent<RectTransform>();
+        rt.anchoredPosition = Vector2.zero;
+        _uiManager.HandCard.Add(_newCard);
     }
 }
