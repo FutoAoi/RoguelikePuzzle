@@ -18,8 +18,9 @@ public class CardData : ScriptableObject
     [SerializeField, Tooltip("進化できるかのフラグ")] private bool _canEvolution;
     [ShowIf("_canEvolution"),SerializeField, Tooltip("進化先のID")] private int _evolutionID;
 
-    [Header("効果")]
+    [Header("移動効果")]
     [SerializeReference, SubclassSelector] private IEffect _moveEffect;
+    [Header("効果")]
     [SerializeReference, SubclassSelector] private IEffect[] _effect;
 
     public int CardID => _cardID;
