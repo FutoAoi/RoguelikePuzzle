@@ -80,7 +80,6 @@ public class Enemy : CharacterBase
             _ghostTween.Kill();
         }
         _ghostTween = _ghostBar.DOFillAmount(_hpRatio, _ghostSpeed).SetDelay(_ghostDelay);
-        Debug.Log($"{damage}‚ð—^‚¦‚½");
         if(_currentHp <= 0)
         {
             _isDead = true;
@@ -97,7 +96,6 @@ public class Enemy : CharacterBase
         if (_isDead)return;
         _enemyAT -= reductionTurn;
         _attackTurnTMP.text = _enemyAT.ToString();
-        Debug.Log($"{name}‚ÌUŒ‚‚Ü‚ÅŽc‚è{_enemyAT}ƒ^[ƒ“");
         if(_enemyAT <= 0)
         {
             _isAttackTurn = true;
@@ -127,8 +125,6 @@ public class Enemy : CharacterBase
         _backGround.SetActive(false);
         _enemyImage.DOFade(0f,0.1f);
 
-        GameManager.Instance.PlayerStatus.GetMoney(_enemy.RandomReword());
-
-        Debug.Log($"{name}‚ð“|‚µ‚½I");
+        _gameManager.PlayerStatus.GetMoney(_enemy.RandomReword());
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 public class Player : CharacterBase
 {
     private PlayerStatus _status;
-    private GameManager _gameManager;
 
-    private void Start()
+    protected override void Start()
     {
-        _gameManager = GameManager.Instance;
+        base.Start();
+
         _gameManager.Player = this;
         _status = _gameManager.PlayerStatus;
     }

@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// バフの残数データを管理
+/// </summary>
 public struct BuffStacks
 {
     private byte[] _counts;
@@ -21,15 +23,15 @@ public struct BuffStacks
     /// 全てのバフターンを減らす
     /// </summary>
     /// <param name="amount">減る量</param>
-    public void DecreaseAll(byte amount = 1)
+    public void DecreaseAll(BuffDataBase buffDataBase,byte amount = 1)
     {
         for(byte i = 0; i < _counts.Length; i++)
         {
-            if (_counts[i] == 0 || _counts[i] == 255) continue;
+            if (_counts[i] == 0) continue;
 
-            _counts[i] -= amount;
-            if (_counts[i] < 0)
-                _counts[i] = 0;
+            if (!buffDataBase.GetBuffData((BuffType)i).IsDecreaseTurn) continue;
+
+            _counts[i] = (byte)Mathf.Max(0, _counts[i] - amount);
         }
     }
 }

@@ -4,6 +4,13 @@ public abstract class CharacterBase : MonoBehaviour, IBuffable
 {
     #region 変数宣言
     private BuffStacks _buffs = new BuffStacks((int)BuffType.End);
+    protected GameManager _gameManager;
+    #endregion
+    #region ライフサイクル
+    protected virtual void Start()
+    {
+        _gameManager = GameManager.Instance;
+    }
     #endregion
     #region 基本処理
     /// <summary>
@@ -21,7 +28,7 @@ public abstract class CharacterBase : MonoBehaviour, IBuffable
 
     public void DecreaseAll(byte amount = 1)
     {
-        _buffs.DecreaseAll(amount);
+        _buffs.DecreaseAll(_gameManager.BuffDataBase,amount);
     }
     public bool HasBuff(BuffType type) => _buffs.Has(type);
 
