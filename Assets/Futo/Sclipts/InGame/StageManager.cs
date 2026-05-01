@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
 {
     public List<List<GameObject>> SlotList => _slotList;
     public List<Enemy> EnemyList => _enemyList;
+    public StageData Stage => _stage;
 
     [Header("ステージの情報")]
     [SerializeField, Tooltip("ステージのタイルリスト")] private List<List<GameObject>> _slotList = new List<List<GameObject>>();
