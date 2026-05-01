@@ -473,7 +473,7 @@ MonoBehaviour:
     Floors: []
     CurrentFloorIndex: 0
     CurrentRoomIndex: 0
-  StageID: 1
+  StageID: 0
   CurrentPhase: 5
   Reset: 0
   IsEnemyAction: 0

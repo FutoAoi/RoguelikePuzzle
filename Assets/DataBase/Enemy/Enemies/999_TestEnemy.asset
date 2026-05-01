@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51e2a5f21979bbf47aa58b65548b088c, type: 3}
-  m_Name: 101_Enemy
+  m_Name: 999_TestEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  _enemyID: 101
-  _sprite: {fileID: 434676308133485250, guid: 323b85052dc195f42a7369d6a7559044, type: 3}
-  _enemyHP: 3
+  _enemyID: 999
+  _sprite: {fileID: 562307298181425329, guid: 7fc0f5d9ca72a83428a9ab1156881abe, type: 3}
+  _enemyHP: 10
   _enemyAP: 1
-  _enemyAttackTime: 0
+  _enemyAttackTime: 1
   _enemyAT: 1
-  _isSpecialAttack: 0
-  _enemySAT: 0
-  _canBoardInterference: 0
-  _effectTime: 0
-  _cardEffects: []
+  _isSpecialAttack: 1
+  _enemySAT: 1
+  _canBoardInterference: 1
+  _effectTime: 1
+  _cardEffects:
+  - {fileID: 11400000, guid: 88876d63aa5d45a4d8243e8fff6654f5, type: 2}
   _canBuff: 0
   _rewardAmount: 0000000000000000

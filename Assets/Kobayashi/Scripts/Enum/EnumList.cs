@@ -37,8 +37,8 @@ public enum CardRarity : byte
 public enum EnemyAttackType : byte
 {
     Buff,
+    Normal,
     BoardInterface,
-
 }
 /// <summary>
 /// ƒV[ƒ“‚Ì–¼‘O
