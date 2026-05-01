@@ -135,7 +135,7 @@ public class Enemy : CharacterBase
     /// <returns></returns>
     public IEnumerator BuffCast()
     {
-        if (_enemy.CanBuff)
+        if (_enemy.CanBuff && !_isDead)
         {
             foreach (IBuff buff in _enemy.Buffs)
             {
@@ -151,7 +151,7 @@ public class Enemy : CharacterBase
     /// <returns></returns>
     public IEnumerator SpecialAttack()
     {
-        if (_enemy.CanBoardInterference)
+        if (_enemy.CanBoardInterference && !_isDead)
         {
             StageData stageData = _gameManager.StageManager.Stage;
 
@@ -212,6 +212,7 @@ public class Enemy : CharacterBase
     {
         yield return null;
         _attackTurnTMP.text = null;
+        _specialTMP.text = null;
         _enemyHpText.text = null;
         _backGround.SetActive(false);
         _enemyImage.DOFade(0f,0.1f);
