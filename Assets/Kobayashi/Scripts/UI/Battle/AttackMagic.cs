@@ -21,8 +21,7 @@ public class AttackMagic : MonoBehaviour
 
     private GameManager _gameManager;
     private AttackManager _attackManager;
-    private Player _player;
-    private PlayerStatus _playerStatus;
+    private StagePlayer _player;
     private Enemy _attackedEnemy;
     private Action _onDisable;
     private TileSlot _tileSlot;
@@ -218,7 +217,6 @@ public class AttackMagic : MonoBehaviour
         }
 
         _player = _gameManager.Player;
-        _playerStatus = _gameManager.PlayerStatus;
 
         if (_isAttack)
         {
@@ -233,7 +231,7 @@ public class AttackMagic : MonoBehaviour
             {
                 _attackRectTr.DOMove(_player.transform.position, interval)
                     .SetEase(Ease.Linear);
-                _playerStatus.Damaged(AttackPower);
+                _player.Damaged(AttackPower);
             } 
         }
         else
@@ -250,7 +248,7 @@ public class AttackMagic : MonoBehaviour
         {
             if (isPlayer)
             {
-                _playerStatus.Damaged(AttackPower);
+                _player.Damaged(AttackPower);
             }
             else
             {

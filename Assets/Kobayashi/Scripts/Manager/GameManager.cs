@@ -22,10 +22,9 @@ public class GameManager : MonoBehaviour
     [Header("ID")]
     [SerializeField, Tooltip("ステージID")] public int StageID = 1;
 
-    public PlayerStatus PlayerStatus { get; private set; }
     public BattlePhase CurrentPhase;
     public bool Reset = false, IsEnemyAction = false;
-    public Player Player;
+    public StagePlayer Player;
 
     [NonSerialized] public UIManagerBase CurrentUIManager;
     [NonSerialized] public AttackManager AttackManager;
@@ -44,6 +43,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         _generateMapData = MapGenerator.GenerateMap(_mapData);
         _fadeManager = FadeManager.Instance;
+        Player.SetStatus(10, 10);
     }
 
     private void Awake()
@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        PlayerStatus = new PlayerStatus();
         CurrentPhase = BattlePhase.BuildStage;
     }
 
@@ -86,7 +85,7 @@ public class GameManager : MonoBehaviour
                         {
                             DeckManager.Instance.ShuffleDeck();
                             StartCoroutine(_uiManagerButtle.DrawCard());
-                            PlayerStatus.SetCost();
+                            Player.SetCost();
                             _isDraw = true;
                         }
                         if (!_isOrganize)
