@@ -108,4 +108,10 @@ public class RewardCard : MonoBehaviour, IPointerDownHandler
         });
         
     }
+
+    public void ChangeEncyclopediaCard()
+    {
+        _cardFrontObj.SetActive(true);
+        _cardBackObj.SetActive(false);
+    }
 }

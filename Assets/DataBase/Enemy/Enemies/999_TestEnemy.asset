@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 999_TestEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   _enemyID: 999
-  _sprite: {fileID: 562307298181425329, guid: 7fc0f5d9ca72a83428a9ab1156881abe, type: 3}
+  _sprite: {fileID: -6393953091253504009, guid: 3114f275a66737b4693f866287f6c5fa, type: 3}
   _enemyHP: 10
   _enemyAP: 1
   _enemyAttackTime: 1
