@@ -9,13 +9,11 @@ public class Enemy : CharacterBase
 {
     public bool IsAttackTurn => _isAttackTurn;
     public bool IsSpecialAttack => _isSpecialAttack;
-    public bool IsDead => _isDead;
 
     [Header("エネミー詳細")]
     [SerializeField, Tooltip("エネミーの画像")] private Image _enemyImage;
     [SerializeField, Tooltip("攻撃ターンの表示")] private TextMeshProUGUI _attackTurnTMP;
     [SerializeField, Tooltip("特殊攻撃ターンの表示")] private TextMeshProUGUI _specialTMP;
-    [SerializeField, Tooltip("エネミーのHP")] private int _enemyHP;
     [SerializeField, Tooltip("エネミーの攻撃力")] private int _enemyAP;
     [SerializeField, Tooltip("エネミーの攻撃までのターン数")] private int _enemyAT;
 
@@ -29,12 +27,10 @@ public class Enemy : CharacterBase
     [SerializeField, Tooltip("エネミーのHPテキスト")] private TMP_Text _enemyHpText;
 
     private EnemyData _enemy;
-    private int _id;
     private bool _isAttackTurn = false;
     private bool _isSpecialAttack = false;
     private bool _isDead = false;
     private RectTransform _rect;
-    private int _currentHp = 0;
     private int _currentSAT;
     private float _ghostHp;
     private float _hpRatio;
@@ -47,7 +43,7 @@ public class Enemy : CharacterBase
     public void SetEnemyStatus(int enemyID)
     {
         _enemy = GameManager.Instance.EnemyDataBase.GetEnemyData(enemyID);
-        _enemyHP = _enemy.EnemyHP;
+        SetStatus(_enemy.EnemyHP, _enemy.EnemyHP);
         _enemyAP = _enemy.EnemyAP;
         _enemyAT = _enemy.EnemyAT;
         if (_enemy.IsSpecialAttack)
@@ -59,14 +55,13 @@ public class Enemy : CharacterBase
         {
             _specialTMP.text = null;
         }
-        _currentHp = _enemyHP;
         _rect = GetComponent<RectTransform>();
         _enemyImage.sprite = _enemy.Sprite;
         _attackTurnTMP.text = _enemyAT.ToString();
-        _hpRatio = (float)_currentHp / _enemyHP;
+        _hpRatio = (float)CurrentHP / MaxHP;
         _mainBar.fillAmount = _hpRatio;
         _ghostBar.fillAmount = _hpRatio;
-        _enemyHpText.text = $"{_currentHp}/{_enemyHP}";
+        _enemyHpText.text = $"{CurrentHP}/{MaxHP}";
         if (enemyID == 0)
         {
             _enemyImage.color = new Color(1f,1f,1f,0f);
@@ -76,6 +71,7 @@ public class Enemy : CharacterBase
             _isDead = true;
             _backGround.SetActive(false);
         }
+        Debug.Log("Enemy" + $"{CurrentHP}");
     }
     /// <summary>
     /// エネミーに攻撃
@@ -83,23 +79,16 @@ public class Enemy : CharacterBase
     /// <param name="damage"></param>
     public override void Damaged(int damage)
     {
-        if (_isDead) return;
-        _currentHp -= damage;
-        _currentHp = Mathf.Max(0, _currentHp);
-        _hpRatio = (float)_currentHp / _enemyHP;
+        base.Damaged(damage);
+        _hpRatio = (float)CurrentHP / MaxHP;
         DamagePopUpObjectPool.Instance.Get(_rect.anchoredPosition + new Vector2(Random.Range(-50f, 50f), 0f), damage);
-        _enemyHpText.text = $"{_currentHp}/{_enemyHP}";
+        _enemyHpText.text = $"{CurrentHP}/{MaxHP}";
         _mainBar.DOFillAmount(_hpRatio, _mainSpeed);
         if(_ghostTween != null && _ghostTween.IsActive())
         {
             _ghostTween.Kill();
         }
         _ghostTween = _ghostBar.DOFillAmount(_hpRatio, _ghostSpeed).SetDelay(_ghostDelay);
-        if(_currentHp <= 0)
-        {
-            _isDead = true;
-            _mainBar.DOFillAmount(0f, _mainSpeed).OnComplete(() => StartCoroutine(Dead()));
-        }
     }
 
     /// <summary>
@@ -208,7 +197,7 @@ public class Enemy : CharacterBase
     /// 死亡コルーチン
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Dead()
+    private IEnumerator DeadIEnumerator()
     {
         yield return null;
         _attackTurnTMP.text = null;
@@ -217,6 +206,12 @@ public class Enemy : CharacterBase
         _backGround.SetActive(false);
         _enemyImage.DOFade(0f,0.1f);
 
-        _gameManager.PlayerStatus.GetMoney(_enemy.RandomReword());
+        _gameManager.Player.GetMoney(_enemy.RandomReword());
+    }
+
+    public override void Dead()
+    {
+        _isDead = true;
+        _mainBar.DOFillAmount(0f, _mainSpeed).OnComplete(() => StartCoroutine(DeadIEnumerator()));
     }
 }
