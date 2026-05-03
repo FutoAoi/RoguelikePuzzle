@@ -6,7 +6,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 {
     public int ID;
     private GameManager _gameManager;
-    private PlayerStatus _playerStatus;
+    private StagePlayer _player;
     private GameObject _dropTarget,_cardPrefab,_newCard;
     private Transform _trOriginalParent,_trHandArea;
     private Canvas _canvas;
@@ -21,7 +21,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private void Start()
     {
         _gameManager = GameManager.Instance;
-        _playerStatus = _gameManager.PlayerStatus;
+        _player = _gameManager.Player;
         _uiManager = FindAnyObjectByType<UIManager_Battle>();
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
@@ -54,10 +54,10 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if(_card != null) ID = _card.CardID;
         _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
         if(_isBoardCard && _trOriginalParent.GetComponent<TileSlot>() != null && 
-            _playerStatus.CurrentCost < _playerStatus.MaxCost)
+            _player.CurrentCost < _player.MaxCost)
         {
-            _playerStatus.ChangeCost(_cost, false);
-            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _player.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_player.CurrentCost);
             _refundedCostOnDrag = true;
 }
     }
@@ -80,7 +80,7 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             _tileSlot = _dropTarget.GetComponent<TileSlot>();
             //ÉJÅ[ÉhÇ™ë∂ç›Ç∑ÇÈÇ∆Ç´å≥Ç…ñﬂÇ∑
-            if (_tileSlot.IsOccupied || !_playerStatus.ConsumeCost(_cost))
+            if (_tileSlot.IsOccupied || !_player.ConsumeCost(_cost))
             {
                 ReturnToOriginalSlot();
                 return;
@@ -91,8 +91,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _trOriginalParent.GetComponent<TileSlot>().ClearSlot();
             }
             _tileSlot.PlaceCard(ID);
-            _playerStatus.ChangeCost(_cost, true);
-            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _player.ChangeCost(_cost, true);
+            _uiManager.UpdateCostText(_player.CurrentCost);
             Card card = GetComponent<Card>();
             if (card != null)
             {
@@ -106,8 +106,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             if (tileSlot.IsLastTimeCard) return;
             tileSlot.ClearSlot();
             _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
-            _playerStatus.ChangeCost(_cost, false);
-            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _player.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_player.CurrentCost);
             InstanceHandCard(ID);
             Destroy(gameObject, 0.05f);
         }
@@ -122,8 +122,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         _rectTransform.anchoredPosition = Vector2.zero;
         if (_refundedCostOnDrag)
         {
-            _playerStatus.ChangeCost(_cost, true);
-            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _player.ChangeCost(_cost, true);
+            _uiManager.UpdateCostText(_player.CurrentCost);
             _refundedCostOnDrag = false;
         }
     }
@@ -144,8 +144,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 tileSlot.ClearSlot();
             }
             _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
-            _playerStatus.ChangeCost(_cost, false);
-            _uiManager.UpdateCostText(_playerStatus.CurrentCost);
+            _player.ChangeCost(_cost, false);
+            _uiManager.UpdateCostText(_player.CurrentCost);
             InstanceHandCard(ID);
             Destroy(gameObject,0.05f);
         }
