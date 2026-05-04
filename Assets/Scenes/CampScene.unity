@@ -1506,9 +1506,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a660e0bd5dd72a4b83e57be3812408b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardEncyclopedia
-  _bigCard: {fileID: 0}
-  _description: {fileID: 0}
-  _prefab: {fileID: 1393271532057796594, guid: 9433988e8aa5d90449f22a707d6794bd, type: 3}
+  _cardDatas: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
+  _bigCard: {fileID: 1596183669}
+  _description: {fileID: 654965667}
+  _prefab: {fileID: 2495629221640959785, guid: 8e3657b20ce362c48a30b79914e15245, type: 3}
   _parent: {fileID: 1386641664}
 --- !u!1 &394273119
 GameObject:
@@ -2621,6 +2622,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623959008}
   m_CullTransparentMesh: 1
+--- !u!114 &654965667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7990496546576894777, guid: 9433988e8aa5d90449f22a707d6794bd, type: 3}
+  m_PrefabInstance: {fileID: 1414854739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &700533601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,6 +4470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1386641664}
+  - component: {fileID: 1386641665}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -4484,6 +4497,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 3984.5667}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1386641665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386641663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 130
+    m_Right: 0
+    m_Top: 100
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 150, y: 200}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1392571866
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,6 +5499,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581453909}
   m_CullTransparentMesh: 1
+--- !u!1 &1596183669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1393271532057796594, guid: 9433988e8aa5d90449f22a707d6794bd, type: 3}
+  m_PrefabInstance: {fileID: 1414854739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598039100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5506,7 +5548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardDataBase: {fileID: 11400000, guid: edb29b53a956469489571dd51ad2206e, type: 2}
-  _buffDataBase: {fileID: 0}
+  _buffDataBase: {fileID: 11400000, guid: d7505e2156f97bc45825e7c5a58c379b, type: 2}
   _stageDataBase: {fileID: 11400000, guid: de974fe0ee6462e4da49dfcc42f365db, type: 2}
   _enemyDataBase: {fileID: 11400000, guid: b7a9ebc6f60867944aeb35fa0b7d2dab, type: 2}
   _mapData: {fileID: 11400000, guid: 0326f7ba0d57d4d44a5b55472f0473c0, type: 2}
