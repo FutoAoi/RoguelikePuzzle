@@ -105,9 +105,6 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             if (tileSlot.IsLastTimeCard) return;
             tileSlot.ClearSlot();
-            _cost = _gameManager.CardDataBase.GetCardData(ID).Cost;
-            _player.ChangeCost(_cost, false);
-            _uiManager.UpdateCostText(_player.CurrentCost);
             InstanceHandCard(ID);
             Destroy(gameObject, 0.05f);
         }
