@@ -477,7 +477,7 @@ MonoBehaviour:
   CurrentPhase: 5
   Reset: 0
   IsEnemyAction: 0
-  Player: {fileID: 0}
+  Player: {fileID: 460636253}
   _currentScene: 1
 --- !u!4 &330289939
 Transform:
@@ -790,9 +790,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 460636251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e0f503eb2f11b34a9c51238d413efdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 739e86183299eef4589e2d1f4198a6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  _maxCost: 8
 --- !u!114 &460636254
 MonoBehaviour:
   m_ObjectHideFlags: 0
